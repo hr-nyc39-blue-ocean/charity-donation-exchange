@@ -6,7 +6,6 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-
 # Dependency directories
 node_modules/
 jspm_packages/
@@ -16,8 +15,6 @@ jspm_packages/
 
 # Optional eslint cache
 .eslintcache
-
-
 
 # dotenv environment variables file
 .env
@@ -55,3 +52,4 @@ dist
 .tern-port
 
 .gitignore
+bundle.js
