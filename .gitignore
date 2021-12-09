@@ -34,7 +34,5 @@ assets
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 
-
-
-.gitignore
 bundle.js
+package-lock.json
