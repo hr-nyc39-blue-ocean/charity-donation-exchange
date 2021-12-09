@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
 const axios = require('axios');
 const morgan = require('morgan');
 // const db = require('./db/index.js');

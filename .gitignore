@@ -26,9 +26,7 @@ jspm_packages/
 # Next.js build output
 .next
 
-# Nuxt.js build / generate output
-.nuxt
-dist
+assets
 
 # Gatsby files
 .cache/
@@ -36,20 +34,7 @@ dist
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 
-# vuepress build output
-.vuepress/dist
 
-# Serverless directories
-.serverless/
-
-# FuseBox cache
-.fusebox/
-
-# DynamoDB Local files
-.dynamodb/
-
-# TernJS port file
-.tern-port
 
 .gitignore
 bundle.js
