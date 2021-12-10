@@ -11,36 +11,101 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + "/../client/dist"));
 
-// GET requests
-app.get("/getAllDonations", (req, res) => {
-  res.status(200).send("ok");
+// get all donations
+app.get("/v1/donations", (req, res) => {
+  /*
+    // check for valid input?
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+
+  */
+  res.status(200).send({});
 });
-app.get("/dashboardDonations", (req, res) => {
+
+// get user donations
+app.get("/v1/donations/:userId", (req, res) => {
+  /*
+    // check for valid input?
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+
+  */
   res.status(200).send("ok");
 });
 
-// POST requests
-app.post("newUserRegistration", (req, res) => {
-  res.status(200).send("ok");
-});
-app.post("addNewDonation", (req, res) => {
-  res.status(200).send("ok");
+// add new donation
+app.post("/v1/donations", (req, res) => {
+  /*
+    // check for valid input?
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+
+  */
+  res.status(201).send("created");
 });
 
-// PUT requests
-app.put("claimDonation", (req, res) => {
-  res.status(200).send("ok");
+// update specific donation
+app.put("/v1/donations/:donationId", (req, res) => {
+  /*
+    // check for valid input?
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+
+  */
+  res.status(200).send("updated");
 });
 
 // DELETE requests
-app.delete("deleteDonationListing", (req, res) => {
-  res.status(200).send("ok");
+app.delete("/v1/donations/:donationId", (req, res) => {
+  /*
+    // check for valid input?
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+
+  */
+  res.status(200).send("deleted");
 });
 
-/*
-TODO: how to handle user login and logout?
-user login
-user logout
+/* TODO: DELETE. Status code notes for easy access
+relevant status codes:
+200 - OK
+201 - created
+204 - no content
+400 - bad request
+401 - unauthorized
+403 - forbidden
+404 - not found
+405 - method not allowed
+408 - request timed out
+429 - too many requests
+500 - internal server error
+503 - serve unavailable
+
+
+*/
+
+/* TODO: how to handle user login and logout?
+
+  user login
+  user logout
+  app.post("/v1/registration", (req, res) => {
+    res.status(200).send("ok");
+  });
 
 */
 
