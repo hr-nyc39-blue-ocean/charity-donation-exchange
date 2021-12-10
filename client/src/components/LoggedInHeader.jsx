@@ -8,6 +8,7 @@ const LoggedInHeader = ({ setIsLoggedIn, setDashboardClicked }) => {
   const handleDashboardOnClick = () => {
     setDashboardClicked(true);
   };
+
   return (
     <div style={{ height: "25vh", width: "100vw", border: "1px solid black" }}>
       <div>
