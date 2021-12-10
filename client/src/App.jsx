@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import Button from "./shared/Button.jsx";
-import Donation from "./shared/Donation.jsx";
-import Input from "./shared/Input.jsx";
 import Home from "./components/Home.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 
@@ -12,11 +9,13 @@ const App = () => {
     <>
       {dashboardClicked ? (
         <Dashboard
+          dashboardClicked={dashboardClicked}
           setDashboardClicked={setDashboardClicked}
           setIsLoggedIn={setIsLoggedIn}
         />
       ) : (
         <Home
+          dashboardClicked={dashboardClicked}
           setDashboardClicked={setDashboardClicked}
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
