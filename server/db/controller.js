@@ -33,7 +33,15 @@ module.exports = {
   },
 
   deleteListing: function (listingID, callback) { // deletes listing that has the applicable listingID
-
+    db.promise().query(`DELETE FROM Listings WHERE listingID = ${listingID}`)
+    .then(() => {
+      console.log('successfully deleted targetted listing');
+      callback(null);
+    })
+    .catch(err => {
+      console.log('error deleting listing >>>>', err);
+      callback(err);
+    })
   },
 
   markAsClaimed: function (body, callback) { // body will contain listingID, claimerName, claimerEmail, claimerPhone, also updates claimed to 'true' and status to 'pending'

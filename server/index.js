@@ -81,16 +81,14 @@ app.put("/v1/donations/:donationId", (req, res) => {
 
 // DELETE requests
 app.delete("/v1/donations/:donationId", (req, res) => {
-  /*
-    // check for valid input?
+  console.log('req.params >>>>', req.params);
+  controller.deleteListing(req.params.donationId, (err) => {
     if (err) {
-      res.status(500).send(err);
+      res.sendStatus(500);
     } else {
-      res.status(200).send(data);
+      res.status(200).send("deleted");
     }
-
-  */
-  res.status(200).send("deleted");
+  })
 });
 
 /* TODO: DELETE. Status code notes for easy access
