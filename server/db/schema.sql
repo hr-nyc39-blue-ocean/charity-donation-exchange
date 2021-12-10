@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS `Users`;
 
 CREATE TABLE `Users` (
   `userID` INTEGER NOT NULL AUTO_INCREMENT,
-  `username (unique)` VARCHAR(40) NOT NULL,
+  `username` VARCHAR(40) NOT NULL UNIQUE,
   `password` VARCHAR(50) NOT NULL,
   `name` VARCHAR(50) NOT NULL,
   `email` VARCHAR(50) NOT NULL,
@@ -37,26 +37,13 @@ CREATE TABLE `Listings` (
   `location` INTEGER NOT NULL,
   `photoURL` VARCHAR(200) NULL DEFAULT NULL,
   `charityOnly` VARCHAR(10) NOT NULL,
-  `claimed` VARCHAR(10) NOT NULL DEFAULT 'unclaimed',
-  `status` VARCHAR(20) NULL DEFAULT 'active',
+  `claimed` VARCHAR(10) NOT NULL DEFAULT 'false',
+  `claimerName` VARCHAR(50) NULL DEFAULT NULL,
+  `claimerPhone` VARCHAR(10) NULL DEFAULT NULL,
+  `claimerEmail` VARCHAR(50) NULL DEFAULT NULL,
+  `status` VARCHAR(20) NULL DEFAULT 'open',
   `userID` INTEGER NOT NULL,
   PRIMARY KEY (`listingID`)
-);
-
--- ---
--- Table 'Claimsinfo'
---
--- ---
-
-DROP TABLE IF EXISTS `Claimsinfo`;
-
-CREATE TABLE `Claimsinfo` (
-  `claimID` INTEGER NOT NULL AUTO_INCREMENT,
-  `claimerName` VARCHAR(50) NOT NULL,
-  `claimerPhone` VARCHAR(10) NOT NULL,
-  `claimerEmail` VARCHAR(50) NOT NULL,
-  `listingID` INTEGER NOT NULL,
-  PRIMARY KEY (`claimID`)
 );
 
 -- ---
@@ -64,7 +51,6 @@ CREATE TABLE `Claimsinfo` (
 -- ---
 
 ALTER TABLE `Listings` ADD FOREIGN KEY (userID) REFERENCES `Users` (`userID`);
-ALTER TABLE `Claimsinfo` ADD FOREIGN KEY (listingID) REFERENCES `Listings` (`listingID`);
 
 -- ---
 -- Table Properties
@@ -72,7 +58,6 @@ ALTER TABLE `Claimsinfo` ADD FOREIGN KEY (listingID) REFERENCES `Listings` (`lis
 
 -- ALTER TABLE `Users` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `Listings` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `Claimsinfo` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ---
 -- Test Data
@@ -80,7 +65,5 @@ ALTER TABLE `Claimsinfo` ADD FOREIGN KEY (listingID) REFERENCES `Listings` (`lis
 
 -- INSERT INTO `Users` (`userID`,`username (unique)`,`password`,`name`,`email`,`phone`) VALUES
 -- ('','','','','','');
--- INSERT INTO `Listings` (`listingID`,`name`,`category`,`date`,`location`,`photoURL`,`charityOnly`,`claimed`,`status`,`userID`) VALUES
--- ('','','','','','','','','','');
--- INSERT INTO `Claimsinfo` (`claimID`,`claimerName`,`claimerPhone`,`claimerEmail`,`listingID`) VALUES
--- ('','','','','');
+-- INSERT INTO `Listings` (`listingID`,`name`,`category`,`date`,`location`,`photoURL`,`charityOnly`,`claimed`,`claimerName`,`claimerPhone`,`claimerEmail`,`status`,`userID`) VALUES
+-- ('','','','','','','','','','','','','');
