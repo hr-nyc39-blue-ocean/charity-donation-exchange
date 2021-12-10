@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
+import ClaimForm from '../components/ClaimForm.jsx';
 
 const Modal = () => {
 
@@ -8,6 +9,7 @@ const Modal = () => {
     <div>
       <Background>
         <ModalWrapper>
+          <ClaimForm />
         </ModalWrapper>
       </Background>
 
@@ -33,13 +35,15 @@ const Background = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-  width: 900px;
-  height: 400px;
+  width: 70%;
+  height: 70%;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
   padding: 25px;
-  z-index: 9999
+  z-index: 9999;
+  //justify-content: center;
+  //align-items: center;
 `;

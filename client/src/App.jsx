@@ -9,7 +9,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div>
-      {dashboardClicked ? (
+      {/* {dashboardClicked ? (
         <Dashboard
           dashboardClicked={dashboardClicked}
           setDashboardClicked={setDashboardClicked}
@@ -22,7 +22,7 @@ const App = () => {
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
         />
-      )}
+      )} */}
       <Modal />
     </div>
   );
