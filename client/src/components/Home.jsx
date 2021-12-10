@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import LoggedInHeader from "./LoggedInHeader.jsx";
 import NotLoggedInHeader from "./NotLoggedInHeader.jsx";
 import DonationList from "../shared/DonationList.jsx";
 
-const Home = ({ setDashboardClicked, isLoggedIn, setIsLoggedIn }) => {
+const Home = ({
+  dashboardClicked,
+  setDashboardClicked,
+  isLoggedIn,
+  setIsLoggedIn,
+}) => {
   return (
     <>
       {isLoggedIn ? (
@@ -14,7 +19,11 @@ const Home = ({ setDashboardClicked, isLoggedIn, setIsLoggedIn }) => {
       ) : (
         <NotLoggedInHeader setIsLoggedIn={setIsLoggedIn} />
       )}
-      <DonationList width={100} height={70} />
+      <DonationList
+        dashboardClicked={dashboardClicked}
+        width={100}
+        height={70}
+      />
     </>
   );
 };
