@@ -1,22 +1,25 @@
 import React, { useState } from "react";
 import Home from "./components/Home.jsx";
 import Dashboard from "./components/Dashboard.jsx";
+import "./styles/shared/Logo.scss";
+import "./styles/Global.scss";
 
 const App = () => {
-  const [dashboardClicked, setDashboardClicked] = useState(false);
+  const [showDashboard, setShowDashboard] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <>
-      {dashboardClicked ? (
+      {showDashboard ? (
         <Dashboard
-          dashboardClicked={dashboardClicked}
-          setDashboardClicked={setDashboardClicked}
+          showDashboard={showDashboard}
+          setShowDashboard={setShowDashboard}
           setIsLoggedIn={setIsLoggedIn}
         />
       ) : (
         <Home
-          dashboardClicked={dashboardClicked}
-          setDashboardClicked={setDashboardClicked}
+          showDashboard={showDashboard}
+          setShowDashboard={setShowDashboard}
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
         />
