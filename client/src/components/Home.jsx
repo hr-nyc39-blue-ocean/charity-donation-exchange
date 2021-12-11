@@ -2,29 +2,31 @@ import React from "react";
 import LoggedInHeader from "./LoggedInHeader.jsx";
 import NotLoggedInHeader from "./NotLoggedInHeader.jsx";
 import DonationList from "../shared/DonationList.jsx";
+import NavBar from "../shared/NavBar.jsx";
 
 const Home = ({
-  dashboardClicked,
-  setDashboardClicked,
+  setUserId,
+  showDashboard,
+  setShowDashboard,
   isLoggedIn,
   setIsLoggedIn,
 }) => {
   return (
-    <>
+    <div className="home global">
       {isLoggedIn ? (
         <LoggedInHeader
           setIsLoggedIn={setIsLoggedIn}
-          setDashboardClicked={setDashboardClicked}
+          setShowDashboard={setShowDashboard}
         />
       ) : (
-        <NotLoggedInHeader setIsLoggedIn={setIsLoggedIn} />
+        <NotLoggedInHeader
+          setIsLoggedIn={setIsLoggedIn}
+          setUserId={setUserId}
+        />
       )}
-      <DonationList
-        dashboardClicked={dashboardClicked}
-        width={100}
-        height={70}
-      />
-    </>
+      <NavBar showDashboard={showDashboard} />
+      <DonationList showDashboard={showDashboard} />
+    </div>
   );
 };
 
