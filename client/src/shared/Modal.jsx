@@ -16,9 +16,9 @@ const Modal = ({ claim, login, signup }) => {
           { login && <LoginForm /> }
           { signup && <SignupForm /> }
           {/* <SignupForm /> */}
-          {/* <LoginForm /> */}
+          <LoginForm />
           {/* <ClaimForm /> */}
-          <NewListingForm />
+          {/* <NewListingForm /> */}
         </ModalWrapper>
       </Background>
 

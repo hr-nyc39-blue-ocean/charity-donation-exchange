@@ -60,7 +60,7 @@ app.post("/v1/donations", (req, res) => {
     }
 
   */
-  console.log(req.body)
+  // console.log(req.body)
   res.status(201).send("created");
 });
 
@@ -75,6 +75,7 @@ app.put("/v1/donations/:listingId", (req, res) => {
     }
 
   */
+  console.log(req.body)
   res.status(200).send("updated");
 });
 
