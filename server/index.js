@@ -60,6 +60,7 @@ app.post("/v1/donations", (req, res) => {
     }
 
   */
+  console.log(req.body)
   res.status(201).send("created");
 });
 

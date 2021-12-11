@@ -30,7 +30,7 @@ export const getDonationsForDashboard = (userId) =>
 
 // logged in user adds new donation to their listings
 export const createDonationListing = ({
-  name,
+  item,
   category,
   location,
   photoUrl,
@@ -41,7 +41,7 @@ export const createDonationListing = ({
     method: "POST",
     url: "/v1/donations",
     data: {
-      name: name,
+      item: item,
       category: category,
       location: location,
       photoUrl: photoUrl,

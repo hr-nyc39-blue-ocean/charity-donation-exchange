@@ -12,7 +12,7 @@ const InputLabel = ({ label, input }) => {
 export default InputLabel;
 
 const Label = styled.label`
-  width: 40vw;
+  width: 35vw;
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
