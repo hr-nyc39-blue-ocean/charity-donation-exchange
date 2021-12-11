@@ -4,6 +4,7 @@ import { useState } from "react";
 import ClaimForm from '../components/ClaimForm.jsx';
 import LoginForm from '../components/LoginForm.jsx';
 import SignupForm from '../components/SignupForm.jsx';
+import NewListingForm from '../components/NewListingForm.jsx';
 
 const Modal = ({ claim, login, signup }) => {
 
@@ -17,6 +18,7 @@ const Modal = ({ claim, login, signup }) => {
           {/* <SignupForm /> */}
           {/* <LoginForm /> */}
           {/* <ClaimForm /> */}
+          <NewListingForm />
         </ModalWrapper>
       </Background>
 
