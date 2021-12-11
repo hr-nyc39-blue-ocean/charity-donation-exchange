@@ -2,28 +2,29 @@ import React, { useState } from "react";
 import Home from "./components/Home.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 
-import Modal from "./shared/Modal.jsx";
-
 const App = () => {
-  const [dashboardClicked, setDashboardClicked] = useState(false);
+  const [showDashboard, setShowDashboard] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(null);
+
   return (
-    <div>
-      {/* {dashboardClicked ? (
+    <div className="global">
+      {showDashboard ? (
         <Dashboard
-          dashboardClicked={dashboardClicked}
-          setDashboardClicked={setDashboardClicked}
+          userId={userId}
+          showDashboard={showDashboard}
+          setShowDashboard={setShowDashboard}
           setIsLoggedIn={setIsLoggedIn}
         />
       ) : (
         <Home
-          dashboardClicked={dashboardClicked}
-          setDashboardClicked={setDashboardClicked}
+          setUserId={setUserId}
+          showDashboard={showDashboard}
+          setShowDashboard={setShowDashboard}
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
         />
-      )} */}
-      <Modal />
+      )}
     </div>
   );
 };
