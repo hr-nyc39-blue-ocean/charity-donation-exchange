@@ -1,0 +1,11 @@
+@import "mixins";
+
+* {
+  margin: 0;
+}
+
+.global {
+  width: 100vw;
+  height: 100vh;
+  @include flex(column, space-between);
+}

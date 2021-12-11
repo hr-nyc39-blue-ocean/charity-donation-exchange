@@ -1,0 +1,21 @@
+@import "mixins";
+
+.donation-container {
+  padding: 10px;
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.donation-card-layout {
+  @include flex(row, space-between);
+  gap: 100px;
+}
+
+.donation-card-buttons {
+  @include flex(column, center, center);
+  width: 50vw;
+}
+
+.donation-button-styles {
+  padding: 10px;
+}
