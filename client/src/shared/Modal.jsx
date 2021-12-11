@@ -1,15 +1,22 @@
 import React from "react";
 import styled from 'styled-components';
+import { useState } from "react";
 import ClaimForm from '../components/ClaimForm.jsx';
+import LoginForm from '../components/LoginForm.jsx';
+import SignupForm from '../components/SignupForm.jsx';
 
-const Modal = () => {
-
+const Modal = ({ claim, login, signup }) => {
 
   return (
     <div>
       <Background>
         <ModalWrapper>
-          <ClaimForm />
+          { claim && <ClaimForm /> }
+          { login && <LoginForm /> }
+          { signup && <SignupForm /> }
+          {/* <SignupForm /> */}
+          {/* <LoginForm /> */}
+          {/* <ClaimForm /> */}
         </ModalWrapper>
       </Background>
 
@@ -22,7 +29,8 @@ export default Modal;
 const Background = styled.div`
   width: 100%;
   height: 100%;
-  background: rgba(200, 200, 200, 0.5);
+  // background: rgba(200, 200, 200, 0.5);
+  background: #FFF9EA;
   position: fixed;
   display: flex;
   justify-content: center;
