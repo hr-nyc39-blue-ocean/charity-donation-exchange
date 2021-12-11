@@ -64,7 +64,7 @@ DROP TABLE IF EXISTS `Sessions`;
 CREATE TABLE `Sessions` (
   `sessionID` INTEGER NOT NULL AUTO_INCREMENT,
   `hash` VARCHAR(64),
-  `userID` INTEGER,
+  `userID` INTEGER NOT NULL,
   PRIMARY KEY (`sessionID`)
 );
 
@@ -73,6 +73,7 @@ CREATE TABLE `Sessions` (
 -- ---
 
 ALTER TABLE `Listings` ADD FOREIGN KEY (userID) REFERENCES `Users` (`userID`);
+ALTER TABLE `Sessions` ADD FOREIGN KEY (userID) REFERENCES `Users` (`userID`);
 
 -- ---
 -- Table Properties
