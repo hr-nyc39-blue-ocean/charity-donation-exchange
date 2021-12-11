@@ -20,11 +20,12 @@ DROP TABLE IF EXISTS `Users`;
 
 CREATE TABLE `Users` (
   `userID` INTEGER NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(40) NOT NULL UNIQUE,
-  `password` VARCHAR(50) NOT NULL,
+  `username` VARCHAR(50) NOT NULL UNIQUE,
+  `password` VARCHAR(64) NOT NULL,
   `name` VARCHAR(50) NOT NULL,
   `email` VARCHAR(50) NOT NULL,
   `phone` VARCHAR(10) NOT NULL,
+  `salt` VARCHAR(64),
   PRIMARY KEY (`userID`)
 );
 
@@ -39,6 +40,7 @@ CREATE TABLE `Listings` (
   `listingID` INTEGER NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NOT NULL,
   `category` VARCHAR(50) NOT NULL,
+  `quantity` INTEGER NOT NULL,
   `date` DATETIME NOT NULL,
   `location` INTEGER NOT NULL,
   `photoURL` VARCHAR(200) NULL DEFAULT NULL,
@@ -50,6 +52,20 @@ CREATE TABLE `Listings` (
   `status` VARCHAR(20) DEFAULT 'open',
   `userID` INTEGER NOT NULL,
   PRIMARY KEY (`listingID`)
+);
+
+-- ---
+-- Table 'Sessions'
+--
+-- ---
+
+DROP TABLE IF EXISTS `Sessions`;
+
+CREATE TABLE `Sessions` (
+  `sessionID` INTEGER NOT NULL AUTO_INCREMENT,
+  `hash` VARCHAR(64),
+  `userID` INTEGER,
+  PRIMARY KEY (`sessionID`)
 );
 
 -- ---
