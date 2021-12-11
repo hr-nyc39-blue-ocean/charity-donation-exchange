@@ -33,6 +33,42 @@ app.post('/listings/', (req, res) => {
     }
   })
 });
+
+app.put("/v1/donations/claimed/:listingId", (req, res) => {
+  console.log('req.params >>>>', req.params);
+  controller.markAsClaimed(req.params.listingId, req.body, (err) => {
+    // check for valid input?
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(200).send("marked complete");
+    }
+  })
+});
+
+app.put("/v1/donations/completed/:listingId", (req, res) => {
+  console.log('req.params >>>>', req.params);
+  controller.markAsComplete(req.params.listingId, (err) => {
+    // check for valid input?
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(200).send("marked complete");
+    }
+  })
+});
+
+app.get("/v1/userclaimedlistings/:userID", (req, res) => {
+  console.log('req.params >>>>', req.params);
+  controller.getUserClaimedListings(req.params.userID, (err, responseData) => {
+    // check for valid input?
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(200).send(responseData);
+    }
+  })
+});
 // get all donations
 app.get("/v1/donations/:charityOnly", (req, res) => {
   /*
