@@ -1,3 +1,13 @@
+// TODO: Anonymous user types into search bar
+// TODO: Anonymous user sorts by distance
+// TODO: Anonymous user sorts by newest
+// TODO: Anonymous user sorts by distance and newest
+// TODO: Anonymous user registers
+// TODO: Anonymous user logs in
+// TODO: Donator user logs out
+// TODO: Donator user sorts by newest
+// TODO: Donator user filters by open, pending (claimed), completed
+
 const express = require("express");
 const app = express();
 const PORT = 3000;
@@ -24,7 +34,7 @@ app.post('/listings/', (req, res) => {
   })
 });
 // get all donations
-app.get("/v1/donations", (req, res) => {
+app.get("/v1/donations/:charityOnly", (req, res) => {
   /*
     // check for valid input?
     if (err) {
@@ -37,7 +47,7 @@ app.get("/v1/donations", (req, res) => {
   res.status(200).send({});
 });
 
-// get user donations
+// get user donation listings for dashboard
 app.get("/v1/donations/:userId", (req, res) => {
   /*
     // check for valid input?
@@ -66,7 +76,7 @@ app.post("/v1/donations", (req, res) => {
 });
 
 // update specific donation
-app.put("/v1/donations/:donationId", (req, res) => {
+app.put("/v1/donations/:listingId", (req, res) => {
   /*
     // check for valid input?
     if (err) {
@@ -79,10 +89,11 @@ app.put("/v1/donations/:donationId", (req, res) => {
   res.status(200).send("updated");
 });
 
-// DELETE requests
-app.delete("/v1/donations/:donationId", (req, res) => {
+// delete donation listing
+app.delete("/v1/donations/:listingId", (req, res) => {
   console.log('req.params >>>>', req.params);
-  controller.deleteListing(req.params.donationId, (err) => {
+  controller.deleteListing(req.params.listingId, (err) => {
+    // check for valid input?
     if (err) {
       res.sendStatus(500);
     } else {

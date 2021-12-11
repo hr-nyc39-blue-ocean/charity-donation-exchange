@@ -17,6 +17,12 @@ module.exports = {
   getUserListings: function (userID, callback) { //
     let result = {};
     let sortKeyword = '';
+  },
+
+
+  getUserClaimedListings: function (userID, callback) { //
+    let result = {};
+    let sortKeyword = '';
 
   },
 
@@ -51,5 +57,4 @@ module.exports = {
   markAsComplete: function (listingID, callback) { // updates status to 'complete'
 
   },
-
 }
