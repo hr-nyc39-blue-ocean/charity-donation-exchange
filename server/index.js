@@ -111,16 +111,23 @@ app.post("/v1/donations", (req, res) => {
 
 // update specific donation
 app.put("/v1/donations/:listingId", (req, res) => {
-  /*
+
+    // check for valid input?
+    // if (err) {
+    //   res.status(500).send(err);
+    // } else {
+    //   res.status(200).send(data);
+    // }
+controller.cancelListing(req.params.listingId, (err) => {
     // check for valid input?
     if (err) {
-      res.status(500).send(err);
+      res.sendStatus(500);
     } else {
-      res.status(200).send(data);
+      res.status(200).send("marked listing as cancelled");
     }
+  })
 
-  */
-  res.status(200).send("updated");
+  // res.status(200).send("updated");
 });
 
 // delete donation listing

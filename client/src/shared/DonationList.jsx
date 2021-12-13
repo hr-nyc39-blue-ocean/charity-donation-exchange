@@ -11,6 +11,8 @@ const DonationList = ({ showDashboard }) => {
     });
   }, []);
 
+  console.log('front end getAllDonations pull >>>>>>>>', donations);
+
   const color = showDashboard ? "donation-list-blue" : "donation-list-yellow";
 
   const fetchAllListings = () => {

@@ -86,7 +86,7 @@ export const markDonationListingStatusComplete = (listingId) => {
 // cancels/deletes existing donation
 export const cancelDonationListing = (listingId) => {
   return baseURL({
-    method: "DELETE",
+    method: "PUT",
     url: `/v1/donations/${listingId}`,
     data: {
       listingId: listingId,

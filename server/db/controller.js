@@ -9,7 +9,7 @@ module.exports = {
     // always sorted by date since distance sort will be done on front-end
     db.promise()
       .query(
-        `SELECT * FROM Listings ORDER BY date DESC'`
+        `SELECT * FROM Listings ORDER BY date DESC`
       )
       .then((responseData) => {
         console.log('grabbed all listings');
@@ -165,7 +165,7 @@ module.exports = {
   cancelListing: function (listingID, callback) {
     // update listing so status=inactive
     db.promise()
-      .query(`DELETE FROM Listings WHERE listingID = ${listingID}`)
+      .query(`UPDATE Listings SET status='cancelled' WHERE listingID = ${listingID}`)
       .then(() => {
         console.log('successfully cancelled targetted listing');
         callback(null);

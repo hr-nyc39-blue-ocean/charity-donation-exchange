@@ -3,7 +3,7 @@ const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'blueocean',
+  database: 'blueocean2',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
