@@ -18,7 +18,7 @@ USE blueocean2;
 
 DROP TABLE IF EXISTS `Users`;
 
-CREATE TABLE `Users` (
+CREATE TABLE `Users` ( -- all are strings except userID
   `userID` INTEGER NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(50) NOT NULL UNIQUE,
   `password` VARCHAR(64) NOT NULL,

@@ -70,17 +70,15 @@ app.get("/v1/userclaimedlistings/:userID", (req, res) => {
   })
 });
 // get all donations
-app.get("/v1/donations/:charityOnly", (req, res) => {
-  /*
+app.get("/v1/donations/", (req, res) => {
+  controller.getAllListings((err, responseData) => {
     // check for valid input?
     if (err) {
-      res.status(500).send(err);
+      res.sendStatus(500);
     } else {
-      res.status(200).send(data);
+      res.status(200).send(responseData);
     }
-
-  */
-  res.status(200).send({});
+  })
 });
 
 // get user donation listings for dashboard

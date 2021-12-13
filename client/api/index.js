@@ -15,13 +15,10 @@ const baseURL = axios.create({
 });
 
 // get all donations, can specify charityOnly
-export const getAllDonations = (charityOnly = false) =>
+export const getAllDonations = () =>
   baseURL({
     method: "GET",
     url: "/v1/donations",
-    data: {
-      charityOnly: charityOnly,
-    },
   });
 
 // get all user's donations for dashboard, input userId
