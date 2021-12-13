@@ -14,6 +14,7 @@ const PORT = 3000;
 const axios = require("axios");
 const morgan = require("morgan");
 // const db = require('./db/index.js');
+const User = require("./Models/user.js");
 
 app.use(morgan("dev"));
 app.use(express.json());
@@ -107,17 +108,93 @@ relevant status codes:
 503 - serve unavailable
 
 
-*/
+//***IN PROGRESS****
 
-/* TODO: how to handle user login and logout?
+//  TODO: how to handle user login and logout?
 
-  user login
-  user logout
-  app.post("/v1/registration", (req, res) => {
-    res.status(200).send("ok");
-  });
+//   user login
+//   user logout
+//   app.post("/v1/registration", (req, res) => {
+//     res.status(200).send("ok");
+//   });
 
-*/
+  // importing user context
+const User = require("./model/user");
+
+// Register
+
+// Get user input and validate it
+// Validate if user already exists
+// Encrypt user pw
+// Create a user in the db
+// Create a signed JWT token
+
+//**TODO: limit on pw chars, token chars? */
+
+app.post("/signup", (req, res, next) => {
+  var username = req.body.username;
+  var name = req.body.name;
+  var email = req.body.email;
+  var password = req.body.password;
+
+  var newuser = User.create({ username, name, email, password });
+  res.status(200).send(newuser.email);
+});
+
+app.post("/login", (req, res, next) => {
+  var username = req.body.username;
+  var password = req.body.password;
+
+  res.status(200).send(username);
+});
+
+//TODO:
+
+//signup
+
+// check if user already exist in db
+// const oldUser = await User.findOne({ email });
+
+// if (oldUser) {
+//   return res.status(409).send("You already have an account, please use that to log in.");
+// }
+
+//Encrypt user password
+// const encryptedPassword = bcrypt.hash(password, 10);
+
+// Create user in our database
+// const user = await User.create({
+//   name,
+//   username,
+//   email: email.toLowerCase(),
+//   password: encryptedPassword,
+//   token: null,
+// });
+
+// Create token - **TODO update for already created token
+// const token = jwt.sign(
+//   { user_id: user._id, email },
+//   process.env.TOKEN_KEY,
+//   //TODO: set up dotenv w token key
+//   {
+//     expiresIn: "1h",
+//     //TODO: enough time, change time?
+//   }
+// );
+// // save user token
+// user.token = token;
+
+// return new user
+
+// } catch (err) {
+//   console.log(err);
+// }
+
+// Login
+app.post("/login", (req, res) => {
+  // our login logic goes here
+  res.status(200).send("successfully hit login");
+});
 
 app.listen(PORT, () => {
   console.log(`Server listening at localhost:${PORT}!`);

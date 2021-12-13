@@ -93,3 +93,30 @@ export const deleteDonationListing = ({ listingId }) => {
     url: `/v1/donations/${listingId}`,
   });
 };
+//**helpers for sign up and sign in */
+export const signupUser = ({ name, username, email, password }) => {
+  baseURL({
+    method: "POST",
+    url: "/signup",
+    data: {
+      name: name,
+      username: username,
+      email: email,
+      password: password,
+      token: null,
+    },
+  });
+};
+
+export const loginUser = ({ username, password }) => {
+  baseURL({
+    method: "POST",
+    url: "/login",
+    data: {
+      username: username,
+      password: password,
+      token: null,
+    },
+  });
+};
+//TODO: integrate jwt tokens in this if necessary, can be null while testing
