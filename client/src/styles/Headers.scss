@@ -1,0 +1,47 @@
+@import "mixins";
+
+#logo {
+  width: 197px;
+  height: 197px;
+}
+
+.home-header {
+  background-color: #fdca39;
+  height: 25vh;
+  width: 100vw;
+  border: 1px solid black;
+}
+
+.header-row {
+  @include flex(row);
+}
+
+.header-layout {
+  @include flex(column, center, center);
+  width: 100vw;
+}
+
+.header-title {
+  @include flex(row, center, center);
+}
+
+.dashboard-header {
+  @extend .home-header;
+  background-color: #5eadab;
+  @include flex(row);
+}
+
+.dashboard-title {
+  @extend .header-title;
+  width: 100vw;
+}
+
+.header-buttons-styles {
+  padding: 5px;
+}
+
+.header-buttons-container {
+  @include flex(column, flex-start);
+  @extend .header-buttons-styles;
+  width: 12vw;
+}

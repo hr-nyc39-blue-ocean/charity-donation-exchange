@@ -1,21 +1,14 @@
 import React from "react";
-import Button from "../shared/Button.jsx";
+import Logo from "../../dist/img/DashboardLogo.jpeg";
 
-const DashboardHeader = ({ setDashboardClicked, setIsLoggedIn }) => {
-  const handleHomeOnClick = () => {
-    setDashboardClicked(false);
-  };
-  const handleLogoutOnClick = () => {
-    setIsLoggedIn(false);
-    setDashboardClicked(false);
-  };
+const DashboardHeader = () => {
   return (
-    <div style={{ height: "25vh", width: "100vw", border: "1px solid black" }}>
-      <div>This is the Dashboard Header</div>
+    <div className="dashboard-header">
       <div>
-        <Button handleOnClick={handleHomeOnClick} text="Home" />
-        <Button text="Create a New Listing" />
-        <Button handleOnClick={handleLogoutOnClick} text="Logout" />
+        <img id="logo" src={Logo} alt="logo" />
+      </div>
+      <div className="dashboard-title">
+        <div>DASHBOARD</div>
       </div>
     </div>
   );

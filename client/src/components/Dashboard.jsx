@@ -1,23 +1,24 @@
 import React from "react";
 import DonationList from "../shared/DonationList.jsx";
+import NavBar from "../shared/NavBar.jsx";
 import DashboardHeader from "./DashboardHeader.jsx";
 
 const Dashboard = ({
-  setDashboardClicked,
+  userId,
+  setShowDashboard,
   setIsLoggedIn,
-  dashboardClicked,
+  showDashboard,
 }) => {
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <DashboardHeader
-        setDashboardClicked={setDashboardClicked}
+    <div className="dashboard global">
+      <DashboardHeader />
+      <NavBar
+        userId={userId}
+        showDashboard={showDashboard}
+        setShowDashboard={setShowDashboard}
         setIsLoggedIn={setIsLoggedIn}
       />
-      <DonationList
-        width={100}
-        height={70}
-        dashboardClicked={dashboardClicked}
-      />
+      <DonationList showDashboard={showDashboard} />
     </div>
   );
 };
