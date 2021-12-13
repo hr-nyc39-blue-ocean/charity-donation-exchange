@@ -100,7 +100,7 @@ module.exports = {
   },
 
   getUserAllListings: function (userID, callback) {
-    // even shows cancelled listings
+    // shows all listings by User, even cancelled listings
     db.promise()
       .query(`SELECT * FROM Listings WHERE userID=${userID}`) // no sort
       .then((responseData) => {
@@ -114,7 +114,7 @@ module.exports = {
   },
 
   getUserClaimedListings: function (userID, callback) {
-    // claimed but not closed/cancelled
+    // User's claimed but not closed/cancelled listings
     db.promise()
       .query(
         `SELECT * FROM Listings WHERE userID=${userID} AND claimed='true' AND status='pending'`
