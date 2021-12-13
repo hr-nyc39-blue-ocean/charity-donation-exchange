@@ -23,7 +23,7 @@ CREATE TABLE `Users` ( -- all are strings except userID
   `username` VARCHAR(50) NOT NULL UNIQUE,
   `password` VARCHAR(64) NOT NULL,
   `name` VARCHAR(50) NOT NULL,
-  `email` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(50) NOT NULL UNIQUE,
   `phone` VARCHAR(10) NOT NULL,
   `token` VARCHAR(64) NULL DEFAULT NULL,
   PRIMARY KEY (`userID`)
@@ -67,26 +67,17 @@ ALTER TABLE `Listings` ADD FOREIGN KEY (userID) REFERENCES `Users` (`userID`);
 -- ALTER TABLE `Users` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `Listings` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- ---
--- Test Data
--- ---
-
--- INSERT INTO `Users` (`userID`,`username`,`password`,`name`,`email`,`phone`) VALUES
--- ('','','','','','');
--- INSERT INTO `Listings` (`listingID`,`name`,`category`,`date`,`location`,`photoURL`,`charityOnly`,`claimed`,`claimerName`,`claimerPhone`,`claimerEmail`,`status`,`userID`) VALUES
--- ('','','','','','','','','','','','','');
-
 
 -- to execute this file in terminal: mysql -u root < ./server/db/schema.sql from top level directory
 
-LOAD DATA LOCAL INFILE '/Users/jhwang/Downloads/UsersData.csv'
+LOAD DATA LOCAL INFILE '/Users/jhwang/Downloads/UsersData.csv' -- change to your local path
 INTO TABLE Users
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
 (username, password, name, email, phone);
 
-LOAD DATA LOCAL INFILE '/Users/jhwang/Downloads/ListingsData.csv'
+LOAD DATA LOCAL INFILE '/Users/jhwang/Downloads/ListingsData.csv' -- change to your local path
 INTO TABLE Listings
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'

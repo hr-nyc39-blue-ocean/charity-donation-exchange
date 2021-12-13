@@ -8,9 +8,7 @@ module.exports = {
   getAllListings: function (callback) {
     // always sorted by date since distance sort will be done on front-end
     db.promise()
-      .query(
-        `SELECT * FROM Listings ORDER BY date DESC`
-      )
+      .query(`SELECT * FROM Listings ORDER BY date DESC`)
       .then((responseData) => {
         console.log('grabbed all listings');
         callback(null, responseData[0]); // array of relevant entries
@@ -22,41 +20,39 @@ module.exports = {
   },
 
   getNonCharityListings: function (callback) {
-
-      db.promise()
-        .query(
-          `SELECT * FROM Listings WHERE charityOnly='false' ORDER BY date DESC'`
-        )
-        .then((responseData) => {
-          console.log('grabbed all listings');
-          callback(null, responseData[0]); // array of relevant entries
-        })
-        .catch((err) => {
-          console.log('error getListings >>>>', err);
-          callback(err);
-       });
-
+    db.promise()
+      .query(
+        `SELECT * FROM Listings WHERE charityOnly='false' ORDER BY date DESC'`
+      )
+      .then((responseData) => {
+        console.log('grabbed non charity listings only');
+        callback(null, responseData[0]); // array of relevant entries
+      })
+      .catch((err) => {
+        console.log('error getNonCharityListings >>>>', err);
+        callback(err);
+      });
   },
 
   createUser: function (body, callback) {
-    // create user with null token at beginning, and then need another function that just updates token
+    // create user with null token at beginning
     db.promise()
-    .query(
-      `INSERT INTO Users (username, password, name, email, phone) VALUES ('${body.username}', '${body.password}', '${body.name}', '${body.email}', '${body.phone}')`
-    )
-    .then(() => {
-      console.log('successfully created new User');
-      callback(null);
-    })
-    .catch((err) => {
-      console.log('error creating User>>>', err);
-      callback(err);
-    });
+      .query(
+        `INSERT INTO Users (username, password, name, email, phone) VALUES ('${body.username}', '${body.password}', '${body.name}', '${body.email}', '${body.phone}')`
+      )
+      .then(() => {
+        console.log('successfully created new User with null token');
+        callback(null);
+      })
+      .catch((err) => {
+        console.log('error creating User>>>', err);
+        callback(err);
+      });
   },
 
-  updateToken: function (token, username, callback) {
+  updateToken: function (token, email, callback) {
     db.promise()
-      .query(`UPDATE Users SET token='${token}' WHERE username='${username}'`)
+      .query(`UPDATE Users SET token='${token}' WHERE email='${email}'`)
       .then(() => {
         console.log("successfully updated user's token");
         callback(null);
@@ -136,7 +132,9 @@ module.exports = {
   getUserCancelledListings: function (userID, callback) {
     //
     db.promise()
-      .query(`SELECT * FROM Listings WHERE userID=${userID} AND status='cancelled'`) // no sort
+      .query(
+        `SELECT * FROM Listings WHERE userID=${userID} AND status='cancelled'`
+      ) // no sort
       .then((responseData) => {
         console.log('grabbed user specific listings that are claimed');
         callback(null, responseData[0]); // array of relevant entries
@@ -165,7 +163,9 @@ module.exports = {
   cancelListing: function (listingID, callback) {
     // update listing so status=inactive
     db.promise()
-      .query(`UPDATE Listings SET status='cancelled' WHERE listingID = ${listingID}`)
+      .query(
+        `UPDATE Listings SET status='cancelled' WHERE listingID = ${listingID}`
+      )
       .then(() => {
         console.log('successfully cancelled targetted listing');
         callback(null);
