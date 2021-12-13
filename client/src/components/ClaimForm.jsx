@@ -1,21 +1,50 @@
 import React from "react";
-import styled from "styled-components";
-import Submit from "../shared/SubmitCancelButton.jsx";
-import InputLabel from "../shared/InputLabel.jsx";
+import styled from 'styled-components';
+import Submit from '../shared/SubmitCancelButton.jsx';
+import InputLabel from '../shared/InputLabel.jsx';
+import { useState, useEffect } from "react";
+const api = require('../../api/index.js');
 
 const ClaimForm = ({ listingId, toggleModal }) => {
-  console.log(listingId);
+
+  const initialClaimInfo = {
+    listingId: listingId || 1,
+    claimed: true,
+    claimerName: '',
+    claimerPhone: '',
+    claimerEmail: '',
+    status: 'pending'
+  }
+  const [claimInfo, setClaimInfo] = useState(initialClaimInfo);
+
+  const handleInputChange = (e) => {
+    setClaimInfo((prevState) => (
+      {...prevState, [e.target.name]: e.target.value }
+      ))
+  }
+
+  const handleSubmit = (claimInfo) => {
+    api.claimDonationListing(claimInfo)
+    .then((results) => {
+      console.log(results)
+    })
+    .catch((err) => {
+      console.log('ERROR IN ClaimForm handle submit: ', err)
+    })
+  }
+
   return (
     <div>
-      <Title> Please submit your info for the donator </Title>
-      <Form>
-        <InputLabel label={"Name"} input={"name"} />
-        <InputLabel label={"Email"} input={"email"} />
-        <InputLabel label={"Phone"} input={"phone"} />
+      <Title> Please submit your contact information for the donator </Title>
+      <Form onChange={handleInputChange}>
+        <InputLabel label={"Name"} input={"claimerName"} />
+        <InputLabel label={"Email"} input={"claimerEmail"} type={"email"}/>
+        <InputLabel label={"Phone"} input={"claimerPhone"} />
       </Form>
-      <Submit handleCancel={toggleModal} />
+      <Submit handleSubmit={() => {handleSubmit(claimInfo)}} handleCancel={toggleModal}/>
     </div>
-  );
+  )
+
 };
 
 export default ClaimForm;
