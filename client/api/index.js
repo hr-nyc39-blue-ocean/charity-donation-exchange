@@ -15,22 +15,20 @@ const baseURL = axios.create({
 });
 
 // get all donations, can specify charityOnly
-export const getAllDonations = (charityOnly = false) =>
-  baseURL({
+export const getAllDonations = () => {
+  return baseURL({
     method: "GET",
     url: "/v1/donations",
-    data: {
-      charityOnly: charityOnly,
-    },
   });
+};
 
 // get all user's donations for dashboard, input userId
-export const getDonationsForDashboard = (userId) =>
-  baseUrl.get(`/v1/donations/${userId}`);
-
+export const getDonationsForDashboard = (userId) => {
+  baseURL.get(`/v1/donations/${userId}`);
+};
 // logged in user adds new donation to their listings
 export const createDonationListing = ({
-  name,
+  item,
   category,
   location,
   photoUrl,
@@ -41,7 +39,7 @@ export const createDonationListing = ({
     method: "POST",
     url: "/v1/donations",
     data: {
-      name: name,
+      item: item,
       category: category,
       location: location,
       photoUrl: photoUrl,
@@ -75,22 +73,24 @@ export const claimDonationListing = ({
 };
 
 // complete existing donation. Changes status to complete
-export const completeDonationListing = ({ listingId, status }) => {
-  baseURL({
+export const markDonationListingStatusComplete = (listingId) => {
+  return baseURL({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
     data: {
       listingId: listingId,
-      status: status,
     },
   });
 };
 
 // cancels/deletes existing donation
-export const deleteDonationListing = ({ listingId }) => {
-  baseURL({
-    method: "DELETE",
+export const cancelDonationListing = (listingId) => {
+  return baseURL({
+    method: "PUT",
     url: `/v1/donations/${listingId}`,
+    data: {
+      listingId: listingId,
+    },
   });
 };
 //**helpers for sign up and sign in */

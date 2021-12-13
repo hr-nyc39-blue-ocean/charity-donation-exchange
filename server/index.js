@@ -11,10 +11,13 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
+ 
 const axios = require("axios");
 const morgan = require("morgan");
-// const db = require('./db/index.js');
+const db = require('./db/index.js');
 const User = require("./Models/user.js");
+ 
+ 
 
 app.use(morgan("dev"));
 app.use(express.json());
@@ -22,18 +25,63 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + "/../client/dist"));
 
-// get all donations
-app.get("/v1/donations/:charityOnly", (req, res) => {
-  /*
+app.post('/listings/', (req, res) => {
+  const body = req.body;
+  console.log('req.body >>>>', body);
+  controller.postListing(body, (err) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.sendStatus(204);
+    }
+  })
+});
+
+app.put("/v1/donations/claimed/:listingId", (req, res) => {
+  console.log('req.params >>>>', req.params);
+  controller.markAsClaimed(req.params.listingId, req.body, (err) => {
     // check for valid input?
     if (err) {
-      res.status(500).send(err);
+      res.sendStatus(500);
     } else {
-      res.status(200).send(data);
+      res.status(200).send("marked complete");
     }
+  })
+});
 
-  */
-  res.status(200).send({});
+app.put("/v1/donations/completed/:listingId", (req, res) => {
+  console.log('req.params >>>>', req.params);
+  controller.markAsComplete(req.params.listingId, (err) => {
+    // check for valid input?
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(200).send("marked complete");
+    }
+  })
+});
+
+app.get("/v1/userclaimedlistings/:userID", (req, res) => {
+  console.log('req.params >>>>', req.params);
+  controller.getUserClaimedListings(req.params.userID, (err, responseData) => {
+    // check for valid input?
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(200).send(responseData);
+    }
+  })
+});
+// get all donations
+app.get("/v1/donations/", (req, res) => {
+  controller.getAllListings((err, responseData) => {
+    // check for valid input?
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(200).send(responseData);
+    }
+  })
 });
 
 // get user donation listings for dashboard
@@ -61,35 +109,45 @@ app.post("/v1/donations", (req, res) => {
     }
 
   */
+  // console.log(req.body)
   res.status(201).send("created");
 });
 
 // update specific donation
 app.put("/v1/donations/:listingId", (req, res) => {
-  /*
+
+    // check for valid input?
+    // if (err) {
+    //   res.status(500).send(err);
+    // } else {
+    //   res.status(200).send(data);
+    // }
+controller.cancelListing(req.params.listingId, (err) => {
     // check for valid input?
     if (err) {
-      res.status(500).send(err);
+      res.sendStatus(500);
     } else {
-      res.status(200).send(data);
+      res.status(200).send("marked listing as cancelled");
     }
+  })
 
-  */
-  res.status(200).send("updated");
+
+
+  // res.status(200).send("updated");
+
 });
 
 // delete donation listing
 app.delete("/v1/donations/:listingId", (req, res) => {
-  /*
+  console.log('req.params >>>>', req.params);
+  controller.deleteListing(req.params.listingId, (err) => {
     // check for valid input?
     if (err) {
-      res.status(500).send(err);
+      res.sendStatus(500);
     } else {
-      res.status(200).send(data);
+      res.status(200).send("deleted");
     }
-
-  */
-  res.status(200).send("deleted");
+  })
 });
 
 /* TODO: DELETE. Status code notes for easy access

@@ -3,50 +3,61 @@ import styled from "styled-components";
 import Submit from "../shared/SubmitCancelButton.jsx";
 import InputLabel from "../shared/InputLabel.jsx";
 import { useState, useEffect } from "react";
+const api = require('../../api/index.js');
+
 
 const NewListingForm = ({ userId, toggleModal }) => {
-  const [Yes, setYes] = useState(false);
-  const [No, setNo] = useState(false);
+
+  const defaultListing = {
+    item: '',
+    category: '',
+    location: '',
+    photoUrl: '',
+    charityOnly: false,
+    userId: userId || ''
+  }
+  const [listingInfo, setListingInfo] = useState(defaultListing)
 
   const handleCheckboxSelected = (e) => {
-    if (e.target.name === "yes") {
-      setYes(!Yes);
-    } else if (e.target.name === "no") {
-      setNo(!No);
+    if (e.target.name === "yes" && e.target.checked === true) {
+      setListingInfo((prevState) => (
+        {...prevState, charityOnly: true }
+        ))
     }
-  };
+  }
+
+  const handleInputChange = (e) => {
+    setListingInfo((prevState) => (
+      {...prevState, [e.target.name]: e.target.value }
+      ))
+  }
+
+  const handleSubmit = (listingInfo) => {
+    const { item, category, location, photoUrl, charityOnly, userId } = listingInfo;
+    api.createDonationListing( { item, category, location, photoUrl, charityOnly, userId } )
+    .then((results) => {
+      console.log(results)
+    })
+    .catch((err) => {
+      console.log('ERROR IN NewListingForm submit: ', err);
+    })
+  }
+
 
   return (
     <div>
       <Title>Create a new listing</Title>
-      <Form>
+      <Form onChange={handleInputChange}>
         <InputLabel label={"Item Name"} input={"item"} />
         <InputLabel label={"Category"} input={"category"} />
-        <InputLabel label={"Location"} input={"location"} />
-        <InputLabel label={"Photo URL"} input={"photo"} />
-        <CheckboxLabel>
-          Charity Only:
-          <ChoiceLabel>
-            {" "}
-            Yes{" "}
-            <CheckMark
-              type="checkbox"
-              name="yes"
-              onClick={handleCheckboxSelected}
-            />{" "}
-          </ChoiceLabel>
-          <ChoiceLabel>
-            {" "}
-            No{" "}
-            <CheckMark
-              type="checkbox"
-              name="no"
-              onClick={handleCheckboxSelected}
-            />{" "}
-          </ChoiceLabel>
+        <InputLabel label={"Zipcode"} input={"location"} />
+        <InputLabel label={"Photo Url"} input={"photoUrl"} />
+        <CheckboxLabel>Charity Only:
+          <ChoiceLabel > Yes <CheckMark type="checkbox" name="yes" onClick={handleCheckboxSelected}/> </ChoiceLabel>
+          <ChoiceLabel> No <CheckMark type="checkbox" name="no" onClick={handleCheckboxSelected} /> </ChoiceLabel>
         </CheckboxLabel>
       </Form>
-      <Submit handleCancel={toggleModal} />
+      <Submit handleSubmit={() => {handleSubmit(listingInfo)}} handleCancel={toggleModal}/>
     </div>
   );
 };

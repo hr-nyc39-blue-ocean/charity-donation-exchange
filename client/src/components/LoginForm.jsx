@@ -1,9 +1,24 @@
 import React from "react";
-import styled from "styled-components";
-import Submit from "../shared/SubmitCancelButton.jsx";
-import InputLabel from "../shared/InputLabel.jsx";
+import styled from 'styled-components';
+import Submit from '../shared/SubmitCancelButton.jsx';
+import InputLabel from '../shared/InputLabel.jsx';
+import { useState, useEffect } from "react";
+const api = require('../../api/index.js');
 
-const LoginForm = ({ toggleModal, setIsLoggedIn, setUserId }) => {
+const LoginForm = ({ setIsLoggedIn, setUserId, toggleModal }) => {
+
+  const [loginInfo, setLoginInfo] = useState({username: '', password: ''})
+
+  const handleInputChange = (e) => {
+    setLoginInfo((prevState) => (
+      {...prevState, [e.target.name]: e.target.value }
+      ))
+  }
+
+  const handleSubmit = (loginInfo) => {
+    console.log(loginInfo);
+  }
+
   return (
     <div>
       <Title> Login to your account </Title>
@@ -13,7 +28,7 @@ const LoginForm = ({ toggleModal, setIsLoggedIn, setUserId }) => {
       </Form>
       <Submit handleCancel={toggleModal} />
     </div>
-  );
+  )
 };
 
 export default LoginForm;
