@@ -1,8 +1,9 @@
-import React from "react";
-import LoggedInHeader from "./LoggedInHeader.jsx";
-import NotLoggedInHeader from "./NotLoggedInHeader.jsx";
+import React, { useState } from "react";
 import DonationList from "../shared/DonationList.jsx";
 import NavBar from "../shared/NavBar.jsx";
+import Header from "../components/Header.jsx";
+import Modal from "../shared/Modal.jsx";
+import HomeLogo from "../../dist/img/HomeLogo.png";
 
 const Home = ({
   setUserId,
@@ -11,21 +12,80 @@ const Home = ({
   isLoggedIn,
   setIsLoggedIn,
 }) => {
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
+
+  const toggleLoginModal = () => {
+    // remove this later, this is only for testing different header state
+    setIsLoggedIn(true);
+
+    setShowLoginModal(!showLoginModal);
+  };
+
+  const toggleSignUpModal = () => {
+    setShowSignUpModal(!showSignUpModal);
+  };
+
+  const handleLogoutOnClick = () => {
+    setIsLoggedIn(false);
+  };
+
+  const handleDashboardOnClick = () => {
+    setShowDashboard(true);
+  };
+
+  const loggedInProps = {
+    headerTitle: "WELCOME, NAME",
+    buttons: [
+      {
+        text: "Logout",
+        handleOnClick: handleLogoutOnClick,
+      },
+      {
+        text: "Dashboard",
+        handleOnClick: handleDashboardOnClick,
+      },
+    ],
+  };
+
+  const notLoggedInProps = {
+    headerTitle: "CHARITY DONATION EXCHANGE",
+    buttons: [
+      {
+        text: "Login",
+        handleOnClick: toggleLoginModal,
+      },
+      {
+        text: "Sign up",
+        handleOnClick: toggleSignUpModal,
+      },
+    ],
+  };
+
+  const headerProps = isLoggedIn ? loggedInProps : notLoggedInProps;
+  const { headerTitle, buttons } = headerProps;
+
   return (
     <div className="home global">
-      {isLoggedIn ? (
-        <LoggedInHeader
-          setIsLoggedIn={setIsLoggedIn}
-          setShowDashboard={setShowDashboard}
-        />
-      ) : (
-        <NotLoggedInHeader
-          setIsLoggedIn={setIsLoggedIn}
-          setUserId={setUserId}
-        />
-      )}
+      <Header
+        headerTitle={headerTitle}
+        buttons={buttons}
+        logo={HomeLogo}
+        colorClassName="yellow"
+      />
       <NavBar showDashboard={showDashboard} />
       <DonationList showDashboard={showDashboard} />
+      {showLoginModal && (
+        <Modal
+          setIsLogginIn={setIsLoggedIn}
+          setUserId={setUserId}
+          loginModal={showLoginModal}
+          toggleModal={toggleLoginModal}
+        />
+      )}
+      {showSignUpModal && (
+        <Modal signupModal={showSignUpModal} toggleModal={toggleSignUpModal} />
+      )}
     </div>
   );
 };
