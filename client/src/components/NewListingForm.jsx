@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 const api = require('../../api/index.js');
 
 
-const NewListingForm = ({ userId }) => {
+const NewListingForm = ({ userId, handleCancelClick }) => {
 
   const defaultListing = {
     item: '',
