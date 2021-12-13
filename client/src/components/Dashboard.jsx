@@ -1,7 +1,8 @@
 import React from "react";
 import DonationList from "../shared/DonationList.jsx";
 import NavBar from "../shared/NavBar.jsx";
-import DashboardHeader from "./DashboardHeader.jsx";
+import DashboardLogo from "../../dist/img/DashboardLogo.jpeg";
+import Header from "./Header.jsx";
 
 const Dashboard = ({
   userId,
@@ -11,7 +12,11 @@ const Dashboard = ({
 }) => {
   return (
     <div className="dashboard global">
-      <DashboardHeader />
+      <Header
+        logo={DashboardLogo}
+        headerTitle="DASHBOARD"
+        colorClassName="blue"
+      />
       <NavBar
         userId={userId}
         showDashboard={showDashboard}

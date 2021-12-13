@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx nodemon server/index.js",
-    "build": "webpack --mode production --watch"
+    "build": "webpack --mode productions --watch",
+    "build-dev": "webpack --mode development --watch"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "file-loader": "^6.2.0",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
+    "node-sass": "^7.0.0",
     "nodemon": "^2.0.15",
     "path": "^0.12.7",
     "react": "^17.0.2",
@@ -41,8 +43,10 @@
     "zipcodes": "^8.0.0"
   },
   "devDependencies": {
+    "css-loader": "^6.5.1",
     "sass": "^1.44.0",
     "sass-loader": "^12.4.0",
+    "style-loader": "^3.3.1",
     "webpack": "^5.65.0"
   }
 }

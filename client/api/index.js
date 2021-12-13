@@ -15,16 +15,17 @@ const baseURL = axios.create({
 });
 
 // get all donations, can specify charityOnly
-export const getAllDonations = () =>
-  baseURL({
+export const getAllDonations = () => {
+  return baseURL({
     method: "GET",
     url: "/v1/donations",
   });
+};
 
 // get all user's donations for dashboard, input userId
-export const getDonationsForDashboard = (userId) =>
-  baseUrl.get(`/v1/donations/${userId}`);
-
+export const getDonationsForDashboard = (userId) => {
+  baseURL.get(`/v1/donations/${userId}`);
+};
 // logged in user adds new donation to their listings
 export const createDonationListing = ({
   name,
@@ -72,21 +73,23 @@ export const claimDonationListing = ({
 };
 
 // complete existing donation. Changes status to complete
-export const completeDonationListing = ({ listingId, status }) => {
-  baseURL({
+export const markDonationListingStatusComplete = (listingId) => {
+  return baseURL({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
     data: {
       listingId: listingId,
-      status: status,
     },
   });
 };
 
 // cancels/deletes existing donation
-export const deleteDonationListing = ({ listingId }) => {
-  baseURL({
+export const cancelDonationListing = (listingId) => {
+  return baseURL({
     method: "DELETE",
     url: `/v1/donations/${listingId}`,
+    data: {
+      listingId: listingId,
+    },
   });
 };
