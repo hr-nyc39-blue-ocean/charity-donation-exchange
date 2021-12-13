@@ -25,7 +25,7 @@ CREATE TABLE `Users` (
   `name` VARCHAR(50) NOT NULL,
   `email` VARCHAR(50) NOT NULL,
   `phone` VARCHAR(10) NOT NULL,
-  `salt` VARCHAR(64),
+  `token` VARCHAR(64) NULL DEFAULT NULL,
   PRIMARY KEY (`userID`)
 );
 
@@ -55,25 +55,10 @@ CREATE TABLE `Listings` (
 );
 
 -- ---
--- Table 'Sessions'
---
--- ---
-
-DROP TABLE IF EXISTS `Sessions`;
-
-CREATE TABLE `Sessions` (
-  `sessionID` INTEGER NOT NULL AUTO_INCREMENT,
-  `hash` VARCHAR(64),
-  `userID` INTEGER NOT NULL,
-  PRIMARY KEY (`sessionID`)
-);
-
--- ---
 -- Foreign Keys
 -- ---
 
 ALTER TABLE `Listings` ADD FOREIGN KEY (userID) REFERENCES `Users` (`userID`);
-ALTER TABLE `Sessions` ADD FOREIGN KEY (userID) REFERENCES `Users` (`userID`);
 
 -- ---
 -- Table Properties

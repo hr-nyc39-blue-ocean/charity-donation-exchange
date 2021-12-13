@@ -22,11 +22,19 @@ module.exports = {
   },
 
   createUser: function (body, callback) {
-    // Lamia/Rich
+    // Lamia/Rich create user will nul ltoken at beginning, and then need another function that just updates token
   },
 
-  checkUser: function (userIDorhash, callback) {
-    // Lamia/Rich
+  checkIfUserExists: function (email, callback) {
+    // checks if user exists already in db (via email)
+  },
+
+  checkUserAtLogin: function (userIDorhash, callback) {
+    // Lamia/Rich when you login, send back encrypted password
+  },
+
+  sendBackUserID: function (usernameOrEmail, callback) {
+
   },
 
   getUserAllListings: function (userID, callback) {
@@ -74,7 +82,7 @@ module.exports = {
   },
 
   deleteListing: function (listingID, callback) {
-    // deletes listing that has the applicable listingID
+    // update listing so status=inactive
     db.promise()
       .query(`DELETE FROM Listings WHERE listingID = ${listingID}`)
       .then(() => {
