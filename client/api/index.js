@@ -93,3 +93,29 @@ export const cancelDonationListing = (listingId) => {
     },
   });
 };
+//**helpers for sign up and sign in */
+//TODO: implement tokens
+export const signupUser = ({ name, username, email, password }) => {
+  baseURL({
+    method: "POST",
+    url: "/signup",
+    data: {
+      name: name,
+      username: username,
+      email: email,
+      password: password,
+    },
+  });
+};
+
+export const loginUser = ({ username, password }) => {
+  baseURL({
+    method: "POST",
+    url: "/login",
+    data: {
+      username: username,
+      password: password,
+    },
+  });
+};
+//TODO: integrate jwt tokens in this if necessary, can be null while testing
