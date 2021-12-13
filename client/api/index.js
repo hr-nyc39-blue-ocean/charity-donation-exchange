@@ -94,6 +94,7 @@ export const deleteDonationListing = ({ listingId }) => {
   });
 };
 //**helpers for sign up and sign in */
+//TODO: implement tokens
 export const signupUser = ({ name, username, email, password }) => {
   baseURL({
     method: "POST",
@@ -103,7 +104,6 @@ export const signupUser = ({ name, username, email, password }) => {
       username: username,
       email: email,
       password: password,
-      token: null,
     },
   });
 };
@@ -115,7 +115,6 @@ export const loginUser = ({ username, password }) => {
     data: {
       username: username,
       password: password,
-      token: null,
     },
   });
 };
