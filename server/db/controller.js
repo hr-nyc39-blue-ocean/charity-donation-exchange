@@ -5,11 +5,11 @@ vs dashboard listings (pull inactive as well but show it as cancelled)
 */
 
 module.exports = {
-  getListings: function (charityOnly = 'false', callback) {
+  getAllListings: function (callback) {
     // always sorted by date since distance sort will be done on front-end
     db.promise()
       .query(
-        `SELECT * FROM Listings WHERE charityOnly='${charityOnly} ORDER BY date DESC'`
+        `SELECT * FROM Listings ORDER BY date DESC'`
       )
       .then((responseData) => {
         console.log('grabbed all listings');
@@ -21,20 +21,88 @@ module.exports = {
       });
   },
 
+  getNonCharityListings: function (callback) {
+
+      db.promise()
+        .query(
+          `SELECT * FROM Listings WHERE charityOnly='false' ORDER BY date DESC'`
+        )
+        .then((responseData) => {
+          console.log('grabbed all listings');
+          callback(null, responseData[0]); // array of relevant entries
+        })
+        .catch((err) => {
+          console.log('error getListings >>>>', err);
+          callback(err);
+       });
+
+  },
+
   createUser: function (body, callback) {
-    // Lamia/Rich create user will nul ltoken at beginning, and then need another function that just updates token
+    // create user with null token at beginning, and then need another function that just updates token
+    db.promise()
+    .query(
+      `INSERT INTO Users (username, password, name, email, phone) VALUES ('${body.username}', '${body.password}', '${body.name}', '${body.email}', '${body.phone}')`
+    )
+    .then(() => {
+      console.log('successfully created new User');
+      callback(null);
+    })
+    .catch((err) => {
+      console.log('error creating User>>>', err);
+      callback(err);
+    });
+  },
+
+  updateToken: function (token, username, callback) {
+    db.promise()
+      .query(`UPDATE Users SET token='${token}' WHERE username='${username}'`)
+      .then(() => {
+        console.log("successfully updated user's token");
+        callback(null);
+      })
+      .catch((err) => {
+        console.log('error updating token >>>>', err);
+        callback(err);
+      });
   },
 
   checkIfUserExists: function (email, callback) {
     // checks if user exists already in db (via email)
+    db.promise()
+      .query(`SELECT EXISTS(SELECT 1 FROM Users WHERE email='${email}')`)
+      .then((responseData) => {
+        callback(null, responseData[0]);
+      })
+      .catch((err) => {
+        console.log('error checkIfUserExists >>>>', err);
+        callback(err);
+      });
   },
 
-  checkUserAtLogin: function (userIDorhash, callback) {
+  checkUserAtLogin: function (username, callback) {
     // Lamia/Rich when you login, send back encrypted password
+    db.promise()
+      .query(`SELECT password FROM Users WHERE username='${username}'`)
+      .then((responseData) => {
+        callback(null, responseData[0]);
+      })
+      .catch((err) => {
+        console.log('error checkUserAtLogin >>>>', err);
+        callback(err);
+      });
   },
 
-  sendBackUserID: function (usernameOrEmail, callback) {
-
+  sendBackUserID: function (username, callback) {
+    db.promise()
+      .query(`SELECT userID FROM Users WHERE username='${username}'`)
+      .then((responseData) => {
+        callback(null, responseData[0]);
+      })
+      .catch((err) => {
+        console.log('error sendBackUserID >>>>', err);
+        callback(err);
+      });
   },
 
   getUserAllListings: function (userID, callback) {
@@ -65,11 +133,24 @@ module.exports = {
       });
   },
 
+  getUserCancelledListings: function (userID, callback) {
+    //
+    db.promise()
+      .query(`SELECT * FROM Listings WHERE userID=${userID} AND status='cancelled'`) // no sort
+      .then((responseData) => {
+        console.log('grabbed user specific listings that are claimed');
+        callback(null, responseData[0]); // array of relevant entries
+      })
+      .catch((err) => {
+        console.log('error grabbing getUserClaimedListings >>>>', err);
+        callback(err);
+      });
+  },
+
   postListing: function (body, callback) {
-    // posts listing
     db.promise()
       .query(
-        `INSERT INTO Listings (name, category, date, location, photoURL, charityOnly, userID) VALUES ('${body.name}', '${body.category}', now(), ${body.location}, '${body.photoURL}', '${body.charityOnly}', ${body.userID})`
+        `INSERT INTO Listings (name, category, quantity, date, location, photoURL, charityOnly, userID) VALUES ('${body.name}', '${body.category}', ${body.quantity}, now(), ${body.location}, '${body.photoURL}', '${body.charityOnly}', ${body.userID})`
       )
       .then(() => {
         console.log('successfully posted new listing');
@@ -81,16 +162,16 @@ module.exports = {
       });
   },
 
-  deleteListing: function (listingID, callback) {
+  cancelListing: function (listingID, callback) {
     // update listing so status=inactive
     db.promise()
       .query(`DELETE FROM Listings WHERE listingID = ${listingID}`)
       .then(() => {
-        console.log('successfully deleted targetted listing');
+        console.log('successfully cancelled targetted listing');
         callback(null);
       })
       .catch((err) => {
-        console.log('error deleting listing >>>>', err);
+        console.log('error cancelling listing >>>>', err);
         callback(err);
       });
   },
