@@ -1,14 +1,11 @@
 const db = require('./index.js');
 
-/* TODO: account for new status flag ('inactive' for cancelled listings) when retrieving general listings (dont pull inactive)
-vs dashboard listings (pull inactive as well but show it as cancelled)
-*/
-
 module.exports = {
   getAllListings: function (callback) {
+    // this is for charities so show active only
     // always sorted by date since distance sort will be done on front-end
     db.promise()
-      .query(`SELECT * FROM Listings ORDER BY date DESC`)
+      .query(`SELECT * FROM Listings WHERE status='open' ORDER BY date DESC`)
       .then((responseData) => {
         console.log('grabbed all listings');
         callback(null, responseData[0]); // array of relevant entries
@@ -20,9 +17,10 @@ module.exports = {
   },
 
   getNonCharityListings: function (callback) {
+    // this is for anonymous donees
     db.promise()
       .query(
-        `SELECT * FROM Listings WHERE charityOnly='false' ORDER BY date DESC'`
+        `SELECT * FROM Listings WHERE charityOnly='false' AND status='open' ORDER BY date DESC'`
       )
       .then((responseData) => {
         console.log('grabbed non charity listings only');
@@ -102,7 +100,7 @@ module.exports = {
   },
 
   getUserAllListings: function (userID, callback) {
-    //
+    // even shows cancelled listings
     db.promise()
       .query(`SELECT * FROM Listings WHERE userID=${userID}`) // no sort
       .then((responseData) => {
@@ -116,11 +114,15 @@ module.exports = {
   },
 
   getUserClaimedListings: function (userID, callback) {
-    //
+    // claimed but not closed/cancelled
     db.promise()
-      .query(`SELECT * FROM Listings WHERE userID=${userID} AND claimed='true'`) // no sort
+      .query(
+        `SELECT * FROM Listings WHERE userID=${userID} AND claimed='true' AND status='pending'`
+      ) // no sort
       .then((responseData) => {
-        console.log('grabbed user specific listings that are claimed');
+        console.log(
+          'grabbed user specific listings that are claimed with pending status'
+        );
         callback(null, responseData[0]); // array of relevant entries
       })
       .catch((err) => {
@@ -130,11 +132,11 @@ module.exports = {
   },
 
   getUserCancelledListings: function (userID, callback) {
-    //
+    // cancelled listings only
     db.promise()
       .query(
         `SELECT * FROM Listings WHERE userID=${userID} AND status='cancelled'`
-      ) // no sort
+      )
       .then((responseData) => {
         console.log('grabbed user specific listings that are claimed');
         callback(null, responseData[0]); // array of relevant entries
@@ -161,7 +163,7 @@ module.exports = {
   },
 
   cancelListing: function (listingID, callback) {
-    // update listing so status=inactive
+    // update listing status=inactive
     db.promise()
       .query(
         `UPDATE Listings SET status='cancelled' WHERE listingID = ${listingID}`
@@ -196,7 +198,7 @@ module.exports = {
   },
 
   markAsComplete: function (listingID, callback) {
-    // updates status to 'complete'
+    // updates listing status to 'closed'
     db.promise()
       .query(
         `UPDATE Listings SET status='closed' WHERE listingID = ${listingID}`
