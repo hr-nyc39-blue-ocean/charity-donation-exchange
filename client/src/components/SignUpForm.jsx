@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 const api = require('../../api/index.js');
 
 
-const SignUpForm = () => {
+const SignUpForm = ({ toggleModal }) => {
 
   const initialSignupInfo = {
     username: '',
@@ -40,17 +40,17 @@ const SignUpForm = () => {
         <InputLabel label={"Phone"} input={"phone"}/>
         <p style={{ color:"grey", }}>To protect your privacy, your name, email, and phone number will not be publicly shown</p>
       </Form>
-      <Submit handleSubmit={() => {handleSubmit(signupInfo)}}/>
+      <Submit handleSubmit={() => {handleSubmit(signupInfo)}} handleCancel={toggleModal} />
     </div>
-  )
-}
+  );
+};
 
 export default SignUpForm;
 
 const Title = styled.h3`
   text-align: center;
   //margin-top: 20px;
-`
+`;
 
 const Form = styled.div`
   height: 50vh;
@@ -60,4 +60,4 @@ const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;

@@ -1,12 +1,12 @@
 import React from "react";
-import styled from 'styled-components';
-import Submit from '../shared/SubmitCancelButton.jsx';
-import InputLabel from '../shared/InputLabel.jsx';
+import styled from "styled-components";
+import Submit from "../shared/SubmitCancelButton.jsx";
+import InputLabel from "../shared/InputLabel.jsx";
 import { useState, useEffect } from "react";
 const api = require('../../api/index.js');
 
 
-const NewListingForm = ({ userId, handleCancelClick }) => {
+const NewListingForm = ({ userId, toggleModal }) => {
 
   const defaultListing = {
     item: '',
@@ -57,17 +57,17 @@ const NewListingForm = ({ userId, handleCancelClick }) => {
           <ChoiceLabel> No <CheckMark type="checkbox" name="no" onClick={handleCheckboxSelected} /> </ChoiceLabel>
         </CheckboxLabel>
       </Form>
-      <Submit handleSubmit={() => {handleSubmit(listingInfo)}}/>
+      <Submit handleSubmit={() => {handleSubmit(listingInfo)}} handleCancel={toggleModal}/>
     </div>
-  )
-}
+  );
+};
 
 export default NewListingForm;
 
 const Title = styled.h3`
   text-align: center;
   //margin-top: 20px;
-`
+`;
 
 const Form = styled.div`
   height: 50vh;
@@ -77,7 +77,7 @@ const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const CheckboxLabel = styled.label`
   width: 40vw;
@@ -85,13 +85,13 @@ const CheckboxLabel = styled.label`
   margin-top: 10px;
   //border: solid;
   //align-items: center;
-`
+`;
 
 const ChoiceLabel = styled.label`
   margin-left: 10%;
-`
+`;
 
 const CheckMark = styled.input`
   height: 17px;
   width: 17px;
-`
+`;

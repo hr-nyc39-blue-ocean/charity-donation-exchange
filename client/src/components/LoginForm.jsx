@@ -5,7 +5,7 @@ import InputLabel from '../shared/InputLabel.jsx';
 import { useState, useEffect } from "react";
 const api = require('../../api/index.js');
 
-const LoginForm = () => {
+const LoginForm = ({ setIsLoggedIn, setUserId, toggleModal }) => {
 
   const [loginInfo, setLoginInfo] = useState({username: '', password: ''})
 
@@ -23,20 +23,20 @@ const LoginForm = () => {
     <div>
       <Title> Login to your account </Title>
       <Form>
-        <InputLabel label={"Username"} input={"username"}/>
-        <InputLabel label={"Password"} input={"password"}/>
+        <InputLabel label={"Username"} input={"username"} />
+        <InputLabel label={"Password"} input={"password"} />
       </Form>
-      <Submit/>
+      <Submit handleCancel={toggleModal} />
     </div>
   )
-}
+};
 
 export default LoginForm;
 
 const Title = styled.h3`
   text-align: center;
   //margin-top: 20px;
-`
+`;
 
 const Form = styled.div`
   height: 50vh;
@@ -46,5 +46,4 @@ const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
-
+`;

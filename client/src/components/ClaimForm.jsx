@@ -5,7 +5,7 @@ import InputLabel from '../shared/InputLabel.jsx';
 import { useState, useEffect } from "react";
 const api = require('../../api/index.js');
 
-const ClaimForm = ({ listingId }) => {
+const ClaimForm = ({ listingId, toggleModal }) => {
 
   const initialClaimInfo = {
     listingId: listingId || 1,
@@ -41,17 +41,18 @@ const ClaimForm = ({ listingId }) => {
         <InputLabel label={"Email"} input={"claimerEmail"} />
         <InputLabel label={"Phone"} input={"claimerPhone"} />
       </Form>
-      <Submit handleSubmit={() => {handleSubmit(claimInfo)}}/>
+      <Submit handleSubmit={() => {handleSubmit(claimInfo)}} handleCancel={toggleModal}/>
     </div>
   )
-}
+
+};
 
 export default ClaimForm;
 
 const Title = styled.h3`
   text-align: center;
   //margin-top: 20px;
-`
+`;
 
 const Form = styled.div`
   height: 50vh;
@@ -61,5 +62,4 @@ const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
-
+`;
