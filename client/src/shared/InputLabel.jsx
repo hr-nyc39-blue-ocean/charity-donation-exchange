@@ -1,10 +1,11 @@
 import React from "react";
 import styled from 'styled-components';
 
-const InputLabel = ({ label, input }) => {
+const InputLabel = ({ label, input, type }) => {
+  type = type ||"text";
   return (
     <div>
-    <Label> {label}: <Input type="text" name={input}/> </Label>
+    <Label> {label}: <Input type={type} name={input}/> </Label>
     </div>
   )
 }

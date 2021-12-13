@@ -50,7 +50,7 @@ const NewListingForm = ({ userId, toggleModal }) => {
       <Form onChange={handleInputChange}>
         <InputLabel label={"Item Name"} input={"item"} />
         <InputLabel label={"Category"} input={"category"} />
-        <InputLabel label={"Location"} input={"location"} />
+        <InputLabel label={"Zipcode"} input={"location"} />
         <InputLabel label={"Photo Url"} input={"photoUrl"} />
         <CheckboxLabel>Charity Only:
           <ChoiceLabel > Yes <CheckMark type="checkbox" name="yes" onClick={handleCheckboxSelected}/> </ChoiceLabel>

@@ -36,9 +36,9 @@ const SignUpForm = ({ toggleModal }) => {
         <InputLabel label={"Username"} input={"username"}/>
         <InputLabel label={"Password"} input={"password"}/>
         <InputLabel label={"Name"} input={"name"}/>
-        <InputLabel label={"Email"} input={"email"}/>
+        <InputLabel label={"Email"} input={"email"} type={"email"}/>
         <InputLabel label={"Phone"} input={"phone"}/>
-        <p style={{ color:"grey", }}>To protect your privacy, your name, email, and phone number will not be publicly shown</p>
+        <Note>To protect your privacy, your name, email, and phone number will not be publicly shown</Note>
       </Form>
       <Submit handleSubmit={() => {handleSubmit(signupInfo)}} handleCancel={toggleModal} />
     </div>
@@ -61,3 +61,8 @@ const Form = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+const Note = styled.p`
+  color: grey;
+  margin-top: 15px;
+`

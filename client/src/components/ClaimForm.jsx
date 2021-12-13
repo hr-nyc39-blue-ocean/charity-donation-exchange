@@ -35,10 +35,10 @@ const ClaimForm = ({ listingId, toggleModal }) => {
 
   return (
     <div>
-      <Title> Please submit your info for the donator </Title>
+      <Title> Please submit your contact information for the donator </Title>
       <Form onChange={handleInputChange}>
         <InputLabel label={"Name"} input={"claimerName"} />
-        <InputLabel label={"Email"} input={"claimerEmail"} />
+        <InputLabel label={"Email"} input={"claimerEmail"} type={"email"}/>
         <InputLabel label={"Phone"} input={"claimerPhone"} />
       </Form>
       <Submit handleSubmit={() => {handleSubmit(claimInfo)}} handleCancel={toggleModal}/>
