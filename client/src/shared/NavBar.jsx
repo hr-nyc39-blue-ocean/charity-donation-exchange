@@ -19,16 +19,40 @@ const NavBar = ({ userId, showDashboard, setShowDashboard, setIsLoggedIn }) => {
     setShowNewListingModal(!showNewListingModal);
   };
 
+  const buttons = [
+    {
+      text: "Home",
+      handleOnClick: handleHomeOnClick,
+    },
+    {
+      text: "Create A New Listing",
+      handleOnClick: toggleNewListingModal,
+    },
+    {
+      text: "Logout",
+      handleOnClick: handleLogoutOnClick,
+    },
+  ];
+
   return (
     <div className="navbar">
       {showDashboard ? (
         <div className="dashboard-nav-bar">
-          <Button handleOnClick={handleHomeOnClick} text="Home" />
+          {buttons.map((b) => {
+            return (
+              <Button
+                handleOnClick={b.handleOnClick}
+                text={b.text}
+                className="btn-bg-blue"
+              />
+            );
+          })}
+          {/* <Button handleOnClick={handleHomeOnClick} text="Home" />
           <Button
             handleOnClick={toggleNewListingModal}
             text="Create a New Listing"
           />
-          <Button handleOnClick={handleLogoutOnClick} text="Logout" />
+          <Button handleOnClick={handleLogoutOnClick} text="Logout" /> */}
         </div>
       ) : (
         <div className="home-nav-bar">
