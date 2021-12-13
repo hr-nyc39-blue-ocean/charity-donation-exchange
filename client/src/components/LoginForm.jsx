@@ -16,6 +16,8 @@ const LoginForm = ({ setIsLoggedIn, setUserId, toggleModal }) => {
   }
 
   const handleSubmit = (loginInfo) => {
+    //check if password / username match
+      //if not, show alert: invalid username/password, please try again
     console.log(loginInfo);
   }
 

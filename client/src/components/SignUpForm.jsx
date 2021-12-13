@@ -26,6 +26,7 @@ const SignUpForm = ({ toggleModal }) => {
 
   const handleSubmit = (signupInfo) => {
     //need to check if username is unique
+      //if not, show username already exists
     console.log(signupInfo)
   }
 
