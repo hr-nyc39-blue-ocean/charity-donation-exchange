@@ -7,11 +7,12 @@ const DonationList = ({ showDashboard }) => {
 
   useEffect(() => {
     getAllDonations().then((r) => {
+      console.log("here");
       setDonations(r);
     });
   }, []);
 
-  console.log('front end getAllDonations pull >>>>>>>>', donations);
+  // console.log("front end getAllDonations pull >>>>>>>>", donations);
 
   const color = showDashboard ? "donation-list-blue" : "donation-list-yellow";
 
