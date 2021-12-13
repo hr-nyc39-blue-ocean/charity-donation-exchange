@@ -1,15 +1,15 @@
 @import "mixins";
 
 .navbar {
-  width: 100vw;
+  width: 70vw;
   height: 5vh;
-  border: 1px solid black;
+  padding: 5px;
+  // border: 1px solid black;
 }
 
 .dashboard-nav-bar {
   @include flex(row, space-evenly, center);
   height: 5vh;
-  padding: 0px 10px;
 }
 
 .home-nav-bar {

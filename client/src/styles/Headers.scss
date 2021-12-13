@@ -6,10 +6,9 @@
 }
 
 .home-header {
-  background-color: #fdca39;
-  height: 25vh;
+  height: 15vh;
   width: 100vw;
-  border: 1px solid black;
+  // border: 1px solid black;
 }
 
 .header-row {
@@ -19,29 +18,30 @@
 .header-layout {
   @include flex(column, center, center);
   width: 100vw;
+  height: 15vh;
 }
 
 .header-title {
   @include flex(row, center, center);
-}
-
-.dashboard-header {
-  @extend .home-header;
-  background-color: #5eadab;
-  @include flex(row);
-}
-
-.dashboard-title {
-  @extend .header-title;
-  width: 100vw;
+  font-family: "Bakbak One", cursive;
+  font-size: 40pt;
+  color: #fff9e9;
 }
 
 .header-buttons-styles {
-  padding: 5px;
+  margin: 5px;
 }
 
 .header-buttons-container {
   @include flex(column, flex-start);
   @extend .header-buttons-styles;
   width: 12vw;
+}
+
+.blue {
+  background-color: #5eadab;
+}
+
+.yellow {
+  background: #fdca39;
 }
