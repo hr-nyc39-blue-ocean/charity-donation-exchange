@@ -7,8 +7,10 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
 
+  const color = showDashboard ? "blue" : "yellow";
+
   return (
-    <div className="global">
+    <div className={`global ${color}`}>
       {showDashboard ? (
         <Dashboard
           userId={userId}

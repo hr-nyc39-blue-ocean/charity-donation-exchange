@@ -1,5 +1,7 @@
 bundle.js
 package-lock.json
+.dist/img
+bundle.js.LICENSE.txt
 
 # Logs
 logs
