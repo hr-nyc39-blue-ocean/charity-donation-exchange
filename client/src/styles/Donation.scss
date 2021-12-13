@@ -8,12 +8,12 @@
   border-radius: 10px;
 
   .donation-card-layout {
-    @include flex(row, space-between);
+    @include flex(row, space-between, center);
   }
 
   .donation-card-buttons {
     @include flex(column, center, flex-end);
-    width: 50vw;
+    width: 10vw;
   }
 
   .donation-button-styles {
@@ -28,5 +28,10 @@
 
   .dontation-card-title {
     font-weight: bold;
+  }
+
+  .donation-img-styles {
+    @include flex(column, center, center);
+    width: 10vw;
   }
 }

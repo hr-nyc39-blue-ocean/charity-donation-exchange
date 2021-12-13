@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Donation from "./Donation.jsx";
+import { getAllDonations, getDonationsForDashboard } from "../../api/index.js";
 
 const DonationList = ({ showDashboard }) => {
   const [donations, setDonations] = useState([]);
 
+  useEffect(() => {
+    getAllDonations().then((r) => {
+      setDonations(r);
+    });
+  }, []);
+
   const color = showDashboard ? "donation-list-blue" : "donation-list-yellow";
+
+  const fetchAllListings = () => {
+    getAllDonations();
+  };
+
+  const fetchUserListings = () => {};
 
   // create fetch fx to refetch donations
   const fetch = () => {};
