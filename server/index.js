@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + "/../client/dist"));
 
+
 app.post('/listings/', (req, res) => {
   const body = req.body;
   console.log('req.body >>>>', body);
@@ -96,7 +97,7 @@ app.get("/v1/donations/:userId", (req, res) => {
     }
 
   */
-  res.status(200).send("ok");
+  res.status(200).send(data);
 });
 
 // add new donation

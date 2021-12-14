@@ -35,7 +35,7 @@ export const createDonationListing = ({
   charityOnly,
   userId,
 }) => {
-  baseURL({
+  return baseURL({
     method: "POST",
     url: "/v1/donations",
     data: {
@@ -58,7 +58,7 @@ export const claimDonationListing = ({
   claimerEmail,
   status,
 }) => {
-  baseURL({
+  return baseURL({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
     data: {
@@ -96,7 +96,7 @@ export const cancelDonationListing = (listingId) => {
 //**helpers for sign up and sign in */
 //TODO: implement tokens
 export const signupUser = ({ name, username, email, password, phone }) => {
-  baseURL({
+  return baseURL({
     method: "POST",
     url: "/signup",
     data: {
@@ -110,7 +110,7 @@ export const signupUser = ({ name, username, email, password, phone }) => {
 };
 
 export const loginUser = ({ username, password }) => {
-  baseURL({
+  return baseURL({
     method: "POST",
     url: "/login",
     data: {

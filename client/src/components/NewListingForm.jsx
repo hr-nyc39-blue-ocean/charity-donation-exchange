@@ -14,7 +14,7 @@ const NewListingForm = ({ userId, toggleModal }) => {
     location: '',
     photoUrl: '',
     charityOnly: false,
-    userId: userId || ''
+    userId: userId || 1
   }
   const [listingInfo, setListingInfo] = useState(defaultListing)
 
@@ -36,7 +36,7 @@ const NewListingForm = ({ userId, toggleModal }) => {
     const { item, category, location, photoUrl, charityOnly, userId } = listingInfo;
     api.createDonationListing( { item, category, location, photoUrl, charityOnly, userId } )
     .then((results) => {
-      console.log(results)
+      console.log('results in NewListingForm handleSubmit: ', results)
     })
     .catch((err) => {
       console.log('ERROR IN NewListingForm submit: ', err);

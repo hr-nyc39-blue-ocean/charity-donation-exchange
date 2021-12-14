@@ -8,7 +8,7 @@ const api = require('../../api/index.js');
 const ClaimForm = ({ listingId, toggleModal }) => {
 
   const initialClaimInfo = {
-    listingId: listingId || 1,
+    listingId: listingId,
     claimed: true,
     claimerName: '',
     claimerPhone: '',
@@ -26,7 +26,7 @@ const ClaimForm = ({ listingId, toggleModal }) => {
   const handleSubmit = (claimInfo) => {
     api.claimDonationListing(claimInfo)
     .then((results) => {
-      console.log(results)
+      //console.log(results)
       alert('Your information has been sent to the donator!')
     })
     .catch((err) => {
