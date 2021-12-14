@@ -4,6 +4,7 @@ import ClaimForm from "../components/ClaimForm.jsx";
 import LoginForm from "../components/LoginForm.jsx";
 import SignupForm from "../components/SignupForm.jsx";
 import NewListingForm from "../components/NewListingForm.jsx";
+import InitialForm from "../components/InitialForm.jsx";
 
 const Modal = ({
   listingId,
@@ -14,6 +15,9 @@ const Modal = ({
   loginModal,
   signupModal,
   newListingModal,
+  initialModal,
+  seeAllListings,
+  setSeeAllListings,
   toggleModal,
 }) => {
   return (
@@ -33,6 +37,13 @@ const Modal = ({
           {signupModal && <SignupForm toggleModal={toggleModal} />}
           {newListingModal && (
             <NewListingForm userId={userId} toggleModal={toggleModal} />
+          )}
+          {initialModal && (
+            <InitialForm
+              toggleModal={toggleModal}
+              seeAllListings={seeAllListings}
+              setSeeAllListings={setSeeAllListings}
+            />
           )}
         </ModalWrapper>
       </Background>

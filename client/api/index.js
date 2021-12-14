@@ -1,31 +1,37 @@
-// TODO: Anonymous user types into search bar
-// TODO: Anonymous user sorts by distance
-// TODO: Anonymous user sorts by newest
-// TODO: Anonymous user sorts by distance and newest
-// TODO: Anonymous user registers
-// TODO: Anonymous user logs in
-// TODO: Donator user logs out
-// TODO: Donator user sorts by newest
-// TODO: Donator user filters by open, pending (claimed), completed
-
 import axios from "axios";
 
 const baseURL = axios.create({
   baseURL: "http://localhost:3000",
 });
 
-// get all donations, can specify charityOnly
+// get all donations
 export const getAllDonations = () => {
+  return axios.get("http://localhost:3000/v1/donations/");
+};
+
+// get non-charity donation listings
+export const getNonCharityListings = () => {
   return baseURL({
     method: "GET",
-    url: "/v1/donations",
+    url: "/v1/noncharityListings",
   });
 };
 
 // get all user's donations for dashboard, input userId
 export const getDonationsForDashboard = (userId) => {
-  baseURL.get(`/v1/donations/${userId}`);
+  return baseURL.get(`/v1/donations/${userId}`);
 };
+
+// get all user's CLAIMED donations for dashboard, input userId
+export const getClaimedDonationsForDashboard = (userId) => {
+  return baseURL.get(`/v1/claimedDonations/${userId}`);
+};
+
+// get all user's CANCELLED donations for dashboard, input userId
+export const getCancelledDonationsForDashboard = (userId) => {
+  return baseURL.get(`/v1/cancelledDonations/${userId}`);
+};
+
 // logged in user adds new donation to their listings
 export const createDonationListing = ({
   item,
@@ -73,26 +79,29 @@ export const claimDonationListing = ({
 };
 
 // complete existing donation. Changes status to complete
-export const markDonationListingStatusComplete = (listingId) => {
+export const markDonationListingStatusComplete = (listingId, status) => {
   return baseURL({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
     data: {
       listingId: listingId,
+      status: status,
     },
   });
 };
 
 // cancels/deletes existing donation
-export const cancelDonationListing = (listingId) => {
+export const cancelDonationListing = (listingId, status) => {
   return baseURL({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
     data: {
       listingId: listingId,
+      status: status,
     },
   });
 };
+
 //**helpers for sign up and sign in */
 //TODO: implement tokens
 export const signupUser = ({ name, username, email, password, phone }) => {

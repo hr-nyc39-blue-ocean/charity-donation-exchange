@@ -30,3 +30,10 @@
 .btn-bg-blue {
   background-color: #5eadab;
 }
+
+.initial-form-button {
+  background: black;
+  &:hover {
+    color: black;
+  }
+}

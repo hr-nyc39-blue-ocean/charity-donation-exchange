@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import dateFormatter from "iso-date-formatter";
 import Button from "./Button.jsx";
 import Modal from "../shared/Modal.jsx";
 import {
@@ -7,18 +8,40 @@ import {
 } from "../../api/index.js";
 
 const Donation = ({
-  fetch,
-  listingId = 1,
-  date = "12/13/2021",
   showDashboard,
-  name = "Jeans",
-  category = "Clothing",
-  quantity = 1,
-  zipcode = "11220",
-  status = "Open",
-  claimed = "No",
+  fetch,
+  listingId,
+  date,
+  name,
+  category,
+  quantity,
+  zipcode,
+  status,
+  claimed,
+  claimerName,
+  claimerEmail,
+  claimerPhone,
 }) => {
   const [showClaimModal, setShowClaimModal] = useState(false);
+
+  const isoDate = date;
+  const formattedDate = dateFormatter(isoDate, {
+    format: "MMM d, yyyy",
+    namedMonths: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
+  });
 
   const toggleClaimModal = (e) => {
     setShowClaimModal(!showClaimModal);
@@ -28,13 +51,13 @@ const Donation = ({
     // dont delete listing from db, change status to inactive
     // inactive listings do not show on listings page on homepage but show on dashboard
     // refetch donations to refresh
-    cancelDonationListing(listingId);
+    // cancelDonationListing(listingId);
   };
 
   const handleMarkCompleteOnClick = () => {
     // mark status to complete in db
     // refetch donations to refresh
-    markDonationListingStatusComplete(listingId);
+    // markDonationListingStatusComplete(listingId);
   };
 
   const dashboardButtons = [
@@ -51,46 +74,44 @@ const Donation = ({
   return (
     <div className="donation-container">
       <div className="donation-card-layout">
-        <div className="donation-img-styles">
+        <div className="donation-img-container">
           <img
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignContent: "center",
-              width: "100px",
-              height: "100px",
-            }}
+            className="donation-img-styles"
             src="https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673.png"
             alt="placeholder"
           />
         </div>
-        <div style={{ width: "50vw" }}>
+        <div className="donation-details-container">
           <div>
-            <span className="dontation-card-title">Listing ID: </span>
-            {listingId}
+            <div>
+              <span className="dontation-card-title">Listing ID: </span>
+              {listingId}
+            </div>
+            <div>
+              <span className="dontation-card-title">Date: </span>
+              {formattedDate}
+            </div>
+            <div>
+              <span className="dontation-card-title">Item name: </span>
+              {name}
+            </div>
+            <div>
+              <span className="dontation-card-title">Category: </span>
+              {category}
+            </div>
+            <div>
+              <span className="dontation-card-title">Quantity: </span>
+              {quantity}
+            </div>
+            <div>
+              <span className="dontation-card-title">Zipcode: </span>
+              {zipcode}
+            </div>
           </div>
-          <div>
-            <span className="dontation-card-title">Date: </span>
-            {date}
-          </div>
-          <div>
-            <span className="dontation-card-title">Item name: </span>
-            {name}
-          </div>
-          <div>
-            <span className="dontation-card-title">Category: </span>
-            {category}
-          </div>
-          <div>
-            <span className="dontation-card-title">Quantity: </span>
-            {quantity}
-          </div>
-          <div>
-            <span className="dontation-card-title">Zipcode: </span>
-            {zipcode}
-          </div>
+        </div>
+        <div className="donation-claimed-details-container">
           {showDashboard && (
-            <>
+            <div>
               <div>
                 <span className="dontation-card-title">Status: </span>
                 <span>{status}</span>
@@ -99,7 +120,25 @@ const Donation = ({
                 <span className="dontation-card-title">Claimed: </span>
                 <span>{claimed}</span>
               </div>
-            </>
+              <div>
+                {claimed === "Yes" && (
+                  <div>
+                    <div>
+                      <span className="dontation-card-title">Name: </span>
+                      <span>{claimerName}</span>
+                    </div>
+                    <div>
+                      <span className="dontation-card-title">Email: </span>
+                      <span>{claimerEmail}</span>
+                    </div>
+                    <div>
+                      <span className="dontation-card-title">Phone: </span>
+                      <span>{claimerPhone}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           )}
         </div>
         {showDashboard ? (
