@@ -16,19 +16,30 @@ const LoginForm = ({ setIsLoggedIn, setUserId, toggleModal }) => {
   }
 
   const handleSubmit = (loginInfo) => {
-    //check if password / username match
-      //if not, show alert: invalid username/password, please try again
-    console.log(loginInfo);
+    api.loginUser(loginInfo)
+    .then((results) => {
+      //check if valid, if not, alert
+      if (results.data === "login failed") {
+        alert("login failed");
+      }
+      setUserId(results.data[0].userID)
+      //console.log("🚀 ~ file: LoginForm.jsx ~ line 23 ~ .then ~ results.data[0].userID", results.data[0].userID)
+      //console.log("🚀 ~ file: LoginForm.jsx ~ line 21 ~ .then ~ results", results)
+
+    })
+    .catch((err) => {
+      console.log('ERROR IN LoginForm handleSubmit: ', err);
+    })
   }
 
   return (
     <div>
       <Title> Login to your account </Title>
-      <Form>
+      <Form onChange={handleInputChange}>
         <InputLabel label={"Username"} input={"username"} />
         <InputLabel label={"Password"} input={"password"} />
       </Form>
-      <Submit handleCancel={toggleModal} />
+      <Submit handleCancel={toggleModal} handleSubmit={() => { handleSubmit(loginInfo) }} />
     </div>
   )
 };

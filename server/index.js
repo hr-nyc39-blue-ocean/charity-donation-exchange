@@ -109,7 +109,7 @@ app.put("/v1/donations/:listingId", (req, res) => {
       if (err) {
         res.sendStatus(500);
       } else {
-        res.status(200).send("marked listing as cancelled");
+        res.status(200).send("marked listing as claimed");
       }
     });
   } else if (req.body.status === "closed") {
@@ -117,7 +117,7 @@ app.put("/v1/donations/:listingId", (req, res) => {
       if (err) {
         res.sendStatus(500);
       } else {
-        res.status(200).send("marked listing as cancelled");
+        res.status(200).send("marked listing as completed");
       }
     });
   } else if (req.body.status === "cancelled") {
@@ -205,7 +205,7 @@ app.post("/signup", (req, res, next) => {
 
 app.post("/login", (req, res, next) => {
   const body = req.body;
-  console.log("login bod", body);
+  console.log("login body", body);
   var checkusername = null;
   controller.checkIfUsernameExists(body.username, (err, responseData) => {
     if (err) {
@@ -216,9 +216,15 @@ app.post("/login", (req, res, next) => {
         checkusername = `${value}`;
       }
       if (checkusername > 0) {
-        res.status(201).send("login successful");
+        controller.sendBackUserID(body.username, (err, data) => {
+          if (err) {
+            res.status(500);
+          } else {
+            res.status(201).send(data);
+          }
+        })
       } else {
-        res.status(409).send("login unsuccessful");
+        res.status(200).send("login failed");
       }
     }
   });
