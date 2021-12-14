@@ -48,8 +48,19 @@ const Home = ({
   }, [userZipcode]);
 
   useEffect(() => {
-    const newSortedListings = [];
+    if (tempListings.length !== 0) {
+      for (let i = 0; i < tempListings.length; i++) {
+        const currentListing = tempListings[i];
+        if (currentListing.distance === null) {
+          currentListing.distance = 100000000;
+        }
+      }
+      tempListings.sort((a, b) => (a.distance > b.distance ? 1 : -1));
+      setDonations(tempListings);
+    }
   }, [tempListings]);
+
+  console.log(donations);
 
   const toggleLoginModal = () => {
     // remove this later, this is only for testing different header state
@@ -100,7 +111,6 @@ const Home = ({
 
   const headerProps = isLoggedIn ? loggedInProps : notLoggedInProps;
   const { headerTitle, buttons } = headerProps;
-
 
   return (
     <div className="home global">
