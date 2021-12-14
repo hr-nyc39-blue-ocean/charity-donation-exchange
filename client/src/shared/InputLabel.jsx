@@ -5,7 +5,9 @@ const InputLabel = ({ label, input, type }) => {
   type = type ||"text";
   return (
     <div>
-    <Label> {label}: <Input type={type} name={input}/> </Label>
+    <Label> *{label}:
+    <Input type={type} name={input} required />
+    </Label>
     </div>
   )
 }
@@ -23,5 +25,8 @@ const Label = styled.label`
 const Input = styled.input`
   margin-left: 20px;
   width: 70%;
+  &:invalid {
+    border: 1px solid red;
+  }
 `
 
