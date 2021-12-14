@@ -34,23 +34,25 @@ export const getCancelledDonationsForDashboard = (userId) => {
 
 // logged in user adds new donation to their listings
 export const createDonationListing = ({
-  item,
+  name,
   category,
-  location,
-  photoUrl,
+  zipcode,
+  photoURL,
   charityOnly,
-  userId,
+  userID,
+  quantity
 }) => {
   return baseURL({
     method: "POST",
     url: "/v1/donations",
     data: {
-      item: item,
+      name: name,
       category: category,
-      location: location,
-      photoUrl: photoUrl,
+      zipcode: zipcode,
+      photoURL: photoURL,
       charityOnly: charityOnly,
-      userId: userId,
+      userID: userID,
+      quantity: quantity
     },
   });
 };

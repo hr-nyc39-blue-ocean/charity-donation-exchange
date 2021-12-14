@@ -20,7 +20,8 @@ const Dashboard = ({
   }, []);
 
   const fetchUserDonations = () => {
-    getDonationsForDashboard(3).then((r) => setUserDonations(r.data));
+    console.log('<<<<<<<<<<<<<<fetchUserDonations>>>>>>>>>>>>')
+    getDonationsForDashboard(userId).then((r) => setUserDonations(r.data));
   };
 
   console.log("fetched", userDonations);
@@ -37,6 +38,7 @@ const Dashboard = ({
         showDashboard={showDashboard}
         setShowDashboard={setShowDashboard}
         setIsLoggedIn={setIsLoggedIn}
+        fetchUserDonations={fetchUserDonations}
       />
       <DonationList
         fetch={fetchUserDonations}
