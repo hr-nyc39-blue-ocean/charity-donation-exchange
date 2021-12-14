@@ -1,7 +1,11 @@
+client/dist/img
+bundle.js.LICENSE.txt
+client/dist/4c50b4a0257ea5ed7d97.jpeg
+client/dist/4c50b4a0257ea5ed7d97f5a33d65c742.jpeg
+client/dist/576b76bcbaa38ade048b.png
+client/dist/576b76bcbaa38ade048b361525949086.png
 bundle.js
 package-lock.json
-.dist/img
-bundle.js.LICENSE.txt
 
 # Logs
 logs

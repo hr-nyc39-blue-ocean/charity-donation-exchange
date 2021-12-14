@@ -3,20 +3,25 @@ import DonationList from "../shared/DonationList.jsx";
 import NavBar from "../shared/NavBar.jsx";
 import DashboardLogo from "../../dist/img/DashboardLogo.jpeg";
 import Header from "./Header.jsx";
-import { getAllDonations } from "../../api/index.js";
+import { getDonationsForDashboard } from "../../api/index.js";
 
 const Dashboard = ({
   userId,
   setShowDashboard,
   setIsLoggedIn,
   showDashboard,
-  donations,
 }) => {
   const [userDonations, setUserDonations] = useState([]);
 
   useEffect(() => {
-    getAllDonations().then((r) => setUserDonations(r.data));
+    getDonationsForDashboard(3).then((r) => setUserDonations(r.data));
   }, []);
+
+  const fetchUserDonations = () => {
+    getDonationsForDashboard(3).then((r) => setUserDonations(r.data));
+  };
+
+  console.log("fetched", userDonations);
 
   return (
     <div className="dashboard global">
@@ -31,7 +36,11 @@ const Dashboard = ({
         setShowDashboard={setShowDashboard}
         setIsLoggedIn={setIsLoggedIn}
       />
-      <DonationList donations={userDonations} showDashboard={showDashboard} />
+      <DonationList
+        fetch={fetchUserDonations}
+        donations={userDonations}
+        showDashboard={showDashboard}
+      />
     </div>
   );
 };
