@@ -47,6 +47,10 @@ const Home = ({
     }
   }, [userZipcode]);
 
+  useEffect(() => {
+    const newSortedListings = [];
+  }, [tempListings]);
+
   const toggleLoginModal = () => {
     // remove this later, this is only for testing different header state
     setIsLoggedIn(true);
