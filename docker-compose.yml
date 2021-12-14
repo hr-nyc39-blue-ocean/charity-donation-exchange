@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  # cde-app:
+  #   image: cde-app
+  #   stdin_open: true
+  #   ports:
+  #     - "3000:3000"
+  # networks:
+  #   - mern-app
+
+  cde-api-server:
+    image: cde-api-server
+    ports:
+      - "5001:5001"
+    # networks:
+    #   - mern-app
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    ports:
+      - "3307:3307"
+    expose:
+      - "3007"
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+      MYSQL_DATABASE: blueocean2
+    # networks:
+    #   - mern-app
+    volumes:
+      - data:/data/db
+
+# networks:
+#   mern-app:
+#     driver: bridge
+
+volumes:
+  data:
+    # driver: local
