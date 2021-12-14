@@ -22,17 +22,17 @@ export const getNonCharityListings = () => {
 
 // get all user's donations for dashboard, input userId
 export const getDonationsForDashboard = (userId) => {
-  baseURL.get(`/v1/donations/${userId}`);
+  return baseURL.get(`/v1/donations/${userId}`);
 };
 
 // get all user's CLAIMED donations for dashboard, input userId
 export const getClaimedDonationsForDashboard = (userId) => {
-  baseURL.get(`/v1/claimedDonations/${userId}`);
+  return baseURL.get(`/v1/claimedDonations/${userId}`);
 };
 
 // get all user's CANCELLED donations for dashboard, input userId
 export const getCancelledDonationsForDashboard = (userId) => {
-  baseURL.get(`/v1/cancelledDonations/${userId}`);
+  return baseURL.get(`/v1/cancelledDonations/${userId}`);
 };
 
 // logged in user adds new donation to their listings
@@ -44,7 +44,7 @@ export const createDonationListing = ({
   charityOnly,
   userId,
 }) => {
-  baseURL({
+  return baseURL({
     method: "POST",
     url: "/v1/donations",
     data: {
@@ -67,7 +67,7 @@ export const claimDonationListing = ({
   claimerEmail,
   status,
 }) => {
-  baseURL({
+  return baseURL({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
     data: {
