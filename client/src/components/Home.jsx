@@ -5,6 +5,7 @@ import Header from "../components/Header.jsx";
 import Modal from "../shared/Modal.jsx";
 import HomeLogo from "../../dist/img/HomeLogo.png";
 import { getAllDonations, getNonCharityListings } from "../../api/index.js";
+import zipcodes from "zipcodes";
 
 const Home = ({
   seeAllListings,
@@ -18,12 +19,33 @@ const Home = ({
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [donations, setDonations] = useState([]);
   const [userZipcode, setUserZipcode] = useState(null);
+  const [tempListings, setTempListings] = useState([]);
+  const [sortedListings, setSortedListings] = useState([]);
 
   useEffect(() => {
     seeAllListings
       ? getAllDonations().then((r) => setDonations(r.data))
       : getNonCharityListings().then((r) => setDonations(r.data));
   }, [seeAllListings]);
+
+  useEffect(() => {
+    if (donations.length !== 0) {
+      const newListings = [];
+      for (let i = 0; i < donations.length; i++) {
+        const currentDonation = donations[i];
+        const { zipcode } = currentDonation;
+        const distance = zipcodes.distance(userZipcode, zipcode);
+        const cityDetails = zipcodes.lookup(zipcode);
+        const newDonation = {
+          ...currentDonation,
+          distance: distance,
+          cityDetails: cityDetails,
+        };
+        newListings.push(newDonation);
+      }
+      setTempListings(newListings);
+    }
+  }, [userZipcode]);
 
   const toggleLoginModal = () => {
     // remove this later, this is only for testing different header state
@@ -85,6 +107,10 @@ const Home = ({
       />
       <NavBar showDashboard={showDashboard} setUserZipcode={setUserZipcode} />
       <DonationList
+        // distance={distance}
+        // cityDetails={cityDetails}
+        // tempListings={tempListings}
+        // setTempListings={setTempListings}
         donations={donations}
         showDashboard={showDashboard}
         userZipcode={userZipcode}

@@ -6,7 +6,7 @@ import Header from "./Header.jsx";
 import { getDonationsForDashboard } from "../../api/index.js";
 
 const Dashboard = ({
-  userId = 172,
+  userId,
   setShowDashboard,
   setIsLoggedIn,
   showDashboard,
@@ -14,8 +14,14 @@ const Dashboard = ({
   const [userDonations, setUserDonations] = useState([]);
 
   useEffect(() => {
-    getDonationsForDashboard(172).then((r) => setUserDonations(r.data));
+    getDonationsForDashboard(3).then((r) => setUserDonations(r.data));
   }, []);
+
+  const fetchUserDonations = () => {
+    getDonationsForDashboard(3).then((r) => setUserDonations(r.data));
+  };
+
+  console.log("fetched", userDonations);
 
   return (
     <div className="dashboard global">
@@ -30,7 +36,11 @@ const Dashboard = ({
         setShowDashboard={setShowDashboard}
         setIsLoggedIn={setIsLoggedIn}
       />
-      <DonationList donations={userDonations} showDashboard={showDashboard} />
+      <DonationList
+        fetch={fetchUserDonations}
+        donations={userDonations}
+        showDashboard={showDashboard}
+      />
     </div>
   );
 };

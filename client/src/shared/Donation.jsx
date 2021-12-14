@@ -6,10 +6,8 @@ import {
   markDonationListingStatusComplete,
   cancelDonationListing,
 } from "../../api/index.js";
-import zipcodes from "zipcodes";
 
 const Donation = ({
-  userZipcode,
   showDashboard,
   fetch,
   listingId,
@@ -23,11 +21,14 @@ const Donation = ({
   claimerName,
   claimerEmail,
   claimerPhone,
+  distance,
+  cityDetails,
 }) => {
   const [showClaimModal, setShowClaimModal] = useState(false);
   const isoDate = date;
-  const distance = zipcodes.distance(userZipcode, zipcode);
-  const cityDetails = zipcodes.lookup(zipcode);
+  // const distance = zipcodes.distance(userZipcode, zipcode);
+  // const cityDetails = zipcodes.lookup(zipcode);
+  const [dashboardButtonsClicked, setDashboardButtonsClicked] = useState(false);
 
   const formattedDate = dateFormatter(isoDate, {
     format: "MMM d, yyyy",
@@ -52,16 +53,19 @@ const Donation = ({
   };
 
   const handleCancelListingOnClick = () => {
-    // dont delete listing from db, change status to inactive
-    // inactive listings do not show on listings page on homepage but show on dashboard
-    // refetch donations to refresh
-    // cancelDonationListing(listingId);
+    !dashboardButtonsClicked &&
+      cancelDonationListing(listingId).then(() => {
+        fetch();
+        setDashboardButtonsClicked(true);
+      });
   };
 
   const handleMarkCompleteOnClick = () => {
-    // mark status to complete in db
-    // refetch donations to refresh
-    // markDonationListingStatusComplete(listingId);
+    !dashboardButtonsClicked &&
+      markDonationListingStatusComplete(listingId).then(() => {
+        fetch();
+        setDashboardButtonsClicked(true);
+      });
   };
 
   const dashboardButtons = [
@@ -150,7 +154,7 @@ const Donation = ({
             </div>
           )}
         </div>
-        {showDashboard ? (
+        {showDashboard && status !== "closed" && status !== "cancelled" && (
           <div className="donation-card-buttons">
             {dashboardButtons.map((d) => {
               return (
@@ -162,12 +166,13 @@ const Donation = ({
               );
             })}
           </div>
-        ) : (
+        )}
+        {!showDashboard && (
           <div className="donation-card-buttons">
             <Button
               handleOnClick={toggleClaimModal}
               text="Claim"
-              className="donation-button-styles"
+              className={"donation-button-styles"}
             />
           </div>
         )}
