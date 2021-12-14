@@ -19,9 +19,16 @@ export const getAllDonations = () => {
   return axios.get("http://localhost:3000/v1/donations/");
 };
 
+export const getNonCharityListings = () => {
+  return baseURL({
+    method: "GET",
+    url: "/v1/noncharityListings",
+  });
+};
+
 // get all user's donations for dashboard, input userId
 export const getDonationsForDashboard = (userId) => {
-  baseURL.get(`/v1/donations/${userId}`);
+  return baseURL.get(`/v1/donations/${userId}`);
 };
 // logged in user adds new donation to their listings
 export const createDonationListing = ({
@@ -90,7 +97,6 @@ export const cancelDonationListing = (listingId) => {
     },
   });
 };
-
 
 export const getNonCharityDonations = () => {};
 
