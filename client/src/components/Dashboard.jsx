@@ -14,17 +14,13 @@ const Dashboard = ({
   const [userDonations, setUserDonations] = useState([]);
 
   useEffect(() => {
-
-    getDonationsForDashboard(userId).then((r) => setUserDonations(r.data));
-
+    getDonationsForDashboard(3).then((r) => setUserDonations(r.data));
   }, []);
 
   const fetchUserDonations = () => {
     console.log('<<<<<<<<<<<<<<fetchUserDonations>>>>>>>>>>>>')
     getDonationsForDashboard(userId).then((r) => setUserDonations(r.data));
   };
-
-  console.log("fetched", userDonations);
 
   return (
     <div className="dashboard global">

@@ -25,10 +25,8 @@ const Donation = ({
   cityDetails,
 }) => {
   const [showClaimModal, setShowClaimModal] = useState(false);
-  const isoDate = date;
-  // const distance = zipcodes.distance(userZipcode, zipcode);
-  // const cityDetails = zipcodes.lookup(zipcode);
   const [dashboardButtonsClicked, setDashboardButtonsClicked] = useState(false);
+  const isoDate = date;
 
   const formattedDate = dateFormatter(isoDate, {
     format: "MMM d, yyyy",

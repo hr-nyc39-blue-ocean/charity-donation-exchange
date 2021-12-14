@@ -20,7 +20,6 @@ const Home = ({
   const [donations, setDonations] = useState([]);
   const [userZipcode, setUserZipcode] = useState(null);
   const [tempListings, setTempListings] = useState([]);
-  const [sortedListings, setSortedListings] = useState([]);
 
   useEffect(() => {
     seeAllListings
@@ -48,12 +47,21 @@ const Home = ({
   }, [userZipcode]);
 
   useEffect(() => {
-    const newSortedListings = [];
+    if (tempListings.length !== 0) {
+      for (let i = 0; i < tempListings.length; i++) {
+        const currentListing = tempListings[i];
+        if (currentListing.distance === null) {
+          currentListing.distance = 100000000;
+        }
+      }
+      tempListings.sort((a, b) => (a.distance > b.distance ? 1 : -1));
+      setDonations(tempListings);
+    }
   }, [tempListings]);
 
   const toggleLoginModal = () => {
-    // remove this later, this is only for testing different header state
-    setIsLoggedIn(true);
+    // // remove this later, this is only for testing different header state
+    // setIsLoggedIn(true);
 
     setShowLoginModal(!showLoginModal);
   };
@@ -101,7 +109,6 @@ const Home = ({
   const headerProps = isLoggedIn ? loggedInProps : notLoggedInProps;
   const { headerTitle, buttons } = headerProps;
 
-
   return (
     <div className="home global">
       <Header
@@ -112,10 +119,6 @@ const Home = ({
       />
       <NavBar showDashboard={showDashboard} setUserZipcode={setUserZipcode} />
       <DonationList
-        // distance={distance}
-        // cityDetails={cityDetails}
-        // tempListings={tempListings}
-        // setTempListings={setTempListings}
         donations={donations}
         showDashboard={showDashboard}
         userZipcode={userZipcode}
