@@ -25,7 +25,7 @@ export const getDonationsForDashboard = (userId) => {
 };
 // logged in user adds new donation to their listings
 export const createDonationListing = ({
-  name,
+  item,
   category,
   location,
   photoUrl,
@@ -36,7 +36,7 @@ export const createDonationListing = ({
     method: "POST",
     url: "/v1/donations",
     data: {
-      name: name,
+      item: item,
       category: category,
       location: location,
       photoUrl: photoUrl,
@@ -91,4 +91,32 @@ export const cancelDonationListing = (listingId) => {
   });
 };
 
+
 export const getNonCharityDonations = () => {};
+
+//**helpers for sign up and sign in */
+//TODO: implement tokens
+export const signupUser = ({ name, username, email, password }) => {
+  baseURL({
+    method: "POST",
+    url: "/signup",
+    data: {
+      name: name,
+      username: username,
+      email: email,
+      password: password,
+    },
+  });
+};
+
+export const loginUser = ({ username, password }) => {
+  baseURL({
+    method: "POST",
+    url: "/login",
+    data: {
+      username: username,
+      password: password,
+    },
+  });
+};
+//TODO: integrate jwt tokens in this if necessary, can be null while testing

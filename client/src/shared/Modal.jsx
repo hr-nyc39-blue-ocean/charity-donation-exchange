@@ -70,7 +70,7 @@ const Background = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-  width: 70%;
+  width: 60%;
   height: 70%;
   border-radius: 12px;
   background-color: white;
