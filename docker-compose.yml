@@ -11,8 +11,9 @@ services:
 
   cde-api-server:
     image: cde-api-server
+    restart: always
     ports:
-      - "5001:5001"
+      - "5000:5000"
     # networks:
     #   - mern-app
     depends_on:
@@ -20,15 +21,16 @@ services:
 
   db:
     image: mysql:latest
+    restart: always
     ports:
-      - "3307:3307"
-    expose:
-      - "3007"
+      - "3306:3306"
+    # expose:
+    #   - "3306"
     environment:
-      MYSQL_ROOT_PASSWORD: ""
-      MYSQL_USER: root
-      MYSQL_PASSWORD:
-      MYSQL_DATABASE: blueocean2
+      - MYSQL_ROOT_PASSWORD=""
+      # - MYSQL_USER=root
+      # - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=blueocean2
     # networks:
     #   - mern-app
     volumes:
