@@ -6,8 +6,10 @@ import {
   markDonationListingStatusComplete,
   cancelDonationListing,
 } from "../../api/index.js";
+import zipcodes from "zipcodes";
 
 const Donation = ({
+  userZipcode,
   showDashboard,
   fetch,
   listingId,
@@ -23,8 +25,10 @@ const Donation = ({
   claimerPhone,
 }) => {
   const [showClaimModal, setShowClaimModal] = useState(false);
-
   const isoDate = date;
+  const distance = zipcodes.distance(userZipcode, zipcode);
+  const cityDetails = zipcodes.lookup(zipcode);
+
   const formattedDate = dateFormatter(isoDate, {
     format: "MMM d, yyyy",
     namedMonths: [
@@ -83,33 +87,38 @@ const Donation = ({
         </div>
         <div className="donation-details-container">
           <div>
-            <div>
-              <span className="dontation-card-title">Listing ID: </span>
-              {listingId}
-            </div>
-            <div>
-              <span className="dontation-card-title">Date: </span>
-              {formattedDate}
-            </div>
-            <div>
-              <span className="dontation-card-title">Item name: </span>
-              {name}
-            </div>
-            <div>
-              <span className="dontation-card-title">Category: </span>
-              {category}
-            </div>
-            <div>
-              <span className="dontation-card-title">Quantity: </span>
-              {quantity}
-            </div>
-            <div>
-              <span className="dontation-card-title">Zipcode: </span>
-              {zipcode}
-            </div>
+            <span className="dontation-card-title">Listing ID: </span>
+            {listingId}
+          </div>
+          <div>
+            <span className="dontation-card-title">Date: </span>
+            {formattedDate}
+          </div>
+          <div>
+            <span className="dontation-card-title">Item name: </span>
+            {name}
+          </div>
+          <div>
+            <span className="dontation-card-title">Category: </span>
+            {category}
+          </div>
+          <div>
+            <span className="dontation-card-title">Quantity: </span>
+            {quantity}
+          </div>
+          <div>
+            <span className="dontation-card-title">Zipcode: </span>
+            {zipcode}
+            {cityDetails && `- ${cityDetails.city}, ${cityDetails.state}`}
           </div>
         </div>
         <div className="donation-claimed-details-container">
+          {distance && (
+            <div className="donation-distance-container">
+              <span className="dontation-card-title">Distance: </span>
+              <span>{`${distance} miles`}</span>
+            </div>
+          )}
           {showDashboard && (
             <div>
               <div>
