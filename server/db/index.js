@@ -1,19 +1,19 @@
-const mysql = require('mysql2');
+const mysql = require("mysql2");
 const db = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'blueocean2',
+  host: "localhost",
+  user: "root",
+  password: "humayra1",
+  database: "blueocean2",
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
 });
 
-  db.getConnection((err) => {
-    if (err) {
-      return console.error('error: ' + err.message);
-    }
-    console.log('Connected to the MySQL server.');
-  });
+db.getConnection((err) => {
+  if (err) {
+    return console.error("error: " + err.message);
+  }
+  console.log("Connected to the MySQL server.");
+});
 
 module.exports = db;
