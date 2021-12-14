@@ -16,6 +16,7 @@ const App = () => {
     setInitialModal(!initialModal);
   };
 
+
   return (
     <div className={`global ${color}`}>
       {initialModal && (
