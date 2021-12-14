@@ -4,7 +4,7 @@ import NavBar from "../shared/NavBar.jsx";
 import Header from "../components/Header.jsx";
 import Modal from "../shared/Modal.jsx";
 import HomeLogo from "../../dist/img/HomeLogo.png";
-import { getAllDonations, getNonCharityDonations } from "../../api/index.js";
+import { getAllDonations, getNonCharityListings } from "../../api/index.js";
 
 const Home = ({
   seeAllListings,
@@ -17,10 +17,13 @@ const Home = ({
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [donations, setDonations] = useState([]);
+  const [userZipcode, setUserZipcode] = useState(null);
 
   useEffect(() => {
-    getAllDonations().then((r) => setDonations(r.data));
-  }, []);
+    seeAllListings
+      ? getAllDonations().then((r) => setDonations(r.data))
+      : getNonCharityListings().then((r) => setDonations(r.data));
+  }, [seeAllListings]);
 
   const toggleLoginModal = () => {
     // remove this later, this is only for testing different header state
@@ -72,8 +75,6 @@ const Home = ({
   const headerProps = isLoggedIn ? loggedInProps : notLoggedInProps;
   const { headerTitle, buttons } = headerProps;
 
-  console.log(donations);
-
   return (
     <div className="home global">
       <Header
@@ -82,8 +83,12 @@ const Home = ({
         logo={HomeLogo}
         colorClassName="yellow"
       />
-      <NavBar showDashboard={showDashboard} />
-      <DonationList donations={donations} showDashboard={showDashboard} />
+      <NavBar showDashboard={showDashboard} setUserZipcode={setUserZipcode} />
+      <DonationList
+        donations={donations}
+        showDashboard={showDashboard}
+        userZipcode={userZipcode}
+      />
       {showLoginModal && (
         <Modal
           setIsLogginIn={setIsLoggedIn}
