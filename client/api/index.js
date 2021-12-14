@@ -14,7 +14,7 @@ const baseURL = axios.create({
   baseURL: "http://localhost:3000",
 });
 
-// get all donations, can specify charityOnly
+// get all donations
 export const getAllDonations = () => {
   return baseURL({
     method: "GET",
@@ -22,10 +22,29 @@ export const getAllDonations = () => {
   });
 };
 
+// get non-charity donation listings
+export const getNonCharityListings = () => {
+  return baseURL({
+    method: "GET",
+    url: "/v1/noncharityListings",
+  });
+};
+
 // get all user's donations for dashboard, input userId
 export const getDonationsForDashboard = (userId) => {
   baseURL.get(`/v1/donations/${userId}`);
 };
+
+// get all user's CLAIMED donations for dashboard, input userId
+export const getClaimedDonationsForDashboard = (userId) => {
+  baseURL.get(`/v1/claimedDonations/${userId}`);
+};
+
+// get all user's CANCELLED donations for dashboard, input userId
+export const getCancelledDonationsForDashboard = (userId) => {
+  baseURL.get(`/v1/cancelledDonations/${userId}`);
+};
+
 // logged in user adds new donation to their listings
 export const createDonationListing = ({
   item,
