@@ -14,17 +14,21 @@ const Home = ({
   setShowDashboard,
   isLoggedIn,
   setIsLoggedIn,
+  setUsername,
+  username,
 }) => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [donations, setDonations] = useState([]);
   const [userZipcode, setUserZipcode] = useState(null);
   const [tempListings, setTempListings] = useState([]);
+  const [newestView, setNewestView] = useState(true);
+  const [distanceListings, setDistanceListings] = useState([]);
+
+  const fetch = seeAllListings ? getAllDonations : getNonCharityListings;
 
   useEffect(() => {
-    seeAllListings
-      ? getAllDonations().then((r) => setDonations(r.data))
-      : getNonCharityListings().then((r) => setDonations(r.data));
+    fetch().then((r) => setDonations(r.data));
   }, [seeAllListings]);
 
   useEffect(() => {
@@ -55,12 +59,29 @@ const Home = ({
         }
       }
       tempListings.sort((a, b) => (a.distance > b.distance ? 1 : -1));
-      setDonations(tempListings);
+
+      const under100MiListings = [];
+
+      for (let j = 0; j < tempListings.length; j++) {
+        const { distance } = tempListings[j];
+        if (distance <= 100) {
+          under100MiListings.push(tempListings[j]);
+        }
+      }
+
+      setDistanceListings(under100MiListings);
+      setDonations(distanceListings);
     }
   }, [tempListings]);
 
+  useEffect(() => {
+    newestView
+      ? fetch().then((r) => setDonations(r.data))
+      : setDonations(distanceListings);
+  }, [newestView, distanceListings]);
+
   const toggleLoginModal = () => {
-    // // remove this later, this is only for testing different header state
+    // remove this later, this is only for testing different header state
     // setIsLoggedIn(true);
 
     setShowLoginModal(!showLoginModal);
@@ -79,7 +100,7 @@ const Home = ({
   };
 
   const loggedInProps = {
-    headerTitle: "WELCOME, NAME",
+    headerTitle: `WELCOME, ${username}`,
     buttons: [
       {
         text: "Logout",
@@ -117,7 +138,13 @@ const Home = ({
         logo={HomeLogo}
         colorClassName="yellow"
       />
-      <NavBar showDashboard={showDashboard} setUserZipcode={setUserZipcode} />
+      <NavBar
+        setNewestView={setNewestView}
+        fetch={fetch}
+        showDashboard={showDashboard}
+        setUserZipcode={setUserZipcode}
+        setDonations={setDonations}
+      />
       <DonationList
         donations={donations}
         showDashboard={showDashboard}
@@ -125,10 +152,11 @@ const Home = ({
       />
       {showLoginModal && (
         <Modal
-          setIsLogginIn={setIsLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
           setUserId={setUserId}
           loginModal={showLoginModal}
           toggleModal={toggleLoginModal}
+          setUsername={setUsername}
         />
       )}
       {showSignUpModal && (

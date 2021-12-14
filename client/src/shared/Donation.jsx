@@ -115,7 +115,7 @@ const Donation = ({
           </div>
         </div>
         <div className="donation-claimed-details-container">
-          {distance && (
+          {distance >= 0 && (
             <div className="donation-distance-container">
               <span className="dontation-card-title">Distance: </span>
               <span>{`${distance} miles`}</span>
@@ -129,7 +129,7 @@ const Donation = ({
               </div>
               <div>
                 <span className="dontation-card-title">Claimed: </span>
-                <span>{ claimed==="true" ? "Yes" : "No" }</span>
+                <span>{claimed === "true" ? "Yes" : "No"}</span>
               </div>
               <div>
                 {claimed === "true" && (
