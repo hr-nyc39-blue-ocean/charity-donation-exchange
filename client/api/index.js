@@ -1,13 +1,3 @@
-// TODO: Anonymous user types into search bar
-// TODO: Anonymous user sorts by distance
-// TODO: Anonymous user sorts by newest
-// TODO: Anonymous user sorts by distance and newest
-// TODO: Anonymous user registers
-// TODO: Anonymous user logs in
-// TODO: Donator user logs out
-// TODO: Donator user sorts by newest
-// TODO: Donator user filters by open, pending (claimed), completed
-
 import axios from "axios";
 
 const baseURL = axios.create({
@@ -92,26 +82,29 @@ export const claimDonationListing = ({
 };
 
 // complete existing donation. Changes status to complete
-export const markDonationListingStatusComplete = (listingId) => {
+export const markDonationListingStatusComplete = (listingId, status) => {
   return baseURL({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
     data: {
       listingId: listingId,
+      status: status,
     },
   });
 };
 
 // cancels/deletes existing donation
-export const cancelDonationListing = (listingId) => {
+export const cancelDonationListing = (listingId, status) => {
   return baseURL({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
     data: {
       listingId: listingId,
+      status: status,
     },
   });
 };
+
 //**helpers for sign up and sign in */
 //TODO: implement tokens
 export const signupUser = ({ name, username, email, password }) => {
