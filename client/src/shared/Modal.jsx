@@ -19,6 +19,7 @@ const Modal = ({
   seeAllListings,
   setSeeAllListings,
   toggleModal,
+  fetchUserDonations
 }) => {
   return (
     <div>
@@ -36,7 +37,7 @@ const Modal = ({
           )}
           {signupModal && <SignupForm toggleModal={toggleModal} />}
           {newListingModal && (
-            <NewListingForm userId={userId} toggleModal={toggleModal} />
+            <NewListingForm userId={userId} toggleModal={toggleModal} fetchUserDonations={fetchUserDonations} />
           )}
           {initialModal && (
             <InitialForm

@@ -23,6 +23,7 @@ const LoginForm = ({ setIsLoggedIn, setUserId, toggleModal }) => {
         alert("login failed");
       }
       setUserId(results.data[0].userID)
+      toggleModal()
       //console.log("🚀 ~ file: LoginForm.jsx ~ line 23 ~ .then ~ results.data[0].userID", results.data[0].userID)
       //console.log("🚀 ~ file: LoginForm.jsx ~ line 21 ~ .then ~ results", results)
 

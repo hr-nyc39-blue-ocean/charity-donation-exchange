@@ -9,6 +9,7 @@ const NavBar = ({
   setShowDashboard,
   setIsLoggedIn,
   setUserZipcode,
+  fetchUserDonations
 }) => {
   const [showNewListingModal, setShowNewListingModal] = useState(false);
 
@@ -64,6 +65,7 @@ const NavBar = ({
           userId={userId}
           newListingModal={showNewListingModal}
           toggleModal={toggleNewListingModal}
+          fetchUserDonations={fetchUserDonations}
         />
       )}
     </div>

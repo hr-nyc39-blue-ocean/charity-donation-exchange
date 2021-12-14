@@ -41,6 +41,7 @@ const SignUpForm = ({ toggleModal }) => {
       if (results.data === "user already exists") {
         //console.log("🚀 ~ file: SignUpForm.jsx ~ line 35 ~ .then ~ results.data", results.data)
         setUsername(true);
+        toggleModal()
       } else {
         alert('Please login to your new account')
       }
