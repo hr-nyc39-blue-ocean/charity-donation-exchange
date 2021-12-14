@@ -38,6 +38,7 @@ const NewListingForm = ({ userId, toggleModal, fetchUserDonations }) => {
     api.createDonationListing( { name, category, zipcode, photoURL, charityOnly, userID, quantity } )
     .then((results) => {
       fetchUserDonations()
+      toggleModal()
       console.log('results in NewListingForm handleSubmit: ', results)
     })
     .catch((err) => {
