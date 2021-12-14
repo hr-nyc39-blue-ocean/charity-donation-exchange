@@ -12,8 +12,8 @@
   }
 
   .donation-card-buttons {
-    @include flex(column, center, flex-end);
-    width: 10vw;
+    @include flex(column, flex-end, center);
+    width: 15vw;
   }
 
   .donation-button-styles {
@@ -30,8 +30,34 @@
     font-weight: bold;
   }
 
+  .donation-img-container {
+    @include flex(row, flex-start, center);
+    width: 13vw;
+  }
+
+  .donation-card-details {
+    width: 30vw;
+    @include flex(column, space-between, space-between);
+  }
+
   .donation-img-styles {
-    @include flex(column, center, center);
-    width: 10vw;
+    @include flex(row, center, center);
+    width: 150px;
+    height: 150px;
+  }
+
+  .donation-details-container {
+    @include flex(row, flex-start);
+    width: 30vw;
+  }
+
+  .donation-claimed-details-container {
+    @include flex(row, flex-start);
+    width: 15vw;
+  }
+
+  .donation-detail-row {
+    @include flex(row, space-between);
+    width: 35vw;
   }
 }
