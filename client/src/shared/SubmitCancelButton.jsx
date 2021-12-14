@@ -14,7 +14,7 @@ const Submit = ({ handleSubmit, handleCancel }) => {
 
 
 const ButtonContainer = styled.div`
-  height: 10%;
+  height: 5vh;
   width: 100%;
   //border: 1px solid red;
   display: flex;
@@ -22,12 +22,18 @@ const ButtonContainer = styled.div`
 `
 
   const SubmitButton = styled.button`
-  height: 70%;
+  height: 100%;
   width: 20%;
+  border: none;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 15px;
+  cursor: pointer;
+  &:hover {
+    background-color: #fff9ea;
+  }
 `
-  const CancelButton = styled.button`
-  height: 70%;
-  width: 20%;
+  const CancelButton = styled(SubmitButton)`
 `
 
 export default Submit;

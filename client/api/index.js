@@ -107,8 +107,8 @@ export const cancelDonationListing = (listingId, status = "cancelled") => {
 
 //**helpers for sign up and sign in */
 //TODO: implement tokens
-export const signupUser = ({ name, username, email, password }) => {
-  baseURL({
+export const signupUser = ({ name, username, email, password, phone }) => {
+  return baseURL({
     method: "POST",
     url: "/signup",
     data: {
@@ -116,12 +116,13 @@ export const signupUser = ({ name, username, email, password }) => {
       username: username,
       email: email,
       password: password,
+      phone: phone
     },
   });
 };
 
 export const loginUser = ({ username, password }) => {
-  baseURL({
+  return baseURL({
     method: "POST",
     url: "/login",
     data: {

@@ -14,7 +14,9 @@ const Dashboard = ({
   const [userDonations, setUserDonations] = useState([]);
 
   useEffect(() => {
-    getDonationsForDashboard(3).then((r) => setUserDonations(r.data));
+
+    getDonationsForDashboard(userId).then((r) => setUserDonations(r.data));
+
   }, []);
 
   const fetchUserDonations = () => {

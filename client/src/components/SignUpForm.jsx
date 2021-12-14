@@ -17,6 +17,9 @@ const SignUpForm = ({ toggleModal }) => {
   }
 
   const [signupInfo, setSignupInfo] = useState(initialSignupInfo)
+  const [username, setUsername] = useState(false);
+
+  useEffect(() => {setUsername(false)},[signupInfo]);
 
   const handleInputChange = (e) => {
     setSignupInfo((prevState) => (
@@ -25,8 +28,26 @@ const SignUpForm = ({ toggleModal }) => {
   }
 
   const handleSubmit = (signupInfo) => {
-    //need to check if username is unique
-    console.log(signupInfo)
+
+    for (let key in signupInfo) {
+      if (signupInfo[key] === '') {
+        alert('Please fill out all fields before submit')
+        return;
+      }
+    }
+    //console.log("🚀 ~ file: SignUpForm.jsx ~ line 33 ~ handleSubmit ~ signupInfo", signupInfo)
+    api.signupUser(signupInfo)
+    .then((results) => {
+      if (results.data === "user already exists") {
+        //console.log("🚀 ~ file: SignUpForm.jsx ~ line 35 ~ .then ~ results.data", results.data)
+        setUsername(true);
+      } else {
+        alert('Please login to your new account')
+      }
+    })
+    .catch((err) => {
+      console.log('ERROR IN SignUpForm handleSubmit function: ', err)
+    })
   }
 
   return (
@@ -34,6 +55,7 @@ const SignUpForm = ({ toggleModal }) => {
       <Title> Create your account </Title>
       <Form onChange={handleInputChange}>
         <InputLabel label={"Username"} input={"username"}/>
+        {username && <UsernameExists>Username already exists, please try another one</UsernameExists>}
         <InputLabel label={"Password"} input={"password"}/>
         <InputLabel label={"Name"} input={"name"}/>
         <InputLabel label={"Email"} input={"email"} type={"email"}/>
@@ -65,4 +87,10 @@ const Form = styled.div`
 const Note = styled.p`
   color: grey;
   margin-top: 15px;
+`
+
+const UsernameExists = styled.p`
+  color: red;
+  font-size: 15px;
+  margin-left:
 `
