@@ -60,7 +60,20 @@ module.exports = {
       });
   },
 
-  checkIfUserExists: function (email, callback) {
+  checkIfUsernameExists: function (username, callback) {
+    // checks if user exists already in db (via username)
+    db.promise()
+      .query(`SELECT EXISTS(SELECT 1 FROM Users WHERE username='${username}')`)
+      .then((responseData) => {
+        callback(null, responseData[0]);
+      })
+      .catch((err) => {
+        console.log("error checkIfUserExists >>>>", err);
+        callback(err);
+      });
+  },
+
+  checkIfEmailExists: function (email, callback) {
     // checks if user exists already in db (via email)
     db.promise()
       .query(`SELECT EXISTS(SELECT 1 FROM Users WHERE email='${email}')`)
@@ -68,7 +81,7 @@ module.exports = {
         callback(null, responseData[0]);
       })
       .catch((err) => {
-        console.log("error checkIfUserExists >>>>", err);
+        console.log("error checkIfEmailExists >>>>", err);
         callback(err);
       });
   },
