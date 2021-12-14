@@ -25,10 +25,8 @@ const Donation = ({
   cityDetails,
 }) => {
   const [showClaimModal, setShowClaimModal] = useState(false);
-  const isoDate = date;
-  // const distance = zipcodes.distance(userZipcode, zipcode);
-  // const cityDetails = zipcodes.lookup(zipcode);
   const [dashboardButtonsClicked, setDashboardButtonsClicked] = useState(false);
+  const isoDate = date;
 
   const formattedDate = dateFormatter(isoDate, {
     format: "MMM d, yyyy",
@@ -134,7 +132,7 @@ const Donation = ({
                 <span>{claimed}</span>
               </div>
               <div>
-                {claimed === "Yes" && (
+                {claimed === "true" && (
                   <div>
                     <div>
                       <span className="dontation-card-title">Name: </span>

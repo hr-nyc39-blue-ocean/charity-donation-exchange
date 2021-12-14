@@ -20,7 +20,6 @@ const Home = ({
   const [donations, setDonations] = useState([]);
   const [userZipcode, setUserZipcode] = useState(null);
   const [tempListings, setTempListings] = useState([]);
-  const [sortedListings, setSortedListings] = useState([]);
 
   useEffect(() => {
     seeAllListings
@@ -60,11 +59,9 @@ const Home = ({
     }
   }, [tempListings]);
 
-  console.log(donations);
-
   const toggleLoginModal = () => {
-    // remove this later, this is only for testing different header state
-    setIsLoggedIn(true);
+    // // remove this later, this is only for testing different header state
+    // setIsLoggedIn(true);
 
     setShowLoginModal(!showLoginModal);
   };
@@ -122,10 +119,6 @@ const Home = ({
       />
       <NavBar showDashboard={showDashboard} setUserZipcode={setUserZipcode} />
       <DonationList
-        // distance={distance}
-        // cityDetails={cityDetails}
-        // tempListings={tempListings}
-        // setTempListings={setTempListings}
         donations={donations}
         showDashboard={showDashboard}
         userZipcode={userZipcode}
