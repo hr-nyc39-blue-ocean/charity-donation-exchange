@@ -17,7 +17,6 @@ const morgan = require("morgan");
 const db = require("./db/index.js");
 const controller = require("./db/controller.js");
 const User = require("./Models/user.js");
- 
 
 app.use(morgan("dev"));
 app.use(express.json());
@@ -93,6 +92,26 @@ app.get("/v1/donations/", (req, res) => {
   });
 });
 
+app.get("/v1/noncharityListings/", (req, res) => {
+  controller.getNonCharityListings((err, responseData) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(200).send(responseData);
+    }
+  });
+});
+
+app.get("/v1/donations/:userId", (req, res) => {
+  controller.getUserAllListings(req.params.userId, (err, responseData) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(200).send(responseData);
+    }
+  });
+});
+
 // get user donation listings for dashboard
 // app.get("/v1/donations/:userId", (req, res) => {
 //   /*
@@ -139,10 +158,7 @@ app.put("/v1/donations/:listingId", (req, res) => {
     }
   });
 
-
-
   // res.status(200).send("updated");
-
 });
 
 // delete donation listing
