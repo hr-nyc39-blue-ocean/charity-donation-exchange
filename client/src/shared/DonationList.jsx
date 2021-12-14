@@ -1,17 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Donation from "./Donation.jsx";
+import zipcodes from "zipcodes";
 
-const DonationList = ({ showDashboard, donations }) => {
+const DonationList = ({ fetch, showDashboard, donations, userZipcode }) => {
   const color = showDashboard ? "donation-list-blue" : "donation-list-yellow";
-
-  // const fetchAllListings = () => {
-  //   getAllDonations();
-  // };
-
-  const fetchUserListings = () => {};
-
-  // create fetch fx to refetch donations
-  const fetch = () => {};
 
   return (
     <div className={`donation-list-container ${color}`}>
@@ -20,6 +12,7 @@ const DonationList = ({ showDashboard, donations }) => {
           ? donations.map((d) => {
               return (
                 <Donation
+                  userZipcode={userZipcode}
                   showDashboard={showDashboard}
                   fetch={fetch}
                   listingId={d.listingID}
@@ -33,6 +26,8 @@ const DonationList = ({ showDashboard, donations }) => {
                   claimerName={d.claimerName}
                   claimerEmail={d.claimerEmail}
                   claimerPhone={d.claimerPhone}
+                  distance={d.distance}
+                  cityDetails={d.cityDetails}
                 />
               );
             })

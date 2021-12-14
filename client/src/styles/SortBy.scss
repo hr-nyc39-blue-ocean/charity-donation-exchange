@@ -1,8 +1,10 @@
 @import "mixins";
 
 .form-styles {
-  @include flex(row, space-evenly, center);
-  width: 50vw;
+  @include flex(row, center, center);
+  gap: 10px;
+  width: 30vw;
+  color: #fff9ea;
 
   .sort-by-title {
     font-weight: bold;

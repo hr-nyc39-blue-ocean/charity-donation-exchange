@@ -23,7 +23,6 @@ const {
   markAsComplete,
 } = require("./db/controller.js");
 
-
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -109,7 +108,9 @@ app.put("/v1/donations/:listingId", (req, res) => {
       if (err) {
         res.sendStatus(500);
       } else {
-        res.status(200).send("marked listing as cancelled");
+
+        res.status(200).send("marked listing as pending");
+
       }
     });
   } else if (req.body.status === "closed") {
@@ -117,7 +118,9 @@ app.put("/v1/donations/:listingId", (req, res) => {
       if (err) {
         res.sendStatus(500);
       } else {
-        res.status(200).send("marked listing as cancelled");
+
+        res.status(200).send("marked listing as closed");
+
       }
     });
   } else if (req.body.status === "cancelled") {
@@ -145,29 +148,21 @@ relevant status codes:
 429 - too many requests
 500 - internal server error
 503 - serve unavailable
-
-
 //***IN PROGRESS****
-
 //  TODO: how to handle user login and logout?
-
 //   user login
 //   user logout
 //   app.post("/v1/registration", (req, res) => {
 //     res.status(200).send("ok");
 //   });
-
   // importing user context
 const User = require("./model/user");
-
 // Register
-
 // Get user input and validate it
 // Validate if user already exists
 // Encrypt user pw
 // Create a user in the db
 // Create a signed JWT token
-
 //**TODO: limit on pw chars, token chars? */
 
 app.post("/signup", (req, res, next) => {
@@ -213,7 +208,7 @@ app.post("/signup", (req, res, next) => {
 
 app.post("/login", (req, res, next) => {
   const body = req.body;
-  console.log("login bod", body);
+  console.log("login body", body);
   var checkusername = null;
   controller.checkIfUsernameExists(body.username, (err, responseData) => {
     if (err) {
@@ -224,9 +219,15 @@ app.post("/login", (req, res, next) => {
         checkusername = `${value}`;
       }
       if (checkusername > 0) {
-        res.status(201).send("login successful");
+        controller.sendBackUserID(body.username, (err, data) => {
+          if (err) {
+            res.status(500);
+          } else {
+            res.status(201).send(data);
+          }
+        })
       } else {
-        res.status(409).send("login unsuccessful");
+        res.status(200).send("login failed");
       }
     }
   });

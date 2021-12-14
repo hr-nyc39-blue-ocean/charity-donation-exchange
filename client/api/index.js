@@ -34,23 +34,25 @@ export const getCancelledDonationsForDashboard = (userId) => {
 
 // logged in user adds new donation to their listings
 export const createDonationListing = ({
-  item,
+  name,
   category,
-  location,
-  photoUrl,
+  zipcode,
+  photoURL,
   charityOnly,
-  userId,
+  userID,
+  quantity
 }) => {
   return baseURL({
     method: "POST",
     url: "/v1/donations",
     data: {
-      item: item,
+      name: name,
       category: category,
-      location: location,
-      photoUrl: photoUrl,
+      zipcode: zipcode,
+      photoURL: photoURL,
       charityOnly: charityOnly,
-      userId: userId,
+      userID: userID,
+      quantity: quantity
     },
   });
 };
@@ -79,7 +81,10 @@ export const claimDonationListing = ({
 };
 
 // complete existing donation. Changes status to complete
-export const markDonationListingStatusComplete = (listingId, status) => {
+export const markDonationListingStatusComplete = (
+  listingId,
+  status = "closed"
+) => {
   return baseURL({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
@@ -91,7 +96,7 @@ export const markDonationListingStatusComplete = (listingId, status) => {
 };
 
 // cancels/deletes existing donation
-export const cancelDonationListing = (listingId, status) => {
+export const cancelDonationListing = (listingId, status = "cancelled") => {
   return baseURL({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
@@ -104,8 +109,8 @@ export const cancelDonationListing = (listingId, status) => {
 
 //**helpers for sign up and sign in */
 //TODO: implement tokens
-export const signupUser = ({ name, username, email, password }) => {
-  baseURL({
+export const signupUser = ({ name, username, email, password, phone }) => {
+  return baseURL({
     method: "POST",
     url: "/signup",
     data: {
@@ -113,12 +118,13 @@ export const signupUser = ({ name, username, email, password }) => {
       username: username,
       email: email,
       password: password,
+      phone: phone
     },
   });
 };
 
 export const loginUser = ({ username, password }) => {
-  baseURL({
+  return baseURL({
     method: "POST",
     url: "/login",
     data: {

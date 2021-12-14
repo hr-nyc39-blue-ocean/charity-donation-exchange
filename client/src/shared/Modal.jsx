@@ -19,6 +19,7 @@ const Modal = ({
   seeAllListings,
   setSeeAllListings,
   toggleModal,
+  fetchUserDonations
 }) => {
   return (
     <div>
@@ -36,7 +37,7 @@ const Modal = ({
           )}
           {signupModal && <SignupForm toggleModal={toggleModal} />}
           {newListingModal && (
-            <NewListingForm userId={userId} toggleModal={toggleModal} />
+            <NewListingForm userId={userId} toggleModal={toggleModal} fetchUserDonations={fetchUserDonations} />
           )}
           {initialModal && (
             <InitialForm
@@ -56,8 +57,8 @@ export default Modal;
 const Background = styled.div`
   width: 100%;
   height: 100%;
-  // background: rgba(200, 200, 200, 0.5);
-  background: #fff9ea;
+  background: rgba(200, 200, 200, 0.5);
+  //background: white;
   position: fixed;
   display: flex;
   justify-content: center;
@@ -66,14 +67,14 @@ const Background = styled.div`
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 9999;
+  z-index: 9998;
 `;
 
 const ModalWrapper = styled.div`
   width: 60%;
   height: 70%;
   border-radius: 12px;
-  background-color: white;
+  background-color: #fff9ea;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;

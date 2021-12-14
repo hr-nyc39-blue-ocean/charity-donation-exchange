@@ -3,7 +3,14 @@ import Button from "../shared/Button.jsx";
 import SortBy from "../components/SortBy.jsx";
 import Modal from "../shared/Modal.jsx";
 
-const NavBar = ({ userId, showDashboard, setShowDashboard, setIsLoggedIn }) => {
+const NavBar = ({
+  userId,
+  showDashboard,
+  setShowDashboard,
+  setIsLoggedIn,
+  setUserZipcode,
+  fetchUserDonations
+}) => {
   const [showNewListingModal, setShowNewListingModal] = useState(false);
 
   const handleHomeOnClick = () => {
@@ -47,16 +54,10 @@ const NavBar = ({ userId, showDashboard, setShowDashboard, setIsLoggedIn }) => {
               />
             );
           })}
-          {/* <Button handleOnClick={handleHomeOnClick} text="Home" />
-          <Button
-            handleOnClick={toggleNewListingModal}
-            text="Create a New Listing"
-          />
-          <Button handleOnClick={handleLogoutOnClick} text="Logout" /> */}
         </div>
       ) : (
         <div className="home-nav-bar">
-          <SortBy />
+          <SortBy setUserZipcode={setUserZipcode} />
         </div>
       )}
       {showNewListingModal && (
@@ -64,6 +65,7 @@ const NavBar = ({ userId, showDashboard, setShowDashboard, setIsLoggedIn }) => {
           userId={userId}
           newListingModal={showNewListingModal}
           toggleModal={toggleNewListingModal}
+          fetchUserDonations={fetchUserDonations}
         />
       )}
     </div>

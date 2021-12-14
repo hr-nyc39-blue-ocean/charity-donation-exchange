@@ -6,15 +6,16 @@ import { useState, useEffect } from "react";
 const api = require('../../api/index.js');
 
 
-const NewListingForm = ({ userId, toggleModal }) => {
+const NewListingForm = ({ userId, toggleModal, fetchUserDonations }) => {
 
   const defaultListing = {
-    item: '',
+    name: '',
     category: '',
-    location: '',
-    photoUrl: '',
+    zipcode: '',
+    photoURL: '',
     charityOnly: false,
-    userId: userId || ''
+    userID: userId,
+    quantity: 0
   }
   const [listingInfo, setListingInfo] = useState(defaultListing)
 
@@ -33,10 +34,12 @@ const NewListingForm = ({ userId, toggleModal }) => {
   }
 
   const handleSubmit = (listingInfo) => {
-    const { item, category, location, photoUrl, charityOnly, userId } = listingInfo;
-    api.createDonationListing( { item, category, location, photoUrl, charityOnly, userId } )
+    const { name, category, zipcode, photoURL, charityOnly, userID, quantity } = listingInfo;
+    api.createDonationListing( { name, category, zipcode, photoURL, charityOnly, userID, quantity } )
     .then((results) => {
-      console.log(results)
+      fetchUserDonations()
+      toggleModal()
+      console.log('results in NewListingForm handleSubmit: ', results)
     })
     .catch((err) => {
       console.log('ERROR IN NewListingForm submit: ', err);
@@ -48,10 +51,11 @@ const NewListingForm = ({ userId, toggleModal }) => {
     <div>
       <Title>Create a new listing</Title>
       <Form onChange={handleInputChange}>
-        <InputLabel label={"Item Name"} input={"item"} />
+        <InputLabel label={"Item Name"} input={"name"} />
         <InputLabel label={"Category"} input={"category"} />
-        <InputLabel label={"Zipcode"} input={"location"} />
-        <InputLabel label={"Photo Url"} input={"photoUrl"} />
+        <InputLabel label={"Zipcode"} input={"zipcode"} />
+        <InputLabel label={"Photo URL"} input={"photoURL"} />
+        <InputLabel label={"Quantity"} input={"quantity"} />
         <CheckboxLabel>Charity Only:
           <ChoiceLabel > Yes <CheckMark type="checkbox" name="yes" onClick={handleCheckboxSelected}/> </ChoiceLabel>
           <ChoiceLabel> No <CheckMark type="checkbox" name="no" onClick={handleCheckboxSelected} /> </ChoiceLabel>

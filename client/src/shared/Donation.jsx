@@ -21,10 +21,13 @@ const Donation = ({
   claimerName,
   claimerEmail,
   claimerPhone,
+  distance,
+  cityDetails,
 }) => {
   const [showClaimModal, setShowClaimModal] = useState(false);
-
+  const [dashboardButtonsClicked, setDashboardButtonsClicked] = useState(false);
   const isoDate = date;
+
   const formattedDate = dateFormatter(isoDate, {
     format: "MMM d, yyyy",
     namedMonths: [
@@ -48,16 +51,19 @@ const Donation = ({
   };
 
   const handleCancelListingOnClick = () => {
-    // dont delete listing from db, change status to inactive
-    // inactive listings do not show on listings page on homepage but show on dashboard
-    // refetch donations to refresh
-    // cancelDonationListing(listingId);
+    !dashboardButtonsClicked &&
+      cancelDonationListing(listingId).then(() => {
+        fetch();
+        setDashboardButtonsClicked(true);
+      });
   };
 
   const handleMarkCompleteOnClick = () => {
-    // mark status to complete in db
-    // refetch donations to refresh
-    // markDonationListingStatusComplete(listingId);
+    !dashboardButtonsClicked &&
+      markDonationListingStatusComplete(listingId).then(() => {
+        fetch();
+        setDashboardButtonsClicked(true);
+      });
   };
 
   const dashboardButtons = [
@@ -83,33 +89,38 @@ const Donation = ({
         </div>
         <div className="donation-details-container">
           <div>
-            <div>
-              <span className="dontation-card-title">Listing ID: </span>
-              {listingId}
-            </div>
-            <div>
-              <span className="dontation-card-title">Date: </span>
-              {formattedDate}
-            </div>
-            <div>
-              <span className="dontation-card-title">Item name: </span>
-              {name}
-            </div>
-            <div>
-              <span className="dontation-card-title">Category: </span>
-              {category}
-            </div>
-            <div>
-              <span className="dontation-card-title">Quantity: </span>
-              {quantity}
-            </div>
-            <div>
-              <span className="dontation-card-title">Zipcode: </span>
-              {zipcode}
-            </div>
+            <span className="dontation-card-title">Listing ID: </span>
+            {listingId}
+          </div>
+          <div>
+            <span className="dontation-card-title">Date: </span>
+            {formattedDate}
+          </div>
+          <div>
+            <span className="dontation-card-title">Item name: </span>
+            {name}
+          </div>
+          <div>
+            <span className="dontation-card-title">Category: </span>
+            {category}
+          </div>
+          <div>
+            <span className="dontation-card-title">Quantity: </span>
+            {quantity}
+          </div>
+          <div>
+            <span className="dontation-card-title">Zipcode: </span>
+            {zipcode}
+            {cityDetails && `- ${cityDetails.city}, ${cityDetails.state}`}
           </div>
         </div>
         <div className="donation-claimed-details-container">
+          {distance && (
+            <div className="donation-distance-container">
+              <span className="dontation-card-title">Distance: </span>
+              <span>{`${distance} miles`}</span>
+            </div>
+          )}
           {showDashboard && (
             <div>
               <div>
@@ -118,10 +129,10 @@ const Donation = ({
               </div>
               <div>
                 <span className="dontation-card-title">Claimed: </span>
-                <span>{claimed}</span>
+                <span>{ claimed==="true" ? "Yes" : "No" }</span>
               </div>
               <div>
-                {claimed === "Yes" && (
+                {claimed === "true" && (
                   <div>
                     <div>
                       <span className="dontation-card-title">Name: </span>
@@ -141,7 +152,7 @@ const Donation = ({
             </div>
           )}
         </div>
-        {showDashboard ? (
+        {showDashboard && status !== "closed" && status !== "cancelled" && (
           <div className="donation-card-buttons">
             {dashboardButtons.map((d) => {
               return (
@@ -153,12 +164,13 @@ const Donation = ({
               );
             })}
           </div>
-        ) : (
+        )}
+        {!showDashboard && (
           <div className="donation-card-buttons">
             <Button
               handleOnClick={toggleClaimModal}
               text="Claim"
-              className="donation-button-styles"
+              className={"donation-button-styles"}
             />
           </div>
         )}

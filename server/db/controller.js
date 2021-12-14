@@ -17,10 +17,9 @@ module.exports = {
   },
 
   getNonCharityListings: function (callback) {
-    // this is for anonymous donees
     db.promise()
       .query(
-        `SELECT * FROM Listings WHERE charityOnly='false' AND status='open' ORDER BY date DESC'`
+        `SELECT * FROM Listings WHERE charityOnly='false' ORDER BY date DESC`
       )
       .then((responseData) => {
         console.log('grabbed non charity listings only');
@@ -163,7 +162,7 @@ module.exports = {
   postListing: function (body, callback) {
     db.promise()
       .query(
-        `INSERT INTO Listings (name, category, quantity, date, zipcode, photoURL, charityOnly, userID) VALUES ('${body.name}', '${body.category}', ${body.quantity}, now(), ${body.location}, '${body.photoURL}', '${body.charityOnly}', ${body.userID})`
+        `INSERT INTO Listings (name, category, quantity, date, zipcode, photoURL, charityOnly, userID) VALUES ('${body.name}', '${body.category}', ${body.quantity}, now(), ${body.zipcode}, '${body.photoURL}', '${body.charityOnly}', ${body.userID})`
       )
       .then(() => {
         console.log('successfully posted new listing');
