@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import DonationList from "../shared/DonationList.jsx";
 import NavBar from "../shared/NavBar.jsx";
 import DashboardLogo from "../../dist/img/DashboardLogo.jpeg";
 import Header from "./Header.jsx";
+import { getAllDonations } from "../../api/index.js";
 
 const Dashboard = ({
   userId,
   setShowDashboard,
   setIsLoggedIn,
   showDashboard,
+  donations,
 }) => {
+  const [userDonations, setUserDonations] = useState([]);
+
+  useEffect(() => {
+    getAllDonations().then((r) => setUserDonations(r.data));
+  }, []);
+
   return (
     <div className="dashboard global">
       <Header
@@ -23,7 +31,7 @@ const Dashboard = ({
         setShowDashboard={setShowDashboard}
         setIsLoggedIn={setIsLoggedIn}
       />
-      <DonationList showDashboard={showDashboard} />
+      <DonationList donations={userDonations} showDashboard={showDashboard} />
     </div>
   );
 };

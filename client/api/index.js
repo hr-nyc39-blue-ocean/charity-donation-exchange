@@ -6,10 +6,7 @@ const baseURL = axios.create({
 
 // get all donations
 export const getAllDonations = () => {
-  return baseURL({
-    method: "GET",
-    url: "/v1/donations",
-  });
+  return axios.get("http://localhost:3000/v1/donations/");
 };
 
 // get non-charity donation listings

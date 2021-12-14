@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
-
 const axios = require("axios");
 const morgan = require("morgan");
 const db = require("./db/index.js");
@@ -24,11 +23,18 @@ const {
   markAsComplete,
 } = require("./db/controller.js");
 
+
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(express.static(__dirname + "/../client/dist"));
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
+});
 
 // get all donations
 app.get("/v1/donations/", (req, res) => {
