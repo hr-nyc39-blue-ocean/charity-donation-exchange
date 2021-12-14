@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import dateFormatter from "iso-date-formatter";
 import Button from "./Button.jsx";
 import Modal from "../shared/Modal.jsx";
 import {
@@ -7,21 +8,40 @@ import {
 } from "../../api/index.js";
 
 const Donation = ({
-  fetch,
-  listingId = 1,
-  date = "12/13/2021",
   showDashboard,
-  name = "Jeans",
-  category = "Clothing",
-  quantity = 1,
-  zipcode = "11220",
-  status = "Open",
-  claimed = "Yes",
-  claimerName = "Jesse",
-  claimerEmail = "jesse@willie.com",
-  claimerPhone = "646-888-8888",
+  fetch,
+  listingId,
+  date,
+  name,
+  category,
+  quantity,
+  zipcode,
+  status,
+  claimed,
+  claimerName,
+  claimerEmail,
+  claimerPhone,
 }) => {
   const [showClaimModal, setShowClaimModal] = useState(false);
+
+  const isoDate = date;
+  const formattedDate = dateFormatter(isoDate, {
+    format: "MMM d, yyyy",
+    namedMonths: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
+  });
 
   const toggleClaimModal = (e) => {
     setShowClaimModal(!showClaimModal);
@@ -69,7 +89,7 @@ const Donation = ({
             </div>
             <div>
               <span className="dontation-card-title">Date: </span>
-              {date}
+              {formattedDate}
             </div>
             <div>
               <span className="dontation-card-title">Item name: </span>

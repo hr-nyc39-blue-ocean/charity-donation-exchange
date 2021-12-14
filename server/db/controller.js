@@ -1,4 +1,4 @@
-const db = require('./index.js');
+const db = require("./index.js");
 
 module.exports = {
   getAllListings: function (callback) {
@@ -7,11 +7,11 @@ module.exports = {
     db.promise()
       .query(`SELECT * FROM Listings WHERE status='open' ORDER BY date DESC`)
       .then((responseData) => {
-        console.log('grabbed all listings');
+        console.log("grabbed all listings");
         callback(null, responseData[0]); // array of relevant entries
       })
       .catch((err) => {
-        console.log('error getListings >>>>', err);
+        console.log("error getListings >>>>", err);
         callback(err);
       });
   },
@@ -23,11 +23,11 @@ module.exports = {
         `SELECT * FROM Listings WHERE charityOnly='false' AND status='open' ORDER BY date DESC'`
       )
       .then((responseData) => {
-        console.log('grabbed non charity listings only');
+        console.log("grabbed non charity listings only");
         callback(null, responseData[0]); // array of relevant entries
       })
       .catch((err) => {
-        console.log('error getNonCharityListings >>>>', err);
+        console.log("error getNonCharityListings >>>>", err);
         callback(err);
       });
   },
@@ -39,11 +39,11 @@ module.exports = {
         `INSERT INTO Users (username, password, name, email, phone) VALUES ('${body.username}', '${body.password}', '${body.name}', '${body.email}', '${body.phone}')`
       )
       .then(() => {
-        console.log('successfully created new User with null token');
+        console.log("successfully created new User with null token");
         callback(null);
       })
       .catch((err) => {
-        console.log('error creating User>>>', err);
+        console.log("error creating User>>>", err);
         callback(err);
       });
   },
@@ -56,7 +56,7 @@ module.exports = {
         callback(null);
       })
       .catch((err) => {
-        console.log('error updating token >>>>', err);
+        console.log("error updating token >>>>", err);
         callback(err);
       });
   },
@@ -69,7 +69,7 @@ module.exports = {
         callback(null, responseData[0]);
       })
       .catch((err) => {
-        console.log('error checkIfUserExists >>>>', err);
+        console.log("error checkIfUserExists >>>>", err);
         callback(err);
       });
   },
@@ -82,7 +82,7 @@ module.exports = {
         callback(null, responseData[0]);
       })
       .catch((err) => {
-        console.log('error checkUserAtLogin >>>>', err);
+        console.log("error checkUserAtLogin >>>>", err);
         callback(err);
       });
   },
@@ -94,7 +94,7 @@ module.exports = {
         callback(null, responseData[0]);
       })
       .catch((err) => {
-        console.log('error sendBackUserID >>>>', err);
+        console.log("error sendBackUserID >>>>", err);
         callback(err);
       });
   },
@@ -104,11 +104,11 @@ module.exports = {
     db.promise()
       .query(`SELECT * FROM Listings WHERE userID=${userID}`) // no sort
       .then((responseData) => {
-        console.log('grabbed all listings of target user');
+        console.log("grabbed all listings of target user");
         callback(null, responseData[0]); // array of relevant entries
       })
       .catch((err) => {
-        console.log('error getUserAllListings >>>>', err);
+        console.log("error getUserAllListings >>>>", err);
         callback(err);
       });
   },
@@ -121,12 +121,12 @@ module.exports = {
       ) // no sort
       .then((responseData) => {
         console.log(
-          'grabbed user specific listings that are claimed with pending status'
+          "grabbed user specific listings that are claimed with pending status"
         );
         callback(null, responseData[0]); // array of relevant entries
       })
       .catch((err) => {
-        console.log('error grabbing getUserClaimedListings >>>>', err);
+        console.log("error grabbing getUserClaimedListings >>>>", err);
         callback(err);
       });
   },
@@ -138,11 +138,11 @@ module.exports = {
         `SELECT * FROM Listings WHERE userID=${userID} AND status='cancelled'`
       )
       .then((responseData) => {
-        console.log('grabbed user specific listings that are claimed');
+        console.log("grabbed user specific listings that are claimed");
         callback(null, responseData[0]); // array of relevant entries
       })
       .catch((err) => {
-        console.log('error grabbing getUserClaimedListings >>>>', err);
+        console.log("error grabbing getUserClaimedListings >>>>", err);
         callback(err);
       });
   },
@@ -153,11 +153,11 @@ module.exports = {
         `INSERT INTO Listings (name, category, quantity, date, location, photoURL, charityOnly, userID) VALUES ('${body.name}', '${body.category}', ${body.quantity}, now(), ${body.location}, '${body.photoURL}', '${body.charityOnly}', ${body.userID})`
       )
       .then(() => {
-        console.log('successfully posted new listing');
+        console.log("successfully posted new listing");
         callback(null);
       })
       .catch((err) => {
-        console.log('error posting listing >>>>', err);
+        console.log("error posting listing >>>>", err);
         callback(err);
       });
   },
@@ -169,11 +169,11 @@ module.exports = {
         `UPDATE Listings SET status='cancelled' WHERE listingID = ${listingID}`
       )
       .then(() => {
-        console.log('successfully cancelled targetted listing');
+        console.log("successfully cancelled targetted listing");
         callback(null);
       })
       .catch((err) => {
-        console.log('error cancelling listing >>>>', err);
+        console.log("error cancelling listing >>>>", err);
         callback(err);
       });
   },
@@ -192,7 +192,7 @@ module.exports = {
         callback(null);
       })
       .catch((err) => {
-        console.log('error updating listing after claim >>>>', err);
+        console.log("error updating listing after claim >>>>", err);
         callback(err);
       });
   },
@@ -204,11 +204,11 @@ module.exports = {
         `UPDATE Listings SET status='closed' WHERE listingID = ${listingID}`
       )
       .then(() => {
-        console.log('successfully marked listing status as closed');
+        console.log("successfully marked listing status as closed");
         callback(null);
       })
       .catch((err) => {
-        console.log('error marking listing as closed >>>>', err);
+        console.log("error marking listing as closed >>>>", err);
         callback(err);
       });
   },
