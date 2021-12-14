@@ -26,10 +26,7 @@
     "axios": "^0.24.0",
     "babel-loader": "^8.2.3",
     "bcrypt": "^5.0.1",
-<<<<<<< HEAD
-=======
     "css-loader": "^6.5.1",
->>>>>>> bd536c87b36751909e95c0f54b9bee9a68a8c91f
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "file-loader": "^6.2.0",

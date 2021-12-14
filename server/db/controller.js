@@ -163,7 +163,7 @@ module.exports = {
   postListing: function (body, callback) {
     db.promise()
       .query(
-        `INSERT INTO Listings (name, category, quantity, date, location, photoURL, charityOnly, userID) VALUES ('${body.name}', '${body.category}', ${body.quantity}, now(), ${body.location}, '${body.photoURL}', '${body.charityOnly}', ${body.userID})`
+        `INSERT INTO Listings (name, category, quantity, date, zipcode, photoURL, charityOnly, userID) VALUES ('${body.name}', '${body.category}', ${body.quantity}, now(), ${body.location}, '${body.photoURL}', '${body.charityOnly}', ${body.userID})`
       )
       .then(() => {
         console.log('successfully posted new listing');
