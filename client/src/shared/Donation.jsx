@@ -131,10 +131,10 @@ const Donation = ({
               </div>
               <div>
                 <span className="dontation-card-title">Claimed: </span>
-                <span>{claimed}</span>
+                <span>{ claimed==="true" ? "Yes" : "No" }</span>
               </div>
               <div>
-                {claimed === "Yes" && (
+                {claimed === "true" && (
                   <div>
                     <div>
                       <span className="dontation-card-title">Name: </span>
