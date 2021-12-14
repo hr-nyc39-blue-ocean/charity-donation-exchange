@@ -27,9 +27,11 @@ const ClaimForm = ({ listingId, toggleModal }) => {
     api.claimDonationListing(claimInfo)
     .then((results) => {
       console.log(results)
+      alert('Your information has been sent to the donator!')
     })
     .catch((err) => {
       console.log('ERROR IN ClaimForm handle submit: ', err)
+      alert('Failed, please try again!')
     })
   }
 

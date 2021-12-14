@@ -11,13 +11,14 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
- 
+
 const axios = require("axios");
 const morgan = require("morgan");
 const db = require('./db/index.js');
 const User = require("./Models/user.js");
- 
- 
+const controller = require('./db/controller.js')
+
+
 
 app.use(morgan("dev"));
 app.use(express.json());
@@ -194,8 +195,9 @@ app.post("/signup", (req, res, next) => {
   var name = req.body.name;
   var email = req.body.email;
   var password = req.body.password;
+  var phone = req.body.phone;
 
-  var newuser = User.create({ username, name, email, password });
+  var newuser = User.create({ username, name, email, password, phone });
   res.status(200).send(newuser.email);
 });
 

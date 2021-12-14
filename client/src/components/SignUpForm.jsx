@@ -25,9 +25,15 @@ const SignUpForm = ({ toggleModal }) => {
   }
 
   const handleSubmit = (signupInfo) => {
-    //need to check if username is unique
-      //if not, show username already exists
-    console.log(signupInfo)
+    api.signupUser(signupInfo)
+    .then((results) => {
+      //need to check if username is unique
+        //if not, show username already exists
+      console.log('results in SignUpForm handleSubmit >>>>>>>>', results)
+    })
+    .catch((err) => {
+      console.log('ERROR IN SignUpForm handleSubmit function: ', err)
+    })
   }
 
   return (
