@@ -16,8 +16,7 @@ const axios = require("axios");
 const morgan = require("morgan");
 const db = require("./db/index.js");
 const controller = require("./db/controller.js");
-const User = require("./Models/user.js");
- 
+const User = require("./models/user.js");
 
 app.use(morgan("dev"));
 app.use(express.json());
@@ -139,10 +138,7 @@ app.put("/v1/donations/:listingId", (req, res) => {
     }
   });
 
-
-
   // res.status(200).send("updated");
-
 });
 
 // delete donation listing
@@ -198,22 +194,66 @@ const User = require("./model/user");
 //**TODO: limit on pw chars, token chars? */
 
 app.post("/signup", (req, res, next) => {
-  var username = req.body.username;
-  var name = req.body.name;
-  var email = req.body.email;
-  var password = req.body.password;
+  const body = req.body;
+  console.log("signup bod", body);
+  var checkusername = null;
+  controller.checkIfUsernameExists(body.username, (err, responseData) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      var usernameexist = responseData[0];
+      for (const [key, value] of Object.entries(usernameexist)) {
+        checkusername = `${value}`;
+      }
+    }
+  });
 
-  var newuser = User.create({ username, name, email, password });
-  res.status(200).send(newuser.email);
+  controller.checkIfEmailExists(body.email, (err, responseData) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      var resdata = responseData[0];
+      var checkemail = null;
+      for (const [key, value] of Object.entries(resdata)) {
+        checkemail = `${value}`;
+        // res.status(200).send(checkemail);
+      }
+      if (checkemail > 0 || checkusername > 0) {
+        res.status(200).send("user already exists");
+      } else {
+        // res.status(200).send("missing");
+        controller.createUser(body, (err) => {
+          if (err) {
+            res.sendStatus(500);
+          } else {
+            res.status(201).send("Signup successful");
+          }
+        });
+      }
+    }
+  });
 });
 
 app.post("/login", (req, res, next) => {
-  var username = req.body.username;
-  var password = req.body.password;
-
-  res.status(200).send(username);
+  const body = req.body;
+  console.log("login bod", body);
+  var checkusername = null;
+  controller.checkIfUsernameExists(body.username, (err, responseData) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      var usernameexist = responseData[0];
+      for (const [key, value] of Object.entries(usernameexist)) {
+        checkusername = `${value}`;
+      }
+      if (checkusername > 0) {
+        res.status(201).send("login successful");
+      } else {
+        res.status(409).send("login unsuccessful");
+      }
+    }
+  });
 });
-
 //TODO:
 
 //signup
