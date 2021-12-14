@@ -72,6 +72,8 @@ const Home = ({
   const headerProps = isLoggedIn ? loggedInProps : notLoggedInProps;
   const { headerTitle, buttons } = headerProps;
 
+  console.log(donations);
+
   return (
     <div className="home global">
       <Header
