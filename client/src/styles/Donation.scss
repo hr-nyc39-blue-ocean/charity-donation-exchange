@@ -8,11 +8,11 @@
   border-radius: 10px;
 
   .donation-card-layout {
-    @include flex(row, space-between, center);
+    @include flex(row, space-between);
   }
 
   .donation-card-buttons {
-    @include flex(column, flex-end, center);
+    @include flex(column, center, center);
     width: 15vw;
   }
 
@@ -36,7 +36,7 @@
   }
 
   .donation-card-details {
-    width: 30vw;
+    width: 20vw;
     @include flex(column, space-between, space-between);
   }
 
@@ -47,17 +47,16 @@
   }
 
   .donation-details-container {
-    @include flex(row, flex-start);
-    width: 30vw;
+    @include flex(column);
+    width: 25vw;
   }
 
   .donation-claimed-details-container {
-    @include flex(row, flex-start);
+    @include flex(column, center);
     width: 15vw;
   }
 
-  .donation-detail-row {
-    @include flex(row, space-between);
-    width: 35vw;
+  .donation-distance-container {
+    @include flex(column, center, center);
   }
 }

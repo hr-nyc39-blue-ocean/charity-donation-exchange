@@ -79,7 +79,10 @@ export const claimDonationListing = ({
 };
 
 // complete existing donation. Changes status to complete
-export const markDonationListingStatusComplete = (listingId, status) => {
+export const markDonationListingStatusComplete = (
+  listingId,
+  status = "closed"
+) => {
   return baseURL({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
@@ -91,7 +94,7 @@ export const markDonationListingStatusComplete = (listingId, status) => {
 };
 
 // cancels/deletes existing donation
-export const cancelDonationListing = (listingId, status) => {
+export const cancelDonationListing = (listingId, status = "cancelled") => {
   return baseURL({
     method: "PUT",
     url: `/v1/donations/${listingId}`,

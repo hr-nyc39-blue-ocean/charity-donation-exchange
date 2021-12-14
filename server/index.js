@@ -23,7 +23,6 @@ const {
   markAsComplete,
 } = require("./db/controller.js");
 
-
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -109,7 +108,9 @@ app.put("/v1/donations/:listingId", (req, res) => {
       if (err) {
         res.sendStatus(500);
       } else {
-        res.status(200).send("marked listing as claimed");
+
+        res.status(200).send("marked listing as pending");
+
       }
     });
   } else if (req.body.status === "closed") {
@@ -117,7 +118,9 @@ app.put("/v1/donations/:listingId", (req, res) => {
       if (err) {
         res.sendStatus(500);
       } else {
-        res.status(200).send("marked listing as completed");
+
+        res.status(200).send("marked listing as closed");
+
       }
     });
   } else if (req.body.status === "cancelled") {

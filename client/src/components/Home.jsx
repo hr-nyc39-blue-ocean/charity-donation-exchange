@@ -4,7 +4,8 @@ import NavBar from "../shared/NavBar.jsx";
 import Header from "../components/Header.jsx";
 import Modal from "../shared/Modal.jsx";
 import HomeLogo from "../../dist/img/HomeLogo.png";
-import { getAllDonations, getNonCharityDonations } from "../../api/index.js";
+import { getAllDonations, getNonCharityListings } from "../../api/index.js";
+import zipcodes from "zipcodes";
 
 const Home = ({
   seeAllListings,
@@ -17,10 +18,34 @@ const Home = ({
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [donations, setDonations] = useState([]);
+  const [userZipcode, setUserZipcode] = useState(null);
+  const [tempListings, setTempListings] = useState([]);
+  const [sortedListings, setSortedListings] = useState([]);
 
   useEffect(() => {
-    getAllDonations().then((r) => setDonations(r.data));
-  }, []);
+    seeAllListings
+      ? getAllDonations().then((r) => setDonations(r.data))
+      : getNonCharityListings().then((r) => setDonations(r.data));
+  }, [seeAllListings]);
+
+  useEffect(() => {
+    if (donations.length !== 0) {
+      const newListings = [];
+      for (let i = 0; i < donations.length; i++) {
+        const currentDonation = donations[i];
+        const { zipcode } = currentDonation;
+        const distance = zipcodes.distance(userZipcode, zipcode);
+        const cityDetails = zipcodes.lookup(zipcode);
+        const newDonation = {
+          ...currentDonation,
+          distance: distance,
+          cityDetails: cityDetails,
+        };
+        newListings.push(newDonation);
+      }
+      setTempListings(newListings);
+    }
+  }, [userZipcode]);
 
   const toggleLoginModal = () => {
     // remove this later, this is only for testing different header state
@@ -72,7 +97,6 @@ const Home = ({
   const headerProps = isLoggedIn ? loggedInProps : notLoggedInProps;
   const { headerTitle, buttons } = headerProps;
 
-  //console.log(donations);
 
   return (
     <div className="home global">
@@ -82,8 +106,16 @@ const Home = ({
         logo={HomeLogo}
         colorClassName="yellow"
       />
-      <NavBar showDashboard={showDashboard} />
-      <DonationList donations={donations} showDashboard={showDashboard} />
+      <NavBar showDashboard={showDashboard} setUserZipcode={setUserZipcode} />
+      <DonationList
+        // distance={distance}
+        // cityDetails={cityDetails}
+        // tempListings={tempListings}
+        // setTempListings={setTempListings}
+        donations={donations}
+        showDashboard={showDashboard}
+        userZipcode={userZipcode}
+      />
       {showLoginModal && (
         <Modal
           setIsLogginIn={setIsLoggedIn}
