@@ -35,7 +35,6 @@ const SignUpForm = ({ toggleModal }) => {
       .signupUser(signupInfo)
 
       .then((results) => {
-        console.log("results sent back", results);
         setResponse(results.data);
       })
       .catch((err) => {
