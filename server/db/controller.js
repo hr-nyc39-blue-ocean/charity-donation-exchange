@@ -60,8 +60,25 @@ module.exports = {
       });
   },
 
-  checkIfUsernameExists: function (username, callback) {
+  checkIfUsernameOrEmailExists: function (username, email, callback) {
     // checks if user exists already in db (via username)
+    console.log(username, email);
+    db.promise()
+      .query(
+        `SELECT EXISTS(SELECT 1 FROM Users WHERE username='${username}' OR email='${email}')`
+      )
+      .then((responseData) => {
+        console.log("in db", responseData[0]);
+        callback(null, responseData[0]);
+      })
+      .catch((err) => {
+        console.log("error in db");
+        callback(err);
+      });
+  },
+
+  checkIfUsernameExists: function (username, callback) {
+    // checks if user exists already in db (via email)
     db.promise()
       .query(`SELECT EXISTS(SELECT 1 FROM Users WHERE username='${username}')`)
       .then((responseData) => {
@@ -69,19 +86,6 @@ module.exports = {
       })
       .catch((err) => {
         console.log("error checkIfUserExists >>>>", err);
-        callback(err);
-      });
-  },
-
-  checkIfEmailExists: function (email, callback) {
-    // checks if user exists already in db (via email)
-    db.promise()
-      .query(`SELECT EXISTS(SELECT 1 FROM Users WHERE email='${email}')`)
-      .then((responseData) => {
-        callback(null, responseData[0]);
-      })
-      .catch((err) => {
-        console.log("error checkIfEmailExists >>>>", err);
         callback(err);
       });
   },

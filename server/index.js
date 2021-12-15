@@ -11,13 +11,13 @@ const {
   getNonCharityListings,
   createUser,
   updateToken,
-  checkIfUserExists,
+  checkIfUsernameOrEmailExists,
+  checkIfUsernameExists,
   checkUserAtLogin,
   sendBackUserID,
   getUserAllListings,
   getUserClaimedListings,
   getUserCancelledListings,
-  postListing,
   cancelListing,
   markAsClaimed,
   markAsComplete,
@@ -108,9 +108,7 @@ app.put("/v1/donations/:listingId", (req, res) => {
       if (err) {
         res.sendStatus(500);
       } else {
-
         res.status(200).send("marked listing as pending");
-
       }
     });
   } else if (req.body.status === "closed") {
@@ -118,9 +116,7 @@ app.put("/v1/donations/:listingId", (req, res) => {
       if (err) {
         res.sendStatus(500);
       } else {
-
         res.status(200).send("marked listing as closed");
-
       }
     });
   } else if (req.body.status === "cancelled") {
@@ -167,33 +163,20 @@ const User = require("./model/user");
 
 app.post("/signup", (req, res, next) => {
   const body = req.body;
-  console.log("signup bod", body);
-  var checkusername = null;
-  controller.checkIfUsernameExists(body.username, (err, responseData) => {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      var usernameexist = responseData[0];
-      for (const [key, value] of Object.entries(usernameexist)) {
-        checkusername = `${value}`;
+  checkIfUsernameOrEmailExists(
+    body.username,
+    body.email,
+    (err, responseData) => {
+      if (err) {
+        res.sendStatus(500);
       }
-    }
-  });
 
-  controller.checkIfEmailExists(body.email, (err, responseData) => {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      var resdata = responseData[0];
-      var checkemail = null;
-      for (const [key, value] of Object.entries(resdata)) {
-        checkemail = `${value}`;
-        // res.status(200).send(checkemail);
-      }
-      if (checkemail > 0 || checkusername > 0) {
-        res.status(200).send("user already exists");
+      const values = Object.values(responseData[0]);
+      console.log(values, responseData[0]);
+
+      if (values[0] > 0) {
+        res.status(200).send("User already exists!");
       } else {
-        // res.status(200).send("missing");
         controller.createUser(body, (err) => {
           if (err) {
             res.sendStatus(500);
@@ -203,14 +186,39 @@ app.post("/signup", (req, res, next) => {
         });
       }
     }
-  });
+  );
+
+  // controller.checkIfEmailExists(body.email, (err, responseData) => {
+  //   if (err) {
+  //     res.sendStatus(500);
+  //   } else {
+  //     var resdata = responseData[0];
+  //     var checkemail = null;
+  //     for (const [key, value] of Object.entries(resdata)) {
+  //       checkemail = `${value}`;
+  //       // res.status(200).send(checkemail);
+  //     }
+  //     if (checkemail > 0 || checkusername > 0) {
+  //       res.status(400).send("user already exists");
+  //     } else {
+  //       // res.status(200).send("missing");
+  //       controller.createUser(body, (err) => {
+  //         if (err) {
+  //           res.sendStatus(500);
+  //         } else {
+  //           res.status(201).send("Signup successful");
+  //         }
+  //       });
+  //     }
+  //   }
+  // });
 });
 
 app.post("/login", (req, res, next) => {
   const body = req.body;
   console.log("login body", body);
   var checkusername = null;
-  controller.checkIfUsernameExists(body.username, (err, responseData) => {
+  checkIfUsernameExists(body.username, (err, responseData) => {
     if (err) {
       res.sendStatus(500);
     } else {
@@ -225,7 +233,7 @@ app.post("/login", (req, res, next) => {
           } else {
             res.status(201).send(data);
           }
-        })
+        });
       } else {
         res.status(200).send("login failed");
       }

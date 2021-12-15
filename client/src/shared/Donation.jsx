@@ -28,8 +28,6 @@ const Donation = ({
   const [dashboardButtonsClicked, setDashboardButtonsClicked] = useState(false);
   const isoDate = date;
 
-  console.log("showDashboard", showDashboard);
-
   const formattedDate = dateFormatter(isoDate, {
     format: "MMM d, yyyy",
     namedMonths: [
