@@ -6,6 +6,9 @@ const morgan = require("morgan");
 const db = require("./db/index.js");
 const User = require("./Models/user.js");
 const controller = require("./db/controller.js");
+const bcrypt = require("bcrypt");
+const { createTokens, validateToken } = require("./middleware/jwt.js");
+
 const {
   getAllListings,
   getNonCharityListings,
@@ -18,6 +21,7 @@ const {
   getUserAllListings,
   getUserClaimedListings,
   getUserCancelledListings,
+  postListing,
   cancelListing,
   markAsClaimed,
   markAsComplete,
@@ -146,12 +150,35 @@ app.post("/signup", (req, res, next) => {
       if (values[0] > 0) {
         res.status(200).send("User already exists!");
       } else {
-        controller.createUser(body, (err) => {
-          if (err) {
-            res.sendStatus(500);
-          } else {
-            res.status(201).send("Signup successful");
-          }
+        bcrypt.hash(body.password, 10, (err, hash) => {
+          //with that hash and body info create new user
+          createUser(body, hash, (err) => {
+            if (err) {
+              res.sendStatus(500);
+            } else {
+              // if created successfully check db for userid and send that back
+              controller.sendBackUserID(body.username, (err, data) => {
+                if (err) {
+                  res.status(500);
+                } else {
+                  console.log("inhasher", data);
+                  var iddata = data[0];
+                  for (const [key, value] of Object.entries(iddata)) {
+                    checkuserid = `${value}`;
+                    // res.status(200).send(checkuserid);
+                  }
+                  //with that id create an access token
+                  const accessToken = createTokens(checkuserid);
+                  res.cookie("access-token", accessToken, {
+                    maxAge: 60 * 60 * 24 * 1000,
+                  });
+                  res.status(200).send("User created successfully!");
+                  console.log("created successfully");
+                  //saves user to db with hashed pw
+                }
+              });
+            }
+          });
         });
       }
     }
@@ -172,14 +199,56 @@ app.post("/login", (req, res, next) => {
       }
       if (checkusername > 0) {
         controller.sendBackUserID(body.username, (err, data) => {
-          if (err) {
-            res.status(500);
-          } else {
-            res.status(201).send(data);
-          }
+          checkUserAtLogin(body.username, (err, responseData) => {
+            if (err) {
+              res.sendStatus(500);
+            } else {
+              //if user has a hashed pw
+              let hashedpw = responseData[0];
+
+              for (const [key, value] of Object.entries(hashedpw)) {
+                checkhashedpw = `${value}`;
+                console.log("hashed", checkhashedpw);
+              }
+              const passedinpw = body.password;
+              console.log("passes", passedinpw, checkhashedpw);
+              bcrypt.compare(passedinpw, checkhashedpw).then((match) => {
+                if (!match) {
+                  res.sendStatus(500);
+                } else {
+                  //if username exists and pw correct we also need the userid so we send that back using controller method
+                  //we need a userid to create a token, given its repetition this method should be refactored
+                  controller.sendBackUserID(body.username, (err, data) => {
+                    if (err) {
+                      res.status(500);
+                    } else {
+                      //if id is sent back
+                      var iddata = data[0];
+                      res.clearCookie("access-token");
+                      for (const [key, value] of Object.entries(iddata)) {
+                        //extract id value from data object
+                        getuserid = `${value}`;
+                        console.log(getuserid);
+                      }
+                      const accessToken = createTokens(getuserid);
+                      console.log("cookie", accessToken);
+                      res.cookie("access-token", accessToken, {
+                        maxAge: 60 * 60 * 24 * 1000,
+                      });
+                      console.log("logged in", accessToken);
+
+                      const returnobj = {
+                        userID: iddata.userID,
+                        token: accessToken,
+                      };
+                      res.status(200).send(returnobj);
+                    }
+                  });
+                }
+              });
+            }
+          });
         });
-      } else {
-        res.status(200).send("login failed");
       }
     }
   });

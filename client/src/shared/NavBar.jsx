@@ -56,7 +56,7 @@ const NavBar = ({
       handleOnClick: handleAllListingsOnClick,
     },
     {
-      text: "Claimed Listings",
+      text: "Pending Listings",
       handleOnClick: handleClaimedListingsOnClick,
     },
     {
