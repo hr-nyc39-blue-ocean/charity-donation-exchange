@@ -2,7 +2,6 @@ import React from "react";
 import styled from 'styled-components';
 
 const InputLabel = ({ label, input, type }) => {
-  type = type ||"text";
   return (
     <div>
     <Label> *{label}:

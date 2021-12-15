@@ -21,6 +21,7 @@ const {
   getUserAllListings,
   getUserClaimedListings,
   getUserCancelledListings,
+  postListing,
   cancelListing,
   markAsClaimed,
   markAsComplete,
@@ -290,7 +291,9 @@ app.post("/login", (req, res, next) => {
                         maxAge: 60 * 60 * 24 * 1000,
                       });
                       console.log("logged in", accessToken);
-                      res.status(200).send(accessToken);
+
+                      const returnobj = { userID: iddata.userID, token: accessToken };
+                      res.status(200).send(returnobj);
                     }
                   });
                 }
