@@ -6,12 +6,15 @@ const morgan = require("morgan");
 const db = require("./db/index.js");
 const User = require("./Models/user.js");
 const controller = require("./db/controller.js");
+const bcrypt = require("bcrypt");
+const { createTokens, validateToken } = require("./middleware/jwt.js");
+
 const {
   getAllListings,
   getNonCharityListings,
   createUser,
   updateToken,
-  checkIfUserExists,
+  checkIfUsernameExists,
   checkUserAtLogin,
   sendBackUserID,
   getUserAllListings,
@@ -108,9 +111,7 @@ app.put("/v1/donations/:listingId", (req, res) => {
       if (err) {
         res.sendStatus(500);
       } else {
-
         res.status(200).send("marked listing as pending");
-
       }
     });
   } else if (req.body.status === "closed") {
@@ -118,9 +119,7 @@ app.put("/v1/donations/:listingId", (req, res) => {
       if (err) {
         res.sendStatus(500);
       } else {
-
         res.status(200).send("marked listing as closed");
-
       }
     });
   } else if (req.body.status === "cancelled") {
@@ -168,12 +167,15 @@ const User = require("./model/user");
 app.post("/signup", (req, res, next) => {
   const body = req.body;
   console.log("signup bod", body);
-  var checkusername = null;
+  let checkusername = null; // will be boolean
+  let checkuserid = null; //will be id
+  const usernameforid = body.username;
+  const emailfortoken = body.email;
   controller.checkIfUsernameExists(body.username, (err, responseData) => {
     if (err) {
       res.sendStatus(500);
     } else {
-      var usernameexist = responseData[0];
+      const usernameexist = responseData[0];
       for (const [key, value] of Object.entries(usernameexist)) {
         checkusername = `${value}`;
       }
@@ -193,12 +195,106 @@ app.post("/signup", (req, res, next) => {
       if (checkemail > 0 || checkusername > 0) {
         res.status(200).send("user already exists");
       } else {
-        // res.status(200).send("missing");
-        controller.createUser(body, (err) => {
+        //if user doesn't exist, hash the entered password
+        bcrypt.hash(body.password, 10, (err, hash) => {
+          //with that hash and body info create new user
+          controller.createUser(body, hash, (err) => {
+            if (err) {
+              res.sendStatus(500);
+            } else {
+              // if created successfully check db for userid and send that back
+              controller.sendBackUserID(usernameforid, (err, data) => {
+                if (err) {
+                  res.status(500);
+                } else {
+                  var iddata = data[0];
+                  for (const [key, value] of Object.entries(iddata)) {
+                    checkuserid = `${value}`;
+                    // res.status(200).send(checkuserid);
+                  }
+                  //with that id create an access token
+                  const accessToken = createTokens(checkuserid);
+                  res.cookie("access-token", accessToken, {
+                    maxAge: 60 * 60 * 24 * 1000,
+                  });
+                  res.status(200).send(hash);
+                  console.log("created successfully");
+                  //saves user to db with hashed pw
+                }
+              });
+            }
+          });
+        });
+      }
+    }
+  });
+});
+
+// if (!user || !(await bcrypt.compare(password, user.hash)))
+//   throw "Username or password is incorrect";
+
+// // authentication successful
+
+app.post("/login", (req, res) => {
+  const body = req.body;
+  let getuserid = null;
+  console.log("login body", body);
+  var checkusername = null;
+  checkIfUsernameExists(body.username, (err, responseData) => {
+    console.log("checkname");
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      // we extract the (usually 0 or 1) value (checkusername) from the response object (usernameexist)
+      var usernameexist = responseData[0];
+      for (const [key, value] of Object.entries(usernameexist)) {
+        checkusername = `${value}`;
+      }
+      console.log("in checkusername", checkusername);
+      //using that extracted value we run functions providing that the username is present in the table/exists
+      let checkhashedpw = null;
+      if (checkusername > 0) {
+        checkUserAtLogin(body.username, (err, responseData) => {
           if (err) {
             res.sendStatus(500);
           } else {
-            res.status(201).send("Signup successful");
+            //if user has a hashed pw
+            var hashedpw = responseData[0];
+            console.log("hashed", hashedpw);
+            for (const [key, value] of Object.entries(hashedpw)) {
+              checkhashedpw = `${value}`;
+              console.log("hashed", checkhashedpw);
+            }
+            const passedinpw = body.password;
+            console.log("passes", passedinpw, checkhashedpw);
+            bcrypt.compare(passedinpw, checkhashedpw).then((match) => {
+              if (!match) {
+                res.sendStatus(500);
+              } else {
+                //if username exists and pw correct we also need the userid so we send that back using controller method
+                //we need a userid to create a token, given its repetition this method should be refactored
+                controller.sendBackUserID(body.username, (err, data) => {
+                  if (err) {
+                    res.status(500);
+                  } else {
+                    //if id is sent back
+                    var iddata = data[0];
+                    res.clearCookie("access-token");
+                    for (const [key, value] of Object.entries(iddata)) {
+                      //extract id value from data object
+                      getuserid = `${value}`;
+                      console.log(getuserid);
+                    }
+                    const accessToken = createTokens(getuserid);
+                    res.cookie("access-token", accessToken, {
+                      maxAge: 60 * 60 * 24 * 1000,
+                    });
+                    console.log("logged in", getuserid);
+                    res.status(200).send("log in successful");
+                  }
+                });
+              }
+            });
           }
         });
       }
@@ -206,31 +302,10 @@ app.post("/signup", (req, res, next) => {
   });
 });
 
-app.post("/login", (req, res, next) => {
-  const body = req.body;
-  console.log("login body", body);
-  var checkusername = null;
-  controller.checkIfUsernameExists(body.username, (err, responseData) => {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      var usernameexist = responseData[0];
-      for (const [key, value] of Object.entries(usernameexist)) {
-        checkusername = `${value}`;
-      }
-      if (checkusername > 0) {
-        controller.sendBackUserID(body.username, (err, data) => {
-          if (err) {
-            res.status(500);
-          } else {
-            res.status(201).send(data);
-          }
-        })
-      } else {
-        res.status(200).send("login failed");
-      }
-    }
-  });
+app.put("/logout", (req, res) => {
+  res.status(202).clearCookie("access-token").send("cookie cleared");
+
+  //redirect?
 });
 //TODO:
 
@@ -273,12 +348,6 @@ app.post("/login", (req, res, next) => {
 // } catch (err) {
 //   console.log(err);
 // }
-
-// Login
-app.post("/login", (req, res) => {
-  // our login logic goes here
-  res.status(200).send("successfully hit login");
-});
 
 app.listen(PORT, () => {
   console.log(`Server listening at localhost:${PORT}`);
