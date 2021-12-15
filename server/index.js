@@ -223,6 +223,8 @@ app.post("/login", (req, res, next) => {
           if (err) {
             res.status(500);
           } else {
+            console.log('reached here')
+            console.log('data >>>>>>>', data)
             res.status(201).send(data);
           }
         })

@@ -19,7 +19,7 @@ module.exports = {
   getNonCharityListings: function (callback) {
     db.promise()
       .query(
-        `SELECT * FROM Listings WHERE charityOnly='false' ORDER BY date DESC`
+        `SELECT * FROM Listings WHERE charityOnly='false' AND status='open' ORDER BY date DESC`
       )
       .then((responseData) => {
         console.log('grabbed non charity listings only');

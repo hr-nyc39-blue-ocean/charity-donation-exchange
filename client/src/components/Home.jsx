@@ -61,7 +61,7 @@ const Home = ({
 
   const toggleLoginModal = () => {
     // // remove this later, this is only for testing different header state
-    // setIsLoggedIn(true);
+    setIsLoggedIn(true);
 
     setShowLoginModal(!showLoginModal);
   };
