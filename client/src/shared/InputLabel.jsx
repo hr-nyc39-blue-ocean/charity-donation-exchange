@@ -1,16 +1,16 @@
 import React from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const InputLabel = ({ label, input, type }) => {
-  type = type ||"text";
   return (
     <div>
-    <Label> *{label}:
-    <Input type={type} name={input} required />
-    </Label>
+      <Label>
+        *{label}:
+        <Input type={type} name={input} required />
+      </Label>
     </div>
-  )
-}
+  );
+};
 
 export default InputLabel;
 
@@ -20,7 +20,7 @@ const Label = styled.label`
   justify-content: space-between;
   margin-top: 10px;
   //border: solid;
-`
+`;
 
 const Input = styled.input`
   margin-left: 20px;
@@ -28,5 +28,4 @@ const Input = styled.input`
   &:invalid {
     border: 1px solid red;
   }
-`
-
+`;

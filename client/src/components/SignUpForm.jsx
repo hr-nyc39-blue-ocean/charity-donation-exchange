@@ -47,11 +47,11 @@ const SignUpForm = ({ toggleModal }) => {
     <div>
       <Title> Create your account </Title>
       <Form onChange={handleInputChange}>
-        <InputLabel label={"Username"} input={"username"} />
-        <InputLabel label={"Password"} input={"password"} />
-        <InputLabel label={"Name"} input={"name"} />
-        <InputLabel label={"Email"} input={"email"} type={"email"} />
-        <InputLabel label={"Phone"} input={"phone"} />
+        <InputLabel label={"Username"} input={"username"} type="text" />
+        <InputLabel label={"Password"} input={"password"} type="password" />
+        <InputLabel label={"Name"} input={"name"} type="text" />
+        <InputLabel label={"Email"} input={"email"} type="email" />
+        <InputLabel label={"Phone"} input={"phone"} type="tel" />
         <Note>
           To protect your privacy, your name, email, and phone number will not
           be publicly shown

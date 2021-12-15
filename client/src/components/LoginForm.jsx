@@ -19,6 +19,7 @@ const LoginForm = ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+
     setUsername(loginInfo.username);
   };
 
@@ -45,8 +46,8 @@ const LoginForm = ({
     <div>
       <Title> Login to your account </Title>
       <Form onChange={handleInputChange}>
-        <InputLabel label={"Username"} input={"username"} />
-        <InputLabel label={"Password"} input={"password"} />
+        <InputLabel label={"Username"} input={"username"} type="text" />
+        <InputLabel label={"Password"} input={"password"} type="password" />
       </Form>
       <Submit
         handleCancel={toggleModal}
