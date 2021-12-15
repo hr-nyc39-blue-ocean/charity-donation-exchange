@@ -5,7 +5,13 @@ import InputLabel from "../shared/InputLabel.jsx";
 import { useState, useEffect } from "react";
 const api = require("../../api/index.js");
 
-const LoginForm = ({ setUsername, setIsLoggedIn, setUserId, toggleModal }) => {
+const LoginForm = ({
+  setUsername,
+  setIsLoggedIn,
+  setUserId,
+  toggleModal,
+  setSeeAllListings,
+}) => {
   const [loginInfo, setLoginInfo] = useState({ username: "", password: "" });
 
   const handleInputChange = (e) => {
@@ -26,6 +32,7 @@ const LoginForm = ({ setUsername, setIsLoggedIn, setUserId, toggleModal }) => {
         } else {
           setUserId(results.data[0].userID);
           setIsLoggedIn(true);
+          setSeeAllListings(true);
         }
         toggleModal();
       })

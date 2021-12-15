@@ -156,7 +156,7 @@ const Donation = ({
         </div>
         <div className="donation-card-buttons">
           {showDashboard && status !== "closed" && status !== "cancelled" && (
-            <div className="donation-distance-container">
+            <div className="donation-card-buttons">
               {dashboardButtons.map((d) => {
                 return (
                   <Button
@@ -168,24 +168,8 @@ const Donation = ({
               })}
             </div>
           )}
-
-          {/* {showDashboard && status !== "closed" && status !== "cancelled" ? (
-          <div className="donation-card-buttons">
-            {dashboardButtons.map((d) => {
-              return (
-                <Button
-                  className="donation-button-styles"
-                  text={d.text}
-                  handleOnClick={d.handleOnClick}
-                />
-              );
-            })}
-          </div>
-        ) : (
-          <div className="donation-card-buttons"></div>
-        )}*/}
           {!showDashboard && (
-            <div className="donation-distance-container">
+            <div className="donation-card-buttons">
               <Button
                 handleOnClick={toggleClaimModal}
                 text="Claim"
@@ -194,9 +178,6 @@ const Donation = ({
             </div>
           )}
         </div>
-        {/* : (
-        <div className="donation-card-buttons"></div>
-        )} */}
       </div>
       {showClaimModal && (
         <Modal

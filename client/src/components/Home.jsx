@@ -8,6 +8,7 @@ import { getAllDonations, getNonCharityListings } from "../../api/index.js";
 import zipcodes from "zipcodes";
 
 const Home = ({
+  setSeeAllListings,
   seeAllListings,
   setUserId,
   showDashboard,
@@ -81,9 +82,6 @@ const Home = ({
   }, [newestView, distanceListings]);
 
   const toggleLoginModal = () => {
-    // remove this later, this is only for testing different header state
-    // setIsLoggedIn(true);
-
     setShowLoginModal(!showLoginModal);
   };
 
@@ -152,6 +150,7 @@ const Home = ({
       />
       {showLoginModal && (
         <Modal
+          setSeeAllListings={setSeeAllListings}
           setIsLoggedIn={setIsLoggedIn}
           setUserId={setUserId}
           loginModal={showLoginModal}

@@ -25,8 +25,13 @@ const SortBy = ({ setUserZipcode, setDonations, fetch, setNewestView }) => {
             text="Go"
             className="btn-bg-yellow"
             handleOnClick={() => {
-              setUserZipcode(tempZip);
-              setNewestView(false);
+              const isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(tempZip);
+              if (isValidZip) {
+                setUserZipcode(tempZip);
+                setNewestView(false);
+              } else {
+                alert("Please enter a valid zipcode");
+              }
             }}
           />
           <div>or</div>

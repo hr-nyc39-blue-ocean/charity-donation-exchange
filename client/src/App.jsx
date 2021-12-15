@@ -11,8 +11,6 @@ const App = () => {
   const [seeAllListings, setSeeAllListings] = useState(null);
   const [username, setUsername] = useState(null);
 
-  console.log(username);
-
   const color = showDashboard ? "blue" : "yellow";
 
   const toggleInitialModal = () => {
@@ -38,6 +36,7 @@ const App = () => {
         />
       ) : (
         <Home
+          setSeeAllListings={setSeeAllListings}
           username={username}
           setUsername={setUsername}
           seeAllListings={seeAllListings}

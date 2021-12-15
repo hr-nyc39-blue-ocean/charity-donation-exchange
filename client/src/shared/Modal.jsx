@@ -31,6 +31,7 @@ const Modal = ({
           )}
           {loginModal && (
             <LoginForm
+              setSeeAllListings={setSeeAllListings}
               setUsername={setUsername}
               setIsLoggedIn={setIsLoggedIn}
               setUserId={setUserId}
