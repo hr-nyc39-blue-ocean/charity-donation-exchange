@@ -4,6 +4,7 @@ import SortBy from "../components/SortBy.jsx";
 import Modal from "../shared/Modal.jsx";
 
 const NavBar = ({
+  setNewestView,
   setCurrentView,
   fetch,
   setDonations,
@@ -85,6 +86,7 @@ const NavBar = ({
       ) : (
         <div className="home-nav-bar">
           <SortBy
+            setNewestView={setNewestView}
             fetch={fetch}
             setUserZipcode={setUserZipcode}
             setDonations={setDonations}
