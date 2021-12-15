@@ -7,6 +7,7 @@ import NewListingForm from "../components/NewListingForm.jsx";
 import InitialForm from "../components/InitialForm.jsx";
 
 const Modal = ({
+  setUsername,
   listingId,
   userId,
   setIsLoggedIn,
@@ -19,7 +20,7 @@ const Modal = ({
   seeAllListings,
   setSeeAllListings,
   toggleModal,
-  fetchUserDonations
+  fetchUserDonations,
 }) => {
   return (
     <div>
@@ -30,6 +31,8 @@ const Modal = ({
           )}
           {loginModal && (
             <LoginForm
+              setSeeAllListings={setSeeAllListings}
+              setUsername={setUsername}
               setIsLoggedIn={setIsLoggedIn}
               setUserId={setUserId}
               toggleModal={toggleModal}
@@ -37,7 +40,11 @@ const Modal = ({
           )}
           {signupModal && <SignupForm toggleModal={toggleModal} />}
           {newListingModal && (
-            <NewListingForm userId={userId} toggleModal={toggleModal} fetchUserDonations={fetchUserDonations} />
+            <NewListingForm
+              userId={userId}
+              toggleModal={toggleModal}
+              fetchUserDonations={fetchUserDonations}
+            />
           )}
           {initialModal && (
             <InitialForm

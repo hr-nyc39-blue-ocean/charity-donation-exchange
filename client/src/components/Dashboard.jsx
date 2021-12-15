@@ -3,7 +3,11 @@ import DonationList from "../shared/DonationList.jsx";
 import NavBar from "../shared/NavBar.jsx";
 import DashboardLogo from "../../dist/img/DashboardLogo.jpeg";
 import Header from "./Header.jsx";
-import { getDonationsForDashboard } from "../../api/index.js";
+import {
+  getDonationsForDashboard,
+  getClaimedDonationsForDashboard,
+  getCancelledDonationsForDashboard,
+} from "../../api/index.js";
 
 const Dashboard = ({
   userId,
@@ -12,14 +16,32 @@ const Dashboard = ({
   showDashboard,
 }) => {
   const [userDonations, setUserDonations] = useState([]);
-
-  useEffect(() => {
-    getDonationsForDashboard(3).then((r) => setUserDonations(r.data));
-  }, []);
+  const [claimedDonations, setClaimedDonations] = useState([]);
+  const [inactiveDonations, setInactiveDonations] = useState([]);
+  const [currentView, setCurrentView] = useState("all");
 
   const fetchUserDonations = () => {
-    console.log('<<<<<<<<<<<<<<fetchUserDonations>>>>>>>>>>>>')
     getDonationsForDashboard(userId).then((r) => setUserDonations(r.data));
+    getClaimedDonationsForDashboard(userId).then((r) =>
+      setClaimedDonations(r.data)
+    );
+    getCancelledDonationsForDashboard(userId).then((r) =>
+      setInactiveDonations(r.data)
+    );
+  };
+
+  useEffect(() => {
+    fetchUserDonations();
+  }, []);
+
+  useEffect(() => {
+    fetchUserDonations();
+  }, [currentView]);
+
+  const donations = {
+    all: userDonations,
+    claimed: claimedDonations,
+    inactive: inactiveDonations,
   };
 
   return (
@@ -30,6 +52,7 @@ const Dashboard = ({
         colorClassName="blue"
       />
       <NavBar
+        setCurrentView={setCurrentView}
         userId={userId}
         showDashboard={showDashboard}
         setShowDashboard={setShowDashboard}
@@ -38,7 +61,7 @@ const Dashboard = ({
       />
       <DonationList
         fetch={fetchUserDonations}
-        donations={userDonations}
+        donations={donations[currentView]}
         showDashboard={showDashboard}
       />
     </div>

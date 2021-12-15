@@ -4,12 +4,16 @@ import SortBy from "../components/SortBy.jsx";
 import Modal from "../shared/Modal.jsx";
 
 const NavBar = ({
+  setNewestView,
+  setCurrentView,
+  fetch,
+  setDonations,
   userId,
   showDashboard,
   setShowDashboard,
   setIsLoggedIn,
   setUserZipcode,
-  fetchUserDonations
+  fetchUserDonations,
 }) => {
   const [showNewListingModal, setShowNewListingModal] = useState(false);
 
@@ -20,6 +24,18 @@ const NavBar = ({
   const handleLogoutOnClick = () => {
     setIsLoggedIn(false);
     setShowDashboard(false);
+  };
+
+  const handleClaimedListingsOnClick = () => {
+    setCurrentView("claimed");
+  };
+
+  const handleInactiveListingsOnClick = () => {
+    setCurrentView("inactive");
+  };
+
+  const handleAllListingsOnClick = () => {
+    setCurrentView("all");
   };
 
   const toggleNewListingModal = () => {
@@ -34,6 +50,18 @@ const NavBar = ({
     {
       text: "Create A New Listing",
       handleOnClick: toggleNewListingModal,
+    },
+    {
+      text: "All Listings",
+      handleOnClick: handleAllListingsOnClick,
+    },
+    {
+      text: "Claimed Listings",
+      handleOnClick: handleClaimedListingsOnClick,
+    },
+    {
+      text: "Inactive Listings",
+      handleOnClick: handleInactiveListingsOnClick,
     },
     {
       text: "Logout",
@@ -57,7 +85,12 @@ const NavBar = ({
         </div>
       ) : (
         <div className="home-nav-bar">
-          <SortBy setUserZipcode={setUserZipcode} />
+          <SortBy
+            setNewestView={setNewestView}
+            fetch={fetch}
+            setUserZipcode={setUserZipcode}
+            setDonations={setDonations}
+          />
         </div>
       )}
       {showNewListingModal && (

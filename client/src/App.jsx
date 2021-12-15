@@ -9,13 +9,13 @@ const App = () => {
   const [userId, setUserId] = useState(null);
   const [initialModal, setInitialModal] = useState(true);
   const [seeAllListings, setSeeAllListings] = useState(null);
+  const [username, setUsername] = useState(null);
 
   const color = showDashboard ? "blue" : "yellow";
 
   const toggleInitialModal = () => {
     setInitialModal(!initialModal);
   };
-
 
   return (
     <div className={`global ${color}`}>
@@ -36,6 +36,9 @@ const App = () => {
         />
       ) : (
         <Home
+          setSeeAllListings={setSeeAllListings}
+          username={username}
+          setUsername={setUsername}
           seeAllListings={seeAllListings}
           setUserId={setUserId}
           showDashboard={showDashboard}

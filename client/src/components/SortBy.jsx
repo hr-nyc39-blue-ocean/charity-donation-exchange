@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../shared/Button.jsx";
 
-const SortBy = ({ setUserZipcode }) => {
+const SortBy = ({ setUserZipcode, setDonations, fetch, setNewestView }) => {
   const [tempZip, setTempZip] = useState(null);
 
   return (
@@ -20,12 +20,27 @@ const SortBy = ({ setUserZipcode }) => {
             setTempZip(e.target.value);
           }}
         />
-        <div>
+        <div className="sort-by-buttons">
           <Button
             text="Go"
             className="btn-bg-yellow"
             handleOnClick={() => {
-              setUserZipcode(tempZip);
+              const isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(tempZip);
+              if (isValidZip) {
+                setUserZipcode(tempZip);
+                setNewestView(false);
+              } else {
+                alert("Please enter a valid zipcode");
+              }
+            }}
+          />
+          <div>or</div>
+          <Button
+            text="Newest"
+            className="btn-bg-yellow"
+            handleOnClick={() => {
+              fetch().then((r) => setDonations(r.data));
+              setNewestView(true);
             }}
           />
         </div>

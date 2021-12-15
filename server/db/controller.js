@@ -19,7 +19,7 @@ module.exports = {
   getNonCharityListings: function (callback) {
     db.promise()
       .query(
-        `SELECT * FROM Listings WHERE charityOnly='false' ORDER BY date DESC`
+        `SELECT * FROM Listings WHERE charityOnly='false' AND status='open' ORDER BY date DESC`
       )
       .then((responseData) => {
         console.log("grabbed all listings");
@@ -147,7 +147,7 @@ module.exports = {
     // cancelled listings only
     db.promise()
       .query(
-        `SELECT * FROM Listings WHERE userID=${userID} AND status='cancelled'`
+        `SELECT * FROM Listings WHERE userID=${userID} AND (status='cancelled' OR status='closed')`
       )
       .then((responseData) => {
         console.log("grabbed user specific listings that are claimed");
