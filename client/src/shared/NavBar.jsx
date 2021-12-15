@@ -4,7 +4,7 @@ import SortBy from "../components/SortBy.jsx";
 import Modal from "../shared/Modal.jsx";
 
 const NavBar = ({
-  setNewestView,
+  setCurrentView,
   fetch,
   setDonations,
   userId,
@@ -25,6 +25,18 @@ const NavBar = ({
     setShowDashboard(false);
   };
 
+  const handleClaimedListingsOnClick = () => {
+    setCurrentView("claimed");
+  };
+
+  const handleInactiveListingsOnClick = () => {
+    setCurrentView("inactive");
+  };
+
+  const handleAllListingsOnClick = () => {
+    setCurrentView("all");
+  };
+
   const toggleNewListingModal = () => {
     setShowNewListingModal(!showNewListingModal);
   };
@@ -37,6 +49,18 @@ const NavBar = ({
     {
       text: "Create A New Listing",
       handleOnClick: toggleNewListingModal,
+    },
+    {
+      text: "All Listings",
+      handleOnClick: handleAllListingsOnClick,
+    },
+    {
+      text: "Claimed Listings",
+      handleOnClick: handleClaimedListingsOnClick,
+    },
+    {
+      text: "Inactive Listings",
+      handleOnClick: handleInactiveListingsOnClick,
     },
     {
       text: "Logout",
@@ -61,7 +85,6 @@ const NavBar = ({
       ) : (
         <div className="home-nav-bar">
           <SortBy
-            setNewestView={setNewestView}
             fetch={fetch}
             setUserZipcode={setUserZipcode}
             setDonations={setDonations}

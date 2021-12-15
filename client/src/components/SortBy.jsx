@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../shared/Button.jsx";
 
-const SortBy = ({ setUserZipcode, setDonations, fetch, setNewestView }) => {
+const SortBy = ({ setUserZipcode, setDonations, fetch }) => {
   const [tempZip, setTempZip] = useState(null);
 
   return (
