@@ -30,6 +30,7 @@ const LoginForm = ({
         if (results.data === "login failed") {
           alert("login failed");
         } else {
+          console.log("results in handlesubmit", results);
           setUserId(results.data[0].userID);
           setIsLoggedIn(true);
           setSeeAllListings(true);

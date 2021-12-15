@@ -3,6 +3,7 @@ const db = mysql.createPool({
   host: "localhost",
   user: "root",
   database: "blueocean2",
+  password: "humayra1",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
