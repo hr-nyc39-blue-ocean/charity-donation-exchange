@@ -5,6 +5,7 @@ import InputLabel from "../shared/InputLabel.jsx";
 import { useState, useEffect } from "react";
 const api = require("../../api/index.js");
 
+
 const LoginForm = ({
   setUsername,
   setIsLoggedIn,
@@ -12,6 +13,7 @@ const LoginForm = ({
   toggleModal,
   setSeeAllListings,
 }) => {
+
   const [loginInfo, setLoginInfo] = useState({ username: "", password: "" });
 
   const handleInputChange = (e) => {
@@ -19,7 +21,9 @@ const LoginForm = ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+
     setUsername(loginInfo.username);
+
   };
 
   const handleSubmit = (loginInfo) => {
@@ -29,6 +33,7 @@ const LoginForm = ({
         //check if valid, if not, alert
         if (results.data === "login failed") {
           alert("login failed");
+
         } else {
           setUserId(results.data[0].userID);
           setIsLoggedIn(true);

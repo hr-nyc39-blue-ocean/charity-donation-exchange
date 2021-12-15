@@ -31,11 +31,11 @@ module.exports = {
       });
   },
 
-  createUser: function (body, callback) {
+  createUser: function (body, hash, callback) {
     // create user with null token at beginning
     db.promise()
       .query(
-        `INSERT INTO Users (username, password, name, email, phone) VALUES ('${body.username}', '${body.password}', '${body.name}', '${body.email}', '${body.phone}')`
+        `INSERT INTO Users (username, password, name, email, phone) VALUES ('${body.username}', '${hash}', '${body.name}', '${body.email}', '${body.phone}')`
       )
       .then(() => {
         console.log("successfully created new User with null token");
