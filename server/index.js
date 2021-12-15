@@ -130,37 +130,6 @@ app.put("/v1/donations/:listingId", (req, res) => {
   }
 });
 
-/* TODO: DELETE. Status code notes for easy access
-relevant status codes:
-200 - OK
-201 - created
-204 - no content
-400 - bad request
-401 - unauthorized
-403 - forbidden
-404 - not found
-405 - method not allowed
-408 - request timed out
-429 - too many requests
-500 - internal server error
-503 - serve unavailable
-//***IN PROGRESS****
-//  TODO: how to handle user login and logout?
-//   user login
-//   user logout
-//   app.post("/v1/registration", (req, res) => {
-//     res.status(200).send("ok");
-//   });
-  // importing user context
-const User = require("./model/user");
-// Register
-// Get user input and validate it
-// Validate if user already exists
-// Encrypt user pw
-// Create a user in the db
-// Create a signed JWT token
-//**TODO: limit on pw chars, token chars? */
-
 app.post("/signup", (req, res, next) => {
   const body = req.body;
   checkIfUsernameOrEmailExists(
@@ -187,31 +156,6 @@ app.post("/signup", (req, res, next) => {
       }
     }
   );
-
-  // controller.checkIfEmailExists(body.email, (err, responseData) => {
-  //   if (err) {
-  //     res.sendStatus(500);
-  //   } else {
-  //     var resdata = responseData[0];
-  //     var checkemail = null;
-  //     for (const [key, value] of Object.entries(resdata)) {
-  //       checkemail = `${value}`;
-  //       // res.status(200).send(checkemail);
-  //     }
-  //     if (checkemail > 0 || checkusername > 0) {
-  //       res.status(400).send("user already exists");
-  //     } else {
-  //       // res.status(200).send("missing");
-  //       controller.createUser(body, (err) => {
-  //         if (err) {
-  //           res.sendStatus(500);
-  //         } else {
-  //           res.status(201).send("Signup successful");
-  //         }
-  //       });
-  //     }
-  //   }
-  // });
 });
 
 app.post("/login", (req, res, next) => {
@@ -239,53 +183,6 @@ app.post("/login", (req, res, next) => {
       }
     }
   });
-});
-//TODO:
-
-//signup
-
-// check if user already exist in db
-// const oldUser = await User.findOne({ email });
-
-// if (oldUser) {
-//   return res.status(409).send("You already have an account, please use that to log in.");
-// }
-
-//Encrypt user password
-// const encryptedPassword = bcrypt.hash(password, 10);
-
-// Create user in our database
-// const user = await User.create({
-//   name,
-//   username,
-//   email: email.toLowerCase(),
-//   password: encryptedPassword,
-//   token: null,
-// });
-
-// Create token - **TODO update for already created token
-// const token = jwt.sign(
-//   { user_id: user._id, email },
-//   process.env.TOKEN_KEY,
-//   //TODO: set up dotenv w token key
-//   {
-//     expiresIn: "1h",
-//     //TODO: enough time, change time?
-//   }
-// );
-// // save user token
-// user.token = token;
-
-// return new user
-
-// } catch (err) {
-//   console.log(err);
-// }
-
-// Login
-app.post("/login", (req, res) => {
-  // our login logic goes here
-  res.status(200).send("successfully hit login");
 });
 
 app.listen(PORT, () => {
