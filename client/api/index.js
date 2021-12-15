@@ -27,7 +27,7 @@ export const getClaimedDonationsForDashboard = (userId) => {
   return baseURL.get(`/v1/claimedDonations/${userId}`);
 };
 
-// get all user's CANCELLED donations for dashboard, input userId
+// get all user's CLOSED and CANCELLED donations for dashboard, input userId
 export const getCancelledDonationsForDashboard = (userId) => {
   return baseURL.get(`/v1/cancelledDonations/${userId}`);
 };
@@ -40,7 +40,7 @@ export const createDonationListing = ({
   photoURL,
   charityOnly,
   userID,
-  quantity
+  quantity,
 }) => {
   return baseURL({
     method: "POST",
@@ -52,7 +52,7 @@ export const createDonationListing = ({
       photoURL: photoURL,
       charityOnly: charityOnly,
       userID: userID,
-      quantity: quantity
+      quantity: quantity,
     },
   });
 };
@@ -118,7 +118,7 @@ export const signupUser = ({ name, username, email, password, phone }) => {
       username: username,
       email: email,
       password: password,
-      phone: phone
+      phone: phone,
     },
   });
 };

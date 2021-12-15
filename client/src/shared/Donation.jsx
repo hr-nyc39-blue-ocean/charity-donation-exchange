@@ -28,6 +28,8 @@ const Donation = ({
   const [dashboardButtonsClicked, setDashboardButtonsClicked] = useState(false);
   const isoDate = date;
 
+  console.log("showDashboard", showDashboard);
+
   const formattedDate = dateFormatter(isoDate, {
     format: "MMM d, yyyy",
     namedMonths: [
@@ -115,8 +117,8 @@ const Donation = ({
           </div>
         </div>
         <div className="donation-claimed-details-container">
-          {distance>=0 && (
-            <div className="donation-distance-container">
+          {distance >= 0 && (
+            <div>
               <span className="dontation-card-title">Distance: </span>
               <span>{`${distance} miles`}</span>
             </div>
@@ -129,7 +131,7 @@ const Donation = ({
               </div>
               <div>
                 <span className="dontation-card-title">Claimed: </span>
-                <span>{ claimed==="true" ? "Yes" : "No" }</span>
+                <span>{claimed === "true" ? "Yes" : "No"}</span>
               </div>
               <div>
                 {claimed === "true" && (
@@ -152,28 +154,30 @@ const Donation = ({
             </div>
           )}
         </div>
-        {showDashboard && status !== "closed" && status !== "cancelled" && (
-          <div className="donation-card-buttons">
-            {dashboardButtons.map((d) => {
-              return (
-                <Button
-                  className="donation-button-styles"
-                  text={d.text}
-                  handleOnClick={d.handleOnClick}
-                />
-              );
-            })}
-          </div>
-        )}
-        {!showDashboard && (
-          <div className="donation-card-buttons">
-            <Button
-              handleOnClick={toggleClaimModal}
-              text="Claim"
-              className={"donation-button-styles"}
-            />
-          </div>
-        )}
+        <div className="donation-card-buttons">
+          {showDashboard && status !== "closed" && status !== "cancelled" && (
+            <div className="donation-card-buttons">
+              {dashboardButtons.map((d) => {
+                return (
+                  <Button
+                    className="donation-button-styles"
+                    text={d.text}
+                    handleOnClick={d.handleOnClick}
+                  />
+                );
+              })}
+            </div>
+          )}
+          {!showDashboard && (
+            <div className="donation-card-buttons">
+              <Button
+                handleOnClick={toggleClaimModal}
+                text="Claim"
+                className={"donation-button-styles"}
+              />
+            </div>
+          )}
+        </div>
       </div>
       {showClaimModal && (
         <Modal

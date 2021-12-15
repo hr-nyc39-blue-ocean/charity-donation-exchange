@@ -19,7 +19,7 @@ module.exports = {
   getNonCharityListings: function (callback) {
     db.promise()
       .query(
-        `SELECT * FROM Listings WHERE charityOnly='false' ORDER BY date DESC`
+        `SELECT * FROM Listings WHERE charityOnly='false' AND status='open' ORDER BY date DESC`
       )
       .then((responseData) => {
         console.log("grabbed all listings");
@@ -31,11 +31,11 @@ module.exports = {
       });
   },
 
-  createUser: function (body, callback) {
+  createUser: function (body, hash, callback) {
     // create user with null token at beginning
     db.promise()
       .query(
-        `INSERT INTO Users (username, password, name, email, phone) VALUES ('${body.username}', '${body.password}', '${body.name}', '${body.email}', '${body.phone}')`
+        `INSERT INTO Users (username, password, name, email, phone) VALUES ('${body.username}', '${hash}', '${body.name}', '${body.email}', '${body.phone}')`
       )
       .then(() => {
         console.log("successfully created new User with null token");
@@ -147,7 +147,7 @@ module.exports = {
     // cancelled listings only
     db.promise()
       .query(
-        `SELECT * FROM Listings WHERE userID=${userID} AND status='cancelled'`
+        `SELECT * FROM Listings WHERE userID=${userID} AND (status='cancelled' OR status='closed')`
       )
       .then((responseData) => {
         console.log("grabbed user specific listings that are claimed");

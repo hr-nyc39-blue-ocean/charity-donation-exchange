@@ -3,7 +3,7 @@
 .form-styles {
   @include flex(row, center, center);
   gap: 10px;
-  width: 30vw;
+  width: 40vw;
   color: #fff9ea;
 
   .sort-by-title {
@@ -39,5 +39,10 @@
     border: 1px solid #d3d3d3;
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
     background-color: #fff9ea;
+  }
+
+  .sort-by-buttons {
+    @include flex(row);
+    gap: 20px;
   }
 }
