@@ -11,12 +11,12 @@ const App = () => {
   );
   const [isLoggedIn, setIsLoggedIn] = useLocalStorage("isLoggedIn", false);
   const [userId, setUserId] = useLocalStorage("userId", null);
+  const [username, setUsername] = useLocalStorage("username", null);
   const [initialModal, setInitialModal] = useLocalStorage("initialModal", true);
   const [seeAllListings, setSeeAllListings] = useLocalStorage(
     "seeAllListings",
     null
   );
-  const [username, setUsername] = useLocalStorage("username", null);
 
   const color = showDashboard ? "blue" : "yellow";
 
