@@ -2,12 +2,12 @@
   "name": "charity-donation-exchange",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon server/index.js",
-    "build": "webpack --mode production --watch",
-    "build-dev": "webpack --mode development --watch"
+    "start": "npx nodemon server.js",
+    "build": "webpack --mode production",
+    "build-dev": "webpack --mode development"
   },
   "repository": {
     "type": "git",
