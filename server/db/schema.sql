@@ -70,14 +70,15 @@ ALTER TABLE `Listings` ADD FOREIGN KEY (userID) REFERENCES `Users` (`userID`);
 
 -- to execute this file in terminal: mysql -u root < ./server/db/schema.sql from top level directory
 
-LOAD DATA LOCAL INFILE '/Users/ziye/Desktop/capstone/blue_ocean/UsersData.csv'
+
+LOAD DATA LOCAL INFILE '/Users/jaimie/Desktop/UsersData.csv'
 INTO TABLE Users
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
 (username, password, name, email, phone);
 
-LOAD DATA LOCAL INFILE '/Users/ziye/Desktop/capstone/blue_ocean/ListingsData.csv'
+LOAD DATA LOCAL INFILE '/Users/jaimie/Desktop/ListingsData.csv'
 INTO TABLE Listings
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
