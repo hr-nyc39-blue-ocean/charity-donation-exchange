@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import Home from "./components/Home.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import Modal from "./shared/Modal.jsx";
+//import Cookies from 'js-cookie';
+
 
 const App = () => {
+  //const cookies = Cookies.get("access-token");
   const [showDashboard, setShowDashboard] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
