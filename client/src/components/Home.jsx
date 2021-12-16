@@ -90,6 +90,7 @@ const Home = ({
   };
 
   const handleLogoutOnClick = () => {
+    setNewestView(true);
     setIsLoggedIn(false);
   };
 
