@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  react-app:
+    image: 54135518875e
+    stdin_open: true
+    ports:
+      - '80:3000'

@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const baseURL = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "http://3.145.95.49:5000",
 });
 
 // get all donations
 export const getAllDonations = () => {
-  return axios.get("http://localhost:5000/v1/donations/");
+  return axios.get("http://3.145.95.49:5000/v1/donations/");
 };
 
 // get non-charity donation listings
