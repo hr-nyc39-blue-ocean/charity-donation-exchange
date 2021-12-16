@@ -2,14 +2,21 @@ import React, { useState, useEffect } from "react";
 import Home from "./components/Home.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import Modal from "./shared/Modal.jsx";
+import useLocalStorage from "use-local-storage";
 
 const App = () => {
-  const [showDashboard, setShowDashboard] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(null);
-  const [initialModal, setInitialModal] = useState(true);
-  const [seeAllListings, setSeeAllListings] = useState(null);
-  const [username, setUsername] = useState(null);
+  const [showDashboard, setShowDashboard] = useLocalStorage(
+    "showDashboard",
+    false
+  );
+  const [isLoggedIn, setIsLoggedIn] = useLocalStorage("isLoggedIn", false);
+  const [userId, setUserId] = useLocalStorage("userId", null);
+  const [initialModal, setInitialModal] = useLocalStorage("initialModal", true);
+  const [seeAllListings, setSeeAllListings] = useLocalStorage(
+    "seeAllListings",
+    null
+  );
+  const [username, setUsername] = useLocalStorage("username", null);
 
   const color = showDashboard ? "blue" : "yellow";
 
@@ -19,7 +26,7 @@ const App = () => {
 
   return (
     <div className={`global ${color}`}>
-      {initialModal && (
+      {!isLoggedIn && initialModal && (
         <Modal
           initialModal={initialModal}
           toggleModal={toggleInitialModal}
