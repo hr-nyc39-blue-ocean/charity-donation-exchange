@@ -30,13 +30,18 @@ const {
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname + "/../client/dist"));
+// app.use(express.static(__dirname + "/../client/dist"));
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   res.setHeader("Access-Control-Allow-Credentials", true);
   next();
+});
+
+// loader.io stress testing
+app.get("/loaderio-ab3151cdbe4d12aabc3c1f0784706d9d.txt", (req, res) => {
+  res.send("loaderio-ab3151cdbe4d12aabc3c1f0784706d9d");
 });
 
 // get all donations
@@ -292,7 +297,10 @@ app.post("/login", (req, res, next) => {
                       });
                       console.log("logged in", accessToken);
 
-                      const returnobj = { userID: iddata.userID, token: accessToken };
+                      const returnobj = {
+                        userID: iddata.userID,
+                        token: accessToken,
+                      };
                       res.status(200).send(returnobj);
                     }
                   });
