@@ -31,6 +31,7 @@ const LoginForm = ({
       .loginUser(loginInfo)
       .then((results) => {
         //check if valid, if not, alert
+        console.log(results)
         if (results.data === "login failed") {
           alert("login failed");
 
@@ -52,7 +53,7 @@ const LoginForm = ({
       <Title> Login to your account </Title>
       <Form onChange={handleInputChange}>
         <InputLabel label={"Username"} input={"username"} />
-        <InputLabel label={"Password"} input={"password"} />
+        <InputLabel label={"Password"} input={"password"} type={"password"}/>
       </Form>
       <Submit
         handleCancel={toggleModal}
