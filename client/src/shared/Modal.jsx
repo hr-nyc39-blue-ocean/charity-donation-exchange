@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ClaimForm from "../components/ClaimForm.jsx";
 import LoginForm from "../components/LoginForm.jsx";
-import SignupForm from "../components/SignupForm.jsx";
+import SignUpForm from "../components/SignUpForm.jsx";
 import NewListingForm from "../components/NewListingForm.jsx";
 import InitialForm from "../components/InitialForm.jsx";
 
@@ -40,7 +40,7 @@ const Modal = ({
               toggleModal={toggleModal}
             />
           )}
-          {signupModal && <SignupForm toggleModal={toggleModal} />}
+          {signupModal && <SignUpForm toggleModal={toggleModal} />}
           {newListingModal && (
             <NewListingForm
               userId={userId}
