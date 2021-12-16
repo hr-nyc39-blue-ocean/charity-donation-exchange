@@ -11,6 +11,7 @@ const Donation = ({
   showDashboard,
   fetch,
   listingId,
+  photoURL,
   date,
   name,
   category,
@@ -27,6 +28,9 @@ const Donation = ({
   const [showClaimModal, setShowClaimModal] = useState(false);
   const [dashboardButtonsClicked, setDashboardButtonsClicked] = useState(false);
   const isoDate = date;
+  const photo = photoURL
+    ? photoURL
+    : "https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673.png";
 
   const formattedDate = dateFormatter(isoDate, {
     format: "MMM d, yyyy",
@@ -83,8 +87,8 @@ const Donation = ({
         <div className="donation-img-container">
           <img
             className="donation-img-styles"
-            src="https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673.png"
-            alt="placeholder"
+            src={photo}
+            alt="Image of donation"
           />
         </div>
         <div className="donation-details-container">
