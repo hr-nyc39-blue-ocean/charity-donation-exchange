@@ -150,6 +150,7 @@ const Home = ({
       />
       {showLoginModal && (
         <Modal
+          setNewestView={setNewestView}
           setSeeAllListings={setSeeAllListings}
           setIsLoggedIn={setIsLoggedIn}
           setUserId={setUserId}

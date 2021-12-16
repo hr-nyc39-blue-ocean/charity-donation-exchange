@@ -7,6 +7,7 @@ import NewListingForm from "../components/NewListingForm.jsx";
 import InitialForm from "../components/InitialForm.jsx";
 
 const Modal = ({
+  setNewestView,
   setUsername,
   listingId,
   userId,
@@ -31,6 +32,7 @@ const Modal = ({
           )}
           {loginModal && (
             <LoginForm
+              setNewestView={setNewestView}
               setSeeAllListings={setSeeAllListings}
               setUsername={setUsername}
               setIsLoggedIn={setIsLoggedIn}

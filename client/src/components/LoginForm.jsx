@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 const api = require("../../api/index.js");
 
 const LoginForm = ({
+  setNewestView,
   setUsername,
   setIsLoggedIn,
   setUserId,
@@ -19,6 +20,7 @@ const LoginForm = ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+
     setUsername(loginInfo.username);
   };
 
@@ -30,10 +32,10 @@ const LoginForm = ({
         if (results.data === "login failed") {
           alert("login failed");
         } else {
-          console.log("results in handlesubmit", results);
           setUserId(results.data.userID);
           setIsLoggedIn(true);
           setSeeAllListings(true);
+          setNewestView(true);
         }
         toggleModal();
       })
@@ -46,8 +48,8 @@ const LoginForm = ({
     <div>
       <Title> Login to your account </Title>
       <Form onChange={handleInputChange}>
-        <InputLabel label={"Username"} input={"username"} />
-        <InputLabel label={"Password"} input={"password"} />
+        <InputLabel label={"Username"} input={"username"} type="text" />
+        <InputLabel label={"Password"} input={"password"} type="password" />
       </Form>
       <Submit
         handleCancel={toggleModal}
