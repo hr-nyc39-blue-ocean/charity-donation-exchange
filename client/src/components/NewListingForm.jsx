@@ -27,11 +27,19 @@ const NewListingForm = ({ userId, toggleModal, fetchUserDonations }) => {
     }
   }
 
+  const handleCategorySelected = (e) => {
+    setListingInfo((prevState) => (
+      {...prevState, category: e.target.value }
+      ))
+  }
+
+
   const handleInputChange = (e) => {
     setListingInfo((prevState) => (
       {...prevState, [e.target.name]: e.target.value }
       ))
   }
+
 
   const handleSubmit = (listingInfo) => {
     const { name, category, zipcode, photoURL, charityOnly, userID, quantity } = listingInfo;
@@ -52,11 +60,26 @@ const NewListingForm = ({ userId, toggleModal, fetchUserDonations }) => {
       <Title>Create a new listing</Title>
       <Form onChange={handleInputChange}>
         <InputLabel label={"Item Name"} input={"name"} />
-        <InputLabel label={"Category"} input={"category"} />
+        {/* <InputLabel label={"Category"} input={"category"} /> */}
+        <CategoryLabel> *Category:
+        <Select onChange={handleCategorySelected}>
+          <option value="category"> Select a category </option>
+          <option name="Electronics"> Electronics </option>
+          <option value="Groceries"> Groceries </option>
+          <option value="Furniture"> Furniture </option>
+          <option value="Bedding"> Bedding </option>
+          <option value="Books, Magazines and Newspapers"> Books, Magazines and Newspapers </option>
+          <option value="Clothing"> Clothing </option>
+          <option value="Footwear"> Footwear </option>
+          <option value="Pharmacy Products"> Pharmacy Products </option>
+          <option value="Cleaning Supplies"> Cleaning Supplies </option>
+          <option value="Others"> Others </option>
+        </Select>
+        </CategoryLabel>
         <InputLabel label={"Zipcode"} input={"zipcode"} />
         <InputLabel label={"Photo URL"} input={"photoURL"} />
         <InputLabel label={"Quantity"} input={"quantity"} />
-        <CheckboxLabel>Charity Only:
+        <CheckboxLabel>*Charity Only:
           <ChoiceLabel > Yes <CheckMark type="checkbox" name="yes" onClick={handleCheckboxSelected}/> </ChoiceLabel>
           <ChoiceLabel> No <CheckMark type="checkbox" name="no" onClick={handleCheckboxSelected} /> </ChoiceLabel>
         </CheckboxLabel>
@@ -84,18 +107,32 @@ const Form = styled.div`
 `;
 
 const CheckboxLabel = styled.label`
-  width: 40vw;
+  width: 35vw;
   display: flex;
   margin-top: 10px;
+  justify-content: space-between;
   //border: solid;
   //align-items: center;
 `;
 
 const ChoiceLabel = styled.label`
-  margin-left: 10%;
+  margin-left: 20px;
 `;
 
 const CheckMark = styled.input`
   height: 17px;
   width: 17px;
 `;
+
+const CategoryLabel = styled.label`
+  width: 35vw;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  //border: solid;
+`
+
+const Select = styled.select`
+  margin-left: 20px;
+  width: 70%;
+`
