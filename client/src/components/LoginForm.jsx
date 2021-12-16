@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 const api = require("../../api/index.js");
 
 const LoginForm = ({
+  setNewestView,
   setUsername,
   setIsLoggedIn,
   setUserId,
@@ -31,10 +32,10 @@ const LoginForm = ({
         if (results.data === "login failed") {
           alert("login failed");
         } else {
-          console.log("results in handlesubmit", results);
           setUserId(results.data.userID);
           setIsLoggedIn(true);
           setSeeAllListings(true);
+          setNewestView(true);
         }
         toggleModal();
       })
