@@ -5,15 +5,14 @@ import InputLabel from "../shared/InputLabel.jsx";
 import { useState, useEffect } from "react";
 const api = require("../../api/index.js");
 
-
 const LoginForm = ({
+  setNewestView,
   setUsername,
   setIsLoggedIn,
   setUserId,
   toggleModal,
   setSeeAllListings,
 }) => {
-
   const [loginInfo, setLoginInfo] = useState({ username: "", password: "" });
   const [response, setResponse] = useState("");
 
@@ -24,7 +23,6 @@ const LoginForm = ({
     }));
 
     setUsername(loginInfo.username);
-
   };
 
   const handleSubmit = (loginInfo) => {
@@ -37,9 +35,11 @@ const LoginForm = ({
     api
       .loginUser(loginInfo)
       .then((results) => {
+
         setUserId(results.data.userID);
         setIsLoggedIn(true);
         setSeeAllListings(true);
+
         toggleModal();
       })
       .catch((err) => {
@@ -52,9 +52,11 @@ const LoginForm = ({
     <div>
       <Title> Login to your account </Title>
       <Form onChange={handleInputChange}>
+
         <InputLabel label={"Username"} input={"username"} />
         <InputLabel label={"Password"} input={"password"} type={"password"}/>
         {response && <Response>{response}</Response>}
+
       </Form>
       <Submit
         handleCancel={toggleModal}
