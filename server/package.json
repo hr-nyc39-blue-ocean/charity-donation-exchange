@@ -1,0 +1,55 @@
+{
+  "name": "charity-donation-exchange",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon index.js",
+    "build": "webpack --mode production",
+    "build-dev": "webpack --mode development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/issues"
+  },
+  "homepage": "https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange#readme",
+  "dependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "axios": "^0.24.0",
+    "babel-loader": "^8.2.3",
+    "bcrypt": "^5.0.1",
+    "css-loader": "^6.5.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "file-loader": "^6.2.0",
+    "iso-date-formatter": "^2.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "node-sass": "^7.0.0",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "style-loader": "^3.3.1",
+    "styled-components": "^5.3.3",
+    "url-loader": "^4.1.1",
+    "webpack-cli": "^4.9.1",
+    "zipcodes": "^8.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^6.5.1",
+    "sass": "^1.44.0",
+    "sass-loader": "^12.4.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.65.0"
+  }
+}

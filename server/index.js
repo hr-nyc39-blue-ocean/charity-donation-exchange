@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 const axios = require("axios");
 const morgan = require("morgan");
 const db = require("./db/index.js");
@@ -355,5 +355,5 @@ app.post("/login", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server listening at localhost:${PORT}`);
+  console.log(`Server listening at http://localhost:${PORT}`);
 });

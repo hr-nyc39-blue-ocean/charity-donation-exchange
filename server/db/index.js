@@ -1,7 +1,8 @@
 const mysql = require("mysql2");
 const db = mysql.createPool({
-  host: "localhost",
-  user: "root",
+  host: "18.190.153.141",
+  user: "user",
+  password: "password",
   database: "blueocean2",
   waitForConnections: true,
   connectionLimit: 10,
