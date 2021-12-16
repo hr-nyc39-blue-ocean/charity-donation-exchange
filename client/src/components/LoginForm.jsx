@@ -14,6 +14,7 @@ const LoginForm = ({
   setSeeAllListings,
 }) => {
   const [loginInfo, setLoginInfo] = useState({ username: "", password: "" });
+  const [response, setResponse] = useState("");
 
   const handleInputChange = (e) => {
     setLoginInfo((prevState) => ({
@@ -25,21 +26,24 @@ const LoginForm = ({
   };
 
   const handleSubmit = (loginInfo) => {
+    for (let key in loginInfo) {
+      if (loginInfo[key] === "") {
+        alert("Please fill out all fields before submit");
+        return;
+      }
+    }
     api
       .loginUser(loginInfo)
       .then((results) => {
-        //check if valid, if not, alert
-        if (results.data === "login failed") {
-          alert("login failed");
-        } else {
-          setUserId(results.data.userID);
-          setIsLoggedIn(true);
-          setSeeAllListings(true);
-          setNewestView(true);
-        }
+
+        setUserId(results.data.userID);
+        setIsLoggedIn(true);
+        setSeeAllListings(true);
+
         toggleModal();
       })
       .catch((err) => {
+        setResponse("Incorrect username/password, Please try again!");
         console.log("ERROR IN LoginForm handleSubmit: ", err);
       });
   };
@@ -48,8 +52,11 @@ const LoginForm = ({
     <div>
       <Title> Login to your account </Title>
       <Form onChange={handleInputChange}>
-        <InputLabel label={"Username"} input={"username"} type="text" />
-        <InputLabel label={"Password"} input={"password"} type="password" />
+
+        <InputLabel label={"Username"} input={"username"} />
+        <InputLabel label={"Password"} input={"password"} type={"password"}/>
+        {response && <Response>{response}</Response>}
+
       </Form>
       <Submit
         handleCancel={toggleModal}
@@ -76,4 +83,9 @@ const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const Response = styled.div`
+  color: red;
+  margin-top: 15px;
 `;

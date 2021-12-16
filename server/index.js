@@ -184,6 +184,30 @@ app.post("/signup", (req, res, next) => {
     }
   );
 });
+// controller.checkIfEmailExists(body.email, (err, responseData) => {
+//   if (err) {
+//     res.sendStatus(500);
+//   } else {
+//     var resdata = responseData[0];
+//     var checkemail = null;
+//     for (const [key, value] of Object.entries(resdata)) {
+//       checkemail = `${value}`;
+//       // res.status(200).send(checkemail);
+//     }
+//     if (checkemail > 0 || checkusername > 0) {
+//       res.status(400).send("user already exists");
+//     } else {
+//       // res.status(200).send("missing");
+//       controller.createUser(body, (err) => {
+//         if (err) {
+//           res.sendStatus(500);
+//         } else {
+//           res.status(201).send("Signup successful");
+//         }
+//       });
+//     }
+//   }
+// });
 
 app.post("/login", (req, res, next) => {
   const body = req.body;
@@ -237,10 +261,12 @@ app.post("/login", (req, res, next) => {
                       });
                       console.log("logged in", accessToken);
 
+
                       const returnobj = {
                         userID: iddata.userID,
                         token: accessToken,
                       };
+
                       res.status(200).send(returnobj);
                     }
                   });
@@ -253,6 +279,7 @@ app.post("/login", (req, res, next) => {
     }
   });
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server listening at localhost:${PORT}`);
