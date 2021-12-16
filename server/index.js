@@ -8,6 +8,7 @@ const User = require("./Models/user.js");
 const controller = require("./db/controller.js");
 const bcrypt = require("bcrypt");
 const { createTokens, validateToken } = require("./middleware/jwt.js");
+require("newrelic");
 
 const {
   getAllListings,
