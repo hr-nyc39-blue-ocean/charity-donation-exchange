@@ -125,4 +125,3 @@ Key lessons from standups/code reviews
 * Code reviews could’ve been a bit more thorough and functionality testing should’ve been performed a bit more often instead of instant merging
 
 * Link to Trello board: https://trello.com/b/kJMMFlce/blue-ocean
-*
