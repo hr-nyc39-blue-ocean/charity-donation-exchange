@@ -1,6 +1,6 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
-const PORT = 3000;
 const axios = require("axios");
 const morgan = require("morgan");
 const db = require("./db/index.js");
@@ -26,6 +26,8 @@ const {
   markAsClaimed,
   markAsComplete,
 } = require("./db/controller.js");
+
+const PORT = process.env.PORT;
 
 app.use(morgan("dev"));
 app.use(express.json());

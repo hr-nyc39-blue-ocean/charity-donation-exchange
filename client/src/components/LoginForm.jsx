@@ -65,7 +65,7 @@ const LoginForm = ({
         setUserId(results.data.userID);
         setIsLoggedIn(true);
         setSeeAllListings(true);
-
+        setNewestView(true);
         toggleModal();
       })
       .catch((err) => {
