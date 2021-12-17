@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-This app is deployed on Heroku --> https://charity-donation-exchange.herokuapp.com/
+This app is hosted on Heroku --> https://charity-donation-exchange.herokuapp.com/
 
 ## Introduction
 
