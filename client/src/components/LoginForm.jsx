@@ -3,6 +3,9 @@ import styled from "styled-components";
 import Submit from "../shared/SubmitCancelButton.jsx";
 import InputLabel from "../shared/InputLabel.jsx";
 import { useState, useEffect } from "react";
+
+import { GoogleLogin } from "react-google-login";
+
 const api = require("../../api/index.js");
 
 const LoginForm = ({
@@ -15,6 +18,30 @@ const LoginForm = ({
 }) => {
   const [loginInfo, setLoginInfo] = useState({ username: "", password: "" });
   const [response, setResponse] = useState("");
+
+  const onSuccess = (response) => {
+    let resbody = response.profileObj;
+    let username =
+      resbody.givenName.substring(0, 3) + resbody.googleId.substring(0, 3);
+    api
+      .getUserId(username)
+      .then((results) => {
+        console.log("resultsinapi", results);
+        let importedid = results.data.userID.substring(0);
+        setUserId(importedid);
+        setIsLoggedIn(true);
+        setSeeAllListings(true);
+        toggleModal();
+      })
+      .catch((err) => {
+        setResponse("Incorrect username/password, Please try again!");
+        console.log("ERROR IN LoginForm handleSubmit: ", err);
+      });
+  };
+
+  const onFailure = (res) => {
+    console.log(res);
+  };
 
   const handleInputChange = (e) => {
     setLoginInfo((prevState) => ({
@@ -35,7 +62,6 @@ const LoginForm = ({
     api
       .loginUser(loginInfo)
       .then((results) => {
-
         setUserId(results.data.userID);
         setIsLoggedIn(true);
         setSeeAllListings(true);
@@ -52,12 +78,18 @@ const LoginForm = ({
     <div>
       <Title> Login to your account </Title>
       <Form onChange={handleInputChange}>
-
         <InputLabel label={"Username"} input={"username"} />
-        <InputLabel label={"Password"} input={"password"} type={"password"}/>
+        <InputLabel label={"Password"} input={"password"} type={"password"} />
         {response && <Response>{response}</Response>}
-
       </Form>
+      <GoogleLogin
+        clientId="494742389689-0plkkqgkr8897u3prt1qnj200tdhv4ik.apps.googleusercontent.com"
+        buttonText="login"
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        cookiePolicy={"single_host_origin"}
+      />
+
       <Submit
         handleCancel={toggleModal}
         handleSubmit={() => {
