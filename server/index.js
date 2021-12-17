@@ -27,7 +27,7 @@ const {
   markAsComplete,
 } = require("./db/controller.js");
 
-const PORT = process.env.PORT;
+const PORT = 3000;
 
 app.use(morgan("dev"));
 app.use(express.json());
