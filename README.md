@@ -38,7 +38,7 @@ from the inspiration of what the Earth has given to us all. A chance to live in 
 build a brighter future for the generations to come.
 
 Our  team hopes that this project will connect 
-more people with each other and remind us of the power that we have when we come togethe r. 
+more people with each other and remind us of the power that we have when we come together. 
 To be human is to be connected to everything around us and so it is our greatest hope that we have created a space where all feel welcome 
 and safe to give and receive, and to pay it forward.  
 
