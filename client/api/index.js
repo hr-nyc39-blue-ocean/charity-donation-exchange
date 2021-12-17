@@ -1,35 +1,37 @@
+// require("dotenv").config();
 import axios from "axios";
 
-const baseURL = axios.create({
-  baseURL: "http://localhost:3000",
-});
+// const baseURL = axios.create({
+//   baseURL: `http://${process.env.HOST}:${process.env.PORT}`,
+// });
 
 // get all donations
 export const getAllDonations = () => {
-  return axios.get("http://localhost:3000/v1/donations/");
+  return axios.get("/v1/donations/");
 };
 
 // get non-charity donation listings
 export const getNonCharityListings = () => {
-  return baseURL({
-    method: "GET",
-    url: "/v1/noncharityListings",
-  });
+  return axios.get("/v1/noncharityListings");
+  // return baseURL({
+  //   method: "GET",
+  //   url: "/v1/noncharityListings",
+  // });
 };
 
 // get all user's donations for dashboard, input userId
 export const getDonationsForDashboard = (userId) => {
-  return baseURL.get(`/v1/donations/${userId}`);
+  return axios.get(`/v1/donations/${userId}`);
 };
 
 // get all user's CLAIMED donations for dashboard, input userId
 export const getClaimedDonationsForDashboard = (userId) => {
-  return baseURL.get(`/v1/claimedDonations/${userId}`);
+  return axios.get(`/v1/claimedDonations/${userId}`);
 };
 
 // get all user's CLOSED and CANCELLED donations for dashboard, input userId
 export const getCancelledDonationsForDashboard = (userId) => {
-  return baseURL.get(`/v1/cancelledDonations/${userId}`);
+  return axios.get(`/v1/cancelledDonations/${userId}`);
 };
 
 // logged in user adds new donation to their listings
@@ -42,7 +44,7 @@ export const createDonationListing = ({
   userID,
   quantity,
 }) => {
-  return baseURL({
+  return axios({
     method: "POST",
     url: "/v1/donations",
     data: {
@@ -66,7 +68,7 @@ export const claimDonationListing = ({
   claimerEmail,
   status,
 }) => {
-  return baseURL({
+  return axios({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
     data: {
@@ -85,7 +87,7 @@ export const markDonationListingStatusComplete = (
   listingId,
   status = "closed"
 ) => {
-  return baseURL({
+  return axios({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
     data: {
@@ -97,7 +99,7 @@ export const markDonationListingStatusComplete = (
 
 // cancels/deletes existing donation
 export const cancelDonationListing = (listingId, status = "cancelled") => {
-  return baseURL({
+  return axios({
     method: "PUT",
     url: `/v1/donations/${listingId}`,
     data: {
@@ -110,7 +112,7 @@ export const cancelDonationListing = (listingId, status = "cancelled") => {
 //**helpers for sign up and sign in */
 //TODO: implement tokens
 export const signupUser = ({ name, username, email, password, phone }) => {
-  return baseURL({
+  return axios({
     method: "POST",
     url: "/signup",
     data: {
@@ -124,7 +126,7 @@ export const signupUser = ({ name, username, email, password, phone }) => {
 };
 
 export const loginUser = ({ username, password }) => {
-  return baseURL({
+  return axios({
     method: "POST",
     url: "/login",
     data: {
@@ -133,9 +135,10 @@ export const loginUser = ({ username, password }) => {
     },
   });
 };
+//TODO: integrate jwt tokens in this if necessary, can be null while testing
 
 export const getUserId = (username) => {
-  return baseURL({
+  return axios({
     method: "PUT",
     url: "/getID",
     data: {
