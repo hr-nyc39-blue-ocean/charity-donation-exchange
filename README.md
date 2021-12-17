@@ -121,3 +121,6 @@ Key lessons from standups/code reviews
 * Good to set specific daily goals so that you always have a clear idea of what you should be accomplishing by the end of that day
 * In addition, setting tangible group goals in order of priority (MVP first, then other features, etc) would’ve helped with productivity even more
 * Code reviews could’ve been a bit more thorough and functionality testing should’ve been performed a bit more often instead of instant merging
+
+* Link to Trello board: https://trello.com/b/kJMMFlce/blue-ocean
+*
