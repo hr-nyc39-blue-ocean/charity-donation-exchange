@@ -4,8 +4,7 @@
 
 ## Table of Contents
 
-* This app is hosted on Heroku: https://charity-donation-exchange.herokuapp.com/
-* Link to Trello board: https://trello.com/b/kJMMFlce/blue-ocean
+This app is deployed on Heroku --> https://charity-donation-exchange.herokuapp.com/
 
 ## Introduction
 
@@ -54,6 +53,9 @@ Our project brings Donors and Donees together in a single space to provide easy 
 
 ## Technical Challenges 
 
+## Images to be sorted out later
+![image](https://user-images.githubusercontent.com/89167923/146597966-75c4b9a8-a460-4b08-ab93-48ef7db8febf.png)
+![image](https://user-images.githubusercontent.com/89167923/146598142-c75e2e5e-2d87-4aa2-90ce-fbcab0948dfa.png)
 
 
 Blue Ocean Readme
@@ -124,3 +126,6 @@ Key lessons from standups/code reviews
 * Good to set specific daily goals so that you always have a clear idea of what you should be accomplishing by the end of that day
 * In addition, setting tangible group goals in order of priority (MVP first, then other features, etc) would’ve helped with productivity even more
 * Code reviews could’ve been a bit more thorough and functionality testing should’ve been performed a bit more often instead of instant merging
+
+* Link to Trello board: https://trello.com/b/kJMMFlce/blue-ocean
+*
