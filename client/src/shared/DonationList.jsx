@@ -1,8 +1,7 @@
 import React from "react";
 import Donation from "./Donation.jsx";
-import zipcodes from "zipcodes";
 
-const DonationList = ({ fetch, showDashboard, donations, userZipcode }) => {
+const DonationList = ({ fetch, showDashboard, donations }) => {
   const color = showDashboard ? "donation-list-blue" : "donation-list-yellow";
 
   return (
@@ -12,9 +11,9 @@ const DonationList = ({ fetch, showDashboard, donations, userZipcode }) => {
           ? donations.map((d) => {
               return (
                 <Donation
-                  userZipcode={userZipcode}
                   showDashboard={showDashboard}
                   fetch={fetch}
+                  photoURL={d.photoURL}
                   listingId={d.listingID}
                   date={d.date}
                   name={d.name}

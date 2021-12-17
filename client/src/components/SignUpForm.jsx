@@ -37,14 +37,19 @@ const SignUpForm = ({ toggleModal }) => {
 
       .then((results) => {
         console.log("results sent back", results);
-        alert("Account successfully created! Please log in");
+        if (results.data === "User already exists!") {
+          alert("Username or email already exists! Please try again!");
+        } else {
+          alert("Account successfully created! Please log in");
+        }
         // setResponse(results.data);
         toggleModal();
       })
       .catch((err) => {
-        setResponse("username or email already exists!");
+        console.log("ERROR IN handleSubmit SignUpForm!");
       });
   };
+
   //GAuth
   const onSuccess = (response) => {
     console.log("signuponcussess", response);
