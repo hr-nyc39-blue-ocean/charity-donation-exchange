@@ -13,11 +13,14 @@
 ## Tech stack
 ## Front-End Development
 
-####  <img width="15%" src="https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/netlifyapp_watercss/netlifyapp_watercss-ar21.svg"> <img width="15%" src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png">
+####  <img width="15%" src="https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/netlifyapp_watercss/netlifyapp_watercss-ar21.svg"> <img width="15%" src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png"> <img width="15%" src="https://www.vectorlogo.zone/logos/sass-lang/sass-lang-icon.svg">
+
 
 ## Back-End Development
 
-####  <img width="15%" src="https://www.vectorlogo.zone/logos/nodejs/nodejs-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/nodemonio/nodemonio-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/expressjs/expressjs-ar21.svg"> <img width="15%" src="https://user-images.githubusercontent.com/8939680/57233884-20344080-6fe5-11e9-8df3-0df1282e1574.png">
+####  <img width="15%" src="https://www.vectorlogo.zone/logos/nodejs/nodejs-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/nodemonio/nodemonio-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/expressjs/expressjs-ar21.svg"> <img width="15%" src="https://user-images.githubusercontent.com/8939680/57233884-20344080-6fe5-11e9-8df3-0df1282e1574.png"> <img width="15%" src="https://www.vectorlogo.zone/logos/mysql/mysql-ar21.svg"> <img width="15%" src="https://stackjava.com/wp-content/uploads/2018/03/bcrypt-logo.jpg">
+
+
 
 ## Compiler
 
@@ -29,14 +32,13 @@
 
 ## Testing
 
-####  <img width="15%" src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-ar21.svg">
-
+####  <img width="15%" src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/newrelic/newrelic-ar21.svg"> 
 ## Project Management
 
 ####  <img width="15%" src="https://www.vectorlogo.zone/logos/trello/trello-ar21.svg">
 
 ## Deployment
-####  <img width="15%" src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-ar21.svg">
+####  <img width="15%" src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/heroku/heroku-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg">
 
 
 ## Technical Challenges 
