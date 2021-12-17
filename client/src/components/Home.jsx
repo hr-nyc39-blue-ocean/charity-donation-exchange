@@ -3,7 +3,7 @@ import DonationList from "../shared/DonationList.jsx";
 import NavBar from "../shared/NavBar.jsx";
 import Header from "../components/Header.jsx";
 import Modal from "../shared/Modal.jsx";
-import HomeLogo from "../../dist/img/HomeLogo.png";
+import HomeLogo from "../../dist/img/HomeLogo2.jpeg";
 import { getAllDonations, getNonCharityListings } from "../../api/index.js";
 import zipcodes from "zipcodes";
 
@@ -90,6 +90,7 @@ const Home = ({
   };
 
   const handleLogoutOnClick = () => {
+    setNewestView(true);
     setIsLoggedIn(false);
   };
 
