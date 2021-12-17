@@ -71,6 +71,7 @@ ALTER TABLE `Listings` ADD FOREIGN KEY (userID) REFERENCES `Users` (`userID`);
 -- to execute this file in terminal: mysql -u root < ./server/db/schema.sql from top level directory
 
 
+
 -- LOAD DATA LOCAL INFILE '/Users/jaimie/Desktop/UsersData.csv'
 -- INTO TABLE Users
 -- FIELDS TERMINATED BY ','
