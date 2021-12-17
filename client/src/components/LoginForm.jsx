@@ -35,11 +35,10 @@ const LoginForm = ({
     api
       .loginUser(loginInfo)
       .then((results) => {
-
         setUserId(results.data.userID);
         setIsLoggedIn(true);
         setSeeAllListings(true);
-
+        setNewestView(true);
         toggleModal();
       })
       .catch((err) => {
@@ -52,11 +51,9 @@ const LoginForm = ({
     <div>
       <Title> Login to your account </Title>
       <Form onChange={handleInputChange}>
-
         <InputLabel label={"Username"} input={"username"} />
-        <InputLabel label={"Password"} input={"password"} type={"password"}/>
+        <InputLabel label={"Password"} input={"password"} type={"password"} />
         {response && <Response>{response}</Response>}
-
       </Form>
       <Submit
         handleCancel={toggleModal}

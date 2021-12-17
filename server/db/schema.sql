@@ -2,11 +2,11 @@
 -- Globals
 -- ---
 
-DROP DATABASE IF EXISTS blueocean2;
+-- DROP DATABASE IF EXISTS blueocean2;
 
-CREATE DATABASE blueocean2;
+-- CREATE DATABASE blueocean2;
 
-USE blueocean2;
+-- USE blueocean2;
 
 -- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- SET FOREIGN_KEY_CHECKS=0;
@@ -70,7 +70,7 @@ ALTER TABLE `Listings` ADD FOREIGN KEY (userID) REFERENCES `Users` (`userID`);
 
 -- to execute this file in terminal: mysql -u root < ./server/db/schema.sql from top level directory
 
---mysql --host=us-cdbr-east.cleardb.com --user=b5xxxxx7 --password=37d8faad --reconnect heroku_xxxxxx < my_dump_file.sql
+
 
 -- LOAD DATA LOCAL INFILE '/Users/jaimie/Desktop/UsersData.csv'
 -- INTO TABLE Users

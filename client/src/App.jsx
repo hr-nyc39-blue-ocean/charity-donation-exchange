@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useDebugValue, useEffect } from "react";
 import Home from "./components/Home.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import Modal from "./shared/Modal.jsx";
@@ -12,12 +12,12 @@ const App = () => {
   );
   const [isLoggedIn, setIsLoggedIn] = useLocalStorage("isLoggedIn", false);
   const [userId, setUserId] = useLocalStorage("userId", null);
+  const [username, setUsername] = useLocalStorage("username", null);
   const [initialModal, setInitialModal] = useLocalStorage("initialModal", true);
   const [seeAllListings, setSeeAllListings] = useLocalStorage(
     "seeAllListings",
     null
   );
-  const [username, setUsername] = useLocalStorage("username", null);
 
   const color = showDashboard ? "blue" : "yellow";
 
