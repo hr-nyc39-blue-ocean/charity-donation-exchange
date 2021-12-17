@@ -1,9 +1,4 @@
 
-
-https://user-images.githubusercontent.com/89167923/146575351-221b1d0f-7895-477d-b11e-6fac7dca6c3a.mov
-
-
-
 # charity-donation-exchange
 
 Blue Ocean Readme
