@@ -135,4 +135,13 @@ export const loginUser = ({ username, password }) => {
     },
   });
 };
-//TODO: integrate jwt tokens in this if necessary, can be null while testing
+
+export const getUserId = (username) => {
+  return axios({
+    method: "PUT",
+    url: "/getID",
+    data: {
+      username,
+    },
+  });
+};

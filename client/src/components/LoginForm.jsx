@@ -5,6 +5,8 @@ import InputLabel from "../shared/InputLabel.jsx";
 import { useState, useEffect } from "react";
 const api = require("../../api/index.js");
 
+import { GoogleLogin } from "react-google-login";
+
 const LoginForm = ({
   setNewestView,
   setUsername,
@@ -35,7 +37,6 @@ const LoginForm = ({
     api
       .loginUser(loginInfo)
       .then((results) => {
-
         setUserId(results.data.userID);
         setIsLoggedIn(true);
         setSeeAllListings(true);
@@ -48,21 +49,51 @@ const LoginForm = ({
       });
   };
 
+  //G Auth
+  const onSuccess = (response) => {
+    let resbody = response.profileObj;
+    let username =
+      resbody.givenName.substring(0, 3) + resbody.googleId.substring(0, 3);
+    api
+      .getUserId(username)
+      .then((results) => {
+        console.log("resultsinapi", results);
+        let importedid = results.data.userID.substring(0);
+        setUserId(importedid);
+        setIsLoggedIn(true);
+        setSeeAllListings(true);
+        toggleModal();
+      })
+      .catch((err) => {
+        setResponse("Incorrect username/password, Please try again!");
+        console.log("ERROR IN LoginForm handleSubmit: ", err);
+      });
+  };
+
+  const onFailure = (res) => {
+    console.log(res);
+  };
+
   return (
     <div>
       <Title> Login to your account </Title>
       <Form onChange={handleInputChange}>
-
         <InputLabel label={"Username"} input={"username"} />
-        <InputLabel label={"Password"} input={"password"} type={"password"}/>
+        <InputLabel label={"Password"} input={"password"} type={"password"} />
         {response && <Response>{response}</Response>}
-
       </Form>
       <Submit
         handleCancel={toggleModal}
         handleSubmit={() => {
           handleSubmit(loginInfo);
         }}
+      />
+      <GoogleLogin
+        clientId="494742389689-0plkkqgkr8897u3prt1qnj200tdhv4ik.apps.googleusercontent.com"
+        buttonText="login"
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        cookiePolicy={"single_host_origin"}
       />
     </div>
   );

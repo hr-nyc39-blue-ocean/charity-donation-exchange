@@ -5,6 +5,8 @@ import InputLabel from "../shared/InputLabel.jsx";
 import { useState, useEffect } from "react";
 const api = require("../../api/index.js");
 
+import { GoogleLogin } from "react-google-login";
+
 const SignUpForm = ({ toggleModal }) => {
   const initialSignupInfo = {
     username: "",
@@ -49,6 +51,39 @@ const SignUpForm = ({ toggleModal }) => {
       });
   };
 
+  //GAuth
+  const onSuccess = (response) => {
+    console.log("signuponcussess", response);
+    let resbody = response.profileObj;
+    let name = resbody.givenName + " " + resbody.familyName;
+    let email = resbody.email;
+    let password = response.googleId.substring(2, 8);
+    let phone = "0000000000";
+    let username =
+      resbody.givenName.substring(0, 3) + resbody.googleId.substring(0, 3);
+    let gsignup = {
+      name,
+      username,
+      email,
+      password,
+      phone,
+    };
+    api
+      .signupUser(gsignup)
+      .then((results) => {
+        alert("Account successfully created! Please log in");
+        // setResponse(results.data);
+        toggleModal();
+      })
+      .catch((err) => {
+        setResponse("username or email already exists!");
+      });
+  };
+
+  const onFailure = (res) => {
+    console.log(res);
+  };
+
   return (
     <div>
       <Title> Create your account </Title>
@@ -69,6 +104,13 @@ const SignUpForm = ({ toggleModal }) => {
           handleSubmit(signupInfo);
         }}
         handleCancel={toggleModal}
+      />
+      <GoogleLogin
+        clientId="494742389689-0plkkqgkr8897u3prt1qnj200tdhv4ik.apps.googleusercontent.com"
+        buttonText="Signup"
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        cookiePolicy={"single_host_origin"}
       />
     </div>
   );
