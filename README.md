@@ -19,22 +19,22 @@ The solution that our team has come up with to solve the crisis of shortages in 
 Our project brings Donors and Donees together in a single space to provide easy access to vital life essentials. As an option, a Donor may specify whether they would like their donations to be claimed by a single individual or by a charity foundation. Donors can quickly look up and track all of their donation listings on our simple user-friendly Dashboard. This project also  provides options  for  the  Donee  to  browse through all of our currently active listings by the distance closest to the Donee or by the newest listings  posted for  an  easier  experience  in searching for available resources. To ensure the privacy of both parties, communication is kept solely between the Donor and the Donee by exchanging external contact information. In the event that you would like to keep your anonymity as a Donee, we have added a feature where a Donee may claim items as Anonymous. 
 
 ## Tech stack
-### Front-End Development
+## Front-End Development
 
 ####  <img width="15%" src="https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/netlifyapp_watercss/netlifyapp_watercss-ar21.svg"> <img width="15%" src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png"> <img width="15%" src="https://www.vectorlogo.zone/logos/sass-lang/sass-lang-icon.svg">
 
 
-### Back-End Development
+## Back-End Development
 
 ####  <img width="15%" src="https://www.vectorlogo.zone/logos/nodejs/nodejs-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/nodemonio/nodemonio-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/expressjs/expressjs-ar21.svg"> <img width="15%" src="https://user-images.githubusercontent.com/8939680/57233884-20344080-6fe5-11e9-8df3-0df1282e1574.png"> <img width="15%" src="https://www.vectorlogo.zone/logos/mysql/mysql-ar21.svg"> <img width="15%" src="https://stackjava.com/wp-content/uploads/2018/03/bcrypt-logo.jpg"> <img width="15%" src="https://www.devonblog.com/wp-content/uploads/2018/08/jwt_05.jpg"> <img width="15%" src="https://www.vectorlogo.zone/logos/npmjs/npmjs-ar21.svg">
 
 
 
-### Compiler
+## Compiler
 
 ####  <img width="15%" src="https://www.vectorlogo.zone/logos/js_webpack/js_webpack-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/babeljs/babeljs-ar21.svg">
 
-### Code Formatter
+## Code Formatter
 
 ####  <img width="15%" src="https://www.vectorlogo.zone/logos/eslint/eslint-ar21.svg"> <img width="15%" src="https://raw.githubusercontent.com/prettier/prettier-logo/master/images/prettier-banner-light.png">
 
@@ -42,7 +42,7 @@ Our project brings Donors and Donees together in a single space to provide easy 
 
 #### <img width="15%" src="https://www.vectorlogo.zone/logos/newrelic/newrelic-ar21.svg"> <img width="15%" src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1420816527/efcb3lfvkif27xsoreye.png">  <img width="15%" src="https://onward.justia.com/wp-content/uploads/2021/08/Website-Metrics-With-Google-Lighthouse-1024x538.png">
 
-### Project Management
+## Project Management
 
 ####  <img width="15%" src="https://www.vectorlogo.zone/logos/trello/trello-ar21.svg">
 
