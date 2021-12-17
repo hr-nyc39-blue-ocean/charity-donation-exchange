@@ -40,9 +40,9 @@ const SignUpForm = ({ toggleModal }) => {
           alert("Username or email already exists! Please try again!");
         } else {
           alert("Account successfully created! Please log in");
+          toggleModal();
         }
         // setResponse(results.data);
-        toggleModal();
       })
       .catch((err) => {
         console.log("ERROR IN handleSubmit SignUpForm!");
