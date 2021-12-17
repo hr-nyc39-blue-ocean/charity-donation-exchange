@@ -70,17 +70,18 @@ ALTER TABLE `Listings` ADD FOREIGN KEY (userID) REFERENCES `Users` (`userID`);
 
 -- to execute this file in terminal: mysql -u root < ./server/db/schema.sql from top level directory
 
+--mysql --host=us-cdbr-east.cleardb.com --user=b5xxxxx7 --password=37d8faad --reconnect heroku_xxxxxx < my_dump_file.sql
 
-LOAD DATA LOCAL INFILE '/Users/jaimie/Desktop/UsersData.csv'
-INTO TABLE Users
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS
-(username, password, name, email, phone);
+-- LOAD DATA LOCAL INFILE '/Users/jaimie/Desktop/UsersData.csv'
+-- INTO TABLE Users
+-- FIELDS TERMINATED BY ','
+-- LINES TERMINATED BY '\n'
+-- IGNORE 1 ROWS
+-- (username, password, name, email, phone);
 
-LOAD DATA LOCAL INFILE '/Users/jaimie/Desktop/ListingsData.csv'
-INTO TABLE Listings
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS
-(name, category, quantity, date, zipcode, charityOnly, userID);
+-- LOAD DATA LOCAL INFILE '/Users/jaimie/Desktop/ListingsData.csv'
+-- INTO TABLE Listings
+-- FIELDS TERMINATED BY ','
+-- LINES TERMINATED BY '\n'
+-- IGNORE 1 ROWS
+-- (name, category, quantity, date, zipcode, charityOnly, userID);
