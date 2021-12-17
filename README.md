@@ -4,8 +4,8 @@
 
 ## Table of Contents
 
-This app is hosted on Heroku: https://charity-donation-exchange.herokuapp.com/
-Link to Trello board: https://trello.com/b/kJMMFlce/blue-ocean
+* This app is hosted on Heroku: https://charity-donation-exchange.herokuapp.com/
+* Link to Trello board: https://trello.com/b/kJMMFlce/blue-ocean
 
 ## Introduction
 
