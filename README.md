@@ -4,6 +4,8 @@
 
 ## Table of Content
 
+This app is deployed on Heroku --> https://charity-donation-exchange.herokuapp.com/
+
 ## Introduction
 
 Nowadays there is a healthy emphasis on the “reuse” part of “reduce, reuse, recycle”, particularly when it comes to the charitable repurposing of items. Currently, existing online marketplaces do not really allow for an easy exchange of donated goods, and do not offer a way to track donated items specifically. While online marketplaces do allow the exchange of goods for monetary compensation, there is  typically  no  way  to  easily  distinguish if an item is for donation  specifically.  Charitable organizations looking for particular donated items also do not have a platform to do this easily, and instead of being able to actively search for donations that suit their needs, they must rely on passively accepting anything that is donated to them.  
