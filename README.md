@@ -2,7 +2,7 @@
 
 # charity-donation-exchange
 
-## Table of Content
+## Table of Contents
 
 This app is deployed on Heroku --> https://charity-donation-exchange.herokuapp.com/
 
