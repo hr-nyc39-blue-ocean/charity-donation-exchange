@@ -57,7 +57,27 @@ Our project brings Donors and Donees together in a single space to provide easy 
 ### Deployment
 ####  <img width="15%" src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/heroku/heroku-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/docker/docker-ar21.svg">
 
+### Product Demo
+#### Landing page
+![image](https://user-images.githubusercontent.com/89167923/146623099-7b64f711-8bbf-467f-93ae-7adecb9e1864.png)
 
+#### Distance sort functionality
+
+#### Newest sort functionality
+
+#### Sign-up Modal with Username and Email duplication check via MySQL DB
+
+#### Log-in Modal with hashing functionality
+
+#### Creating a new listing
+
+#### Claiming a listing
+
+#### Cancelling a listing
+
+#### Marking a listing as complete
+
+#### Dashboard functionalities
 
 ## Technical Challenges 
 
