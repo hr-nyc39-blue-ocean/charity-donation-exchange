@@ -71,8 +71,9 @@ https://user-images.githubusercontent.com/89167923/146624342-a9954d51-fe6a-4e95-
 
 https://user-images.githubusercontent.com/89167923/146624505-1fcb18fc-3fe1-4de3-95e4-a3279f23f8fb.mov
 
+#### Hashing functionality for password (Freshly created account "John123456" with password "123", but password was hashed and stored in DB instead of cleartext)
 
-#### Hashing functionality for password
+
 
 #### Creating a new listing
 
