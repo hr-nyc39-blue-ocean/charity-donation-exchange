@@ -67,9 +67,8 @@ https://user-images.githubusercontent.com/89167923/146624259-0ae642ce-e22d-442d-
 #### Newest sort functionality
 https://user-images.githubusercontent.com/89167923/146624342-a9954d51-fe6a-4e95-9cc1-f7d096818bb5.mov
 
-#### Sign-up Modal with Username and Email duplication check via MySQL DB / Logging in with freshly created account
-
-https://user-images.githubusercontent.com/89167923/146624505-1fcb18fc-3fe1-4de3-95e4-a3279f23f8fb.mov
+#### Sign-up Modal with Username and Email duplication check via MySQL DB
+https://user-images.githubusercontent.com/89167923/146645548-5a0c0f02-87fd-43a2-be5e-6f29edd2f44c.mov
 
 #### Hashing functionality for password (Freshly created account "John123456" with password "123", but password was hashed and stored in DB instead of cleartext)
 <img width="732" alt="Screen Shot 2021-12-17 at 8 36 02 PM" src="https://user-images.githubusercontent.com/89167923/146624709-44405285-8caa-4b65-b02c-d2b9dd15b1c6.png">
