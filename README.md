@@ -72,18 +72,25 @@ https://user-images.githubusercontent.com/89167923/146624342-a9954d51-fe6a-4e95-
 https://user-images.githubusercontent.com/89167923/146624505-1fcb18fc-3fe1-4de3-95e4-a3279f23f8fb.mov
 
 #### Hashing functionality for password (Freshly created account "John123456" with password "123", but password was hashed and stored in DB instead of cleartext)
-
-
+<img width="732" alt="Screen Shot 2021-12-17 at 8 36 02 PM" src="https://user-images.githubusercontent.com/89167923/146624709-44405285-8caa-4b65-b02c-d2b9dd15b1c6.png">
 
 #### Creating a new listing
+https://user-images.githubusercontent.com/89167923/146624765-812a8b9c-6b5b-4aae-8d90-ac46edf70a09.mov
 
 #### Claiming a listing which will transmit the claimer info to the donor's dashboard
+https://user-images.githubusercontent.com/89167923/146624946-404346b7-4c27-4a55-8f6e-caed59fcd82a.mov
 
 #### Cancelling a listing
+https://user-images.githubusercontent.com/89167923/146625149-c3e4ca00-2f69-49cf-b875-4927bd406576.mov
+
 
 #### Marking a listing as complete
+https://user-images.githubusercontent.com/89167923/146625101-5f4507d0-6967-4728-8988-6d78deb5d560.mov
 
-#### Other dashboard functionalities
+
+#### Dashboard listing filter functionalities
+https://user-images.githubusercontent.com/89167923/146625079-5331321e-55b2-4e7b-b6da-5678a4186043.mov
+
 
 
 ## Technical Challenges 
