@@ -64,7 +64,9 @@ Our project brings Donors and Donees together in a single space to provide easy 
 ### Images to be sorted out later
 ![image](https://user-images.githubusercontent.com/89167923/146597966-75c4b9a8-a460-4b08-ab93-48ef7db8febf.png)
 ![image](https://user-images.githubusercontent.com/89167923/146598142-c75e2e5e-2d87-4aa2-90ce-fbcab0948dfa.png)
-
+![image](https://user-images.githubusercontent.com/18966944/146622494-c1d72ded-c8e9-4d70-8296-6e9fec1dd896.png)
+![image](https://user-images.githubusercontent.com/18966944/146622644-76733750-c8bd-4d79-b50b-2bac0337c550.png)
+![image](https://user-images.githubusercontent.com/18966944/146622658-0756a503-5691-457b-a46e-9c50c488e3c5.png)
 
 Blue Ocean Readme
 
