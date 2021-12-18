@@ -65,10 +65,14 @@ Our project brings Donors and Donees together in a single space to provide easy 
 https://user-images.githubusercontent.com/89167923/146624259-0ae642ce-e22d-442d-8e91-c8723f037979.mov
 
 #### Newest sort functionality
+https://user-images.githubusercontent.com/89167923/146624342-a9954d51-fe6a-4e95-9cc1-f7d096818bb5.mov
 
-#### Sign-up Modal with Username and Email duplication check via MySQL DB
+#### Sign-up Modal with Username and Email duplication check via MySQL DB / Logging in with freshly created account
 
-#### Log-in Modal with hashing functionality
+https://user-images.githubusercontent.com/89167923/146624505-1fcb18fc-3fe1-4de3-95e4-a3279f23f8fb.mov
+
+
+#### Hashing functionality for password
 
 #### Creating a new listing
 
