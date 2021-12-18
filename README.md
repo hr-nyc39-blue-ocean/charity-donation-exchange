@@ -68,10 +68,11 @@ https://user-images.githubusercontent.com/89167923/146624259-0ae642ce-e22d-442d-
 https://user-images.githubusercontent.com/89167923/146624342-a9954d51-fe6a-4e95-9cc1-f7d096818bb5.mov
 
 #### Sign-up Modal with Username and Email duplication check via MySQL DB
-https://user-images.githubusercontent.com/89167923/146645548-5a0c0f02-87fd-43a2-be5e-6f29edd2f44c.mov
+https://user-images.githubusercontent.com/89167923/146645611-8349774e-3fc9-4a81-9654-abd27709875d.mov
 
-#### Hashing functionality for password (Freshly created account "John123456" with password "123", but password was hashed and stored in DB instead of cleartext)
-<img width="732" alt="Screen Shot 2021-12-17 at 8 36 02 PM" src="https://user-images.githubusercontent.com/89167923/146624709-44405285-8caa-4b65-b02c-d2b9dd15b1c6.png">
+
+#### Hashing functionality for password (Freshly created account "John1231" with password "123", but password was hashed and stored in DB instead of cleartext)
+![Screen Shot 2021-12-18 at 10 02 54 AM](https://user-images.githubusercontent.com/89167923/146645619-d3d600b0-7eea-445f-9a49-388fb4de4748.png)
 
 #### Creating a new listing
 https://user-images.githubusercontent.com/89167923/146624765-812a8b9c-6b5b-4aae-8d90-ac46edf70a09.mov
