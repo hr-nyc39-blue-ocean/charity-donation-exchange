@@ -59,7 +59,6 @@ Our project brings Donors and Donees together in a single space to provide easy 
 
 ### Product Demo
 #### Landing page
-![image](https://user-images.githubusercontent.com/89167923/146623099-7b64f711-8bbf-467f-93ae-7adecb9e1864.png)
 
 #### Distance sort functionality
 
@@ -71,13 +70,14 @@ Our project brings Donors and Donees together in a single space to provide easy 
 
 #### Creating a new listing
 
-#### Claiming a listing
+#### Claiming a listing which will transmit the claimer info to the donor's dashboard
 
 #### Cancelling a listing
 
 #### Marking a listing as complete
 
-#### Dashboard functionalities
+#### Other dashboard functionalities
+
 
 ## Technical Challenges 
 
