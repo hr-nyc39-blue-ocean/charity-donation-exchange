@@ -109,17 +109,21 @@ https://user-images.githubusercontent.com/89167923/146625079-5331321e-55b2-4e7b-
 
 <h2 align="center">Visual Diagrams</h2> 
 
-![image](https://user-images.githubusercontent.com/89167923/146597966-75c4b9a8-a460-4b08-ab93-48ef7db8febf.png)
-![image](https://user-images.githubusercontent.com/89167923/146598142-c75e2e5e-2d87-4aa2-90ce-fbcab0948dfa.png)
+### Front-End Logic Diagram
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://user-images.githubusercontent.com/89167923/146597966-75c4b9a8-a460-4b08-ab93-48ef7db8febf.png" width="100%" />
+<!-- ![image](https://user-images.githubusercontent.com/89167923/146597966-75c4b9a8-a460-4b08-ab93-48ef7db8febf.png) -->
 
-### Nginx conceptual diagram
-![image](https://user-images.githubusercontent.com/18966944/146622494-c1d72ded-c8e9-4d70-8296-6e9fec1dd896.png)
+<!-- Project Timeline Img -->
+<img src="https://user-images.githubusercontent.com/89167923/146598142-c75e2e5e-2d87-4aa2-90ce-fbcab0948dfa.png" width="85%" />
+
+### Nginx Conceptual Diagram
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://user-images.githubusercontent.com/18966944/146622494-c1d72ded-c8e9-4d70-8296-6e9fec1dd896.png" width="75%" />
 
 ### Loader.io stress-test results BEFORE any optimizations
-![image](https://user-images.githubusercontent.com/18966944/146622644-76733750-c8bd-4d79-b50b-2bac0337c550.png)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://user-images.githubusercontent.com/18966944/146622644-76733750-c8bd-4d79-b50b-2bac0337c550.png" width="80%" />
 
 ### Loader.io stress-test results AFTER setting up nginx load-balancer with one additional EC2 nodejs server
-![image](https://user-images.githubusercontent.com/18966944/146622658-0756a503-5691-457b-a46e-9c50c488e3c5.png)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://user-images.githubusercontent.com/18966944/146622658-0756a503-5691-457b-a46e-9c50c488e3c5.png" width="80%" />
 
 <h2 align="center">Technical Challenges</h2> 
 
