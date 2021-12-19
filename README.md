@@ -17,10 +17,11 @@
 
 1. [Introduction](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#introduction)
 2. [Tech Stack](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#tech-stack)
-3. [Technical Challenges](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#technical-challenges)
-4. [Unexpected Challenges](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#unexpected-challenges)
-5. [Planned Additional Features](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#planned-features)
-6. [Key Takeaways](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#key-takeaways)
+3. [Product Demos](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#product-demo)
+4. [Technical Challenges](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#technical-challenges)
+5. [Unexpected Challenges](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#unexpected-challenges)
+6. [Planned Additional Features](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#planned-features)
+7. [Key Takeaways](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#key-takeaways)
 
 
 * This app is deployed on Heroku: https://charity-donation-exchange.herokuapp.com/
