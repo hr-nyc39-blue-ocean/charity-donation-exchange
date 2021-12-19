@@ -18,10 +18,11 @@
 1. [Introduction](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#introduction)
 2. [Tech Stack](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#tech-stack)
 3. [Product Demos](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#product-demo)
-4. [Technical Challenges](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#technical-challenges)
-5. [Unexpected Challenges](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#unexpected-challenges)
-6. [Planned Additional Features](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#planned-features)
-7. [Key Takeaways](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#key-takeaways)
+4. [Visual Diagrams, Timeline, and Other Images](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#visual-diagrams)
+5. [Technical Challenges](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#technical-challenges)
+6. [Unexpected Challenges](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#unexpected-challenges)
+7. [Planned Additional Features](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#planned-features)
+8. [Key Takeaways](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#key-takeaways)
 
 
 * This app is deployed on Heroku: https://charity-donation-exchange.herokuapp.com/
@@ -106,15 +107,22 @@ https://user-images.githubusercontent.com/89167923/146625101-5f4507d0-6967-4728-
 #### Dashboard listing filter functionalities
 https://user-images.githubusercontent.com/89167923/146625079-5331321e-55b2-4e7b-b6da-5678a4186043.mov
 
-<h2 align="center">Technical Challenges</h2> 
+<h2 align="center">Visual Diagrams</h2> 
 
 ### Images to be sorted out later
 ![image](https://user-images.githubusercontent.com/89167923/146597966-75c4b9a8-a460-4b08-ab93-48ef7db8febf.png)
 ![image](https://user-images.githubusercontent.com/89167923/146598142-c75e2e5e-2d87-4aa2-90ce-fbcab0948dfa.png)
+
+### Nginx conceptual diagram
 ![image](https://user-images.githubusercontent.com/18966944/146622494-c1d72ded-c8e9-4d70-8296-6e9fec1dd896.png)
+
+### Loader.io stress-test results BEFORE any optimizations
 ![image](https://user-images.githubusercontent.com/18966944/146622644-76733750-c8bd-4d79-b50b-2bac0337c550.png)
+
+### Loader.io stress-test results AFTER setting up nginx load-balancer with one additional EC2 nodejs server
 ![image](https://user-images.githubusercontent.com/18966944/146622658-0756a503-5691-457b-a46e-9c50c488e3c5.png)
 
+<h2 align="center">Technical Challenges</h2> 
 
 Technical challenges and research that you anticipated:
 
