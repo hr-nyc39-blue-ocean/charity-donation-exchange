@@ -109,7 +109,6 @@ https://user-images.githubusercontent.com/89167923/146625079-5331321e-55b2-4e7b-
 
 <h2 align="center">Visual Diagrams</h2> 
 
-### Images to be sorted out later
 ![image](https://user-images.githubusercontent.com/89167923/146597966-75c4b9a8-a460-4b08-ab93-48ef7db8febf.png)
 ![image](https://user-images.githubusercontent.com/89167923/146598142-c75e2e5e-2d87-4aa2-90ce-fbcab0948dfa.png)
 
