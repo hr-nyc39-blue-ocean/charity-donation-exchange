@@ -7,7 +7,7 @@
   <tr>
       <td align="center"><a href="https://github.com/jaimienakayama"><img src="https://avatars.githubusercontent.com/u/69734863?v=4" width="100px;" alt=""/><br /><sub><b>Jaimie Nakayama</b></sub></a<br /></td>
     <td align="center"><a href="https://github.com/lamia-haider"><img src="https://avatars.githubusercontent.com/u/36172730?v=4" width="100px;" alt=""/><br /><sub><b>Lamia Hader</b></sub></a<br /></td>
-       <td align="center"><a href="https://github.com/ZiyeS123"><img src="https://avatars.githubusercontent.com/u/88356949?v=4" width="100px;" alt=""/><br /><sub><b>Lamia Hader</b></sub></a<br /></td>
+       <td align="center"><a href="https://github.com/ZiyeS123"><img src="https://avatars.githubusercontent.com/u/88356949?v=4" width="100px;" alt=""/><br /><sub><b>Ziye Song</b></sub></a<br /></td>
        <td align="center"><a href="https://github.com/johnjhwang"><img src="https://avatars.githubusercontent.com/u/89167923?v=4" width="100px;" alt=""/><br /><sub><b>John Hwang</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/richardhyesungo"><img src="https://avatars.githubusercontent.com/u/18966944?v=4" width="100px;" alt=""/><br /><sub><b>Richard O</b></sub></a><br /></td>
   </tr>
