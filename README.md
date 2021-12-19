@@ -1,8 +1,20 @@
 
 
-# charity-donation-exchange
+<h1 align="center">Charity Donation Exchange</h1>
 
-## Table of Contents
+<table align="center">
+    <th colspan="5">Team Members</th>
+  <tr>
+      <td align="center"><a href="https://github.com/jaimienakayama"><img src="https://avatars.githubusercontent.com/u/69734863?v=4" width="100px;" alt=""/><br /><sub><b>Jaimie Nakayama</b></sub></a<br /></td>
+    <td align="center"><a href="https://github.com/lamia-haider"><img src="https://avatars.githubusercontent.com/u/36172730?v=4" width="100px;" alt=""/><br /><sub><b>Lamia Hader</b></sub></a<br /></td>
+       <td align="center"><a href="https://github.com/ZiyeS123"><img src="https://avatars.githubusercontent.com/u/88356949?v=4" width="100px;" alt=""/><br /><sub><b>Lamia Hader</b></sub></a<br /></td>
+       <td align="center"><a href="https://github.com/johnjhwang"><img src="https://avatars.githubusercontent.com/u/89167923?v=4" width="100px;" alt=""/><br /><sub><b>John Hwang</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/richardhyesungo"><img src="https://avatars.githubusercontent.com/u/18966944?v=4" width="100px;" alt=""/><br /><sub><b>Richard O</b></sub></a><br /></td>
+  </tr>
+</table>
+
+<h2 align="center">Table of Contents</h2>
+
 1. [Introduction](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#introduction)
 2. [Tech Stack](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#tech-stack)
 3. [Technical Challenges](https://github.com/hr-nyc39-blue-ocean/charity-donation-exchange/blob/dev/README.md#technical-challenges)
@@ -14,7 +26,8 @@
 * This app is deployed on Heroku: https://charity-donation-exchange.herokuapp.com/
 * Link to Trello board: https://trello.com/b/kJMMFlce/blue-ocean
 
-## Introduction
+
+<h2 align="center">Introduction</h2>
 
 In this day and age there is a healthy emphasis on the “reuse” part of “reduce, reuse, recycle”, particularly when it comes to the charitable repurposing of items. Currently, existing online marketplaces do not really allow for an easy exchange of donated goods, and do not offer a way to track donated items specifically. While online marketplaces do allow the exchange of goods for monetary compensation, there is  typically  no  way  to  easily  distinguish if an item is for donation  specifically.  Charitable organizations looking for particular donated items also do not have a platform to do this easily, and instead of being able to actively search for donations that suit their needs, they must rely on passively accepting anything that is donated to them.  
 
@@ -26,7 +39,7 @@ The solution that our team has come up with to address the lack of a donation-sp
 
 Our project brings Donors and Donees together in a single space to provide easy access to vital life essentials. As an option, a Donor may specify whether they would like their donations to be claimed by a single individual or by a charity foundation. Donors can quickly look up and track all of their donation listings on our simple user-friendly Dashboard. This project also  provides options  for  the  Donee  to  browse through all of our currently active listings by the distance closest to the Donee or by the newest listings  posted for  an  easier  experience  in searching for available resources. To ensure the privacy of both parties, communication is kept solely between the Donor and the Donee by exchanging external contact information. In the event that you would like to keep your anonymity as a Donee, we have added a feature where a Donee may claim items as Anonymous. 
 
-## Tech Stack
+<h2 align="center">Tech Stack</h2>
 
 ### Front-End Development
 
@@ -57,7 +70,8 @@ Our project brings Donors and Donees together in a single space to provide easy 
 ### Deployment
 ####  <img width="15%" src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/heroku/heroku-ar21.svg"> <img width="15%" src="https://www.vectorlogo.zone/logos/docker/docker-ar21.svg">
 
-### Product Demo
+<h2 align="center">Product Demo</h2>
+
 #### Landing page
 ![image](https://user-images.githubusercontent.com/89167923/146623939-e82d0a46-3a31-4833-acdd-f8d9da5fc196.png)
 
@@ -91,9 +105,7 @@ https://user-images.githubusercontent.com/89167923/146625101-5f4507d0-6967-4728-
 #### Dashboard listing filter functionalities
 https://user-images.githubusercontent.com/89167923/146625079-5331321e-55b2-4e7b-b6da-5678a4186043.mov
 
-
-
-## Technical Challenges 
+<h2 align="center">Technical Challenges</h2> 
 
 ### Images to be sorted out later
 ![image](https://user-images.githubusercontent.com/89167923/146597966-75c4b9a8-a460-4b08-ab93-48ef7db8febf.png)
@@ -115,8 +127,7 @@ Technical challenges and research that you anticipated:
     * Plan: The intent was to constantly communicate with one another whenever working on connecting components that were built by different people, ensuring functionality before making merges or pull requests
     * Takeaway: Even a small change in one component can introduce bugs and other malfunctions in other components that interact with said component. Having one developer be the authority on the format or shape of the expected data in one component can help with efficiency since other developers can simply work on matching that format in the data they are sending out. It is better to follow the Agile approach of building iteratively instead of incrementally (make sure the components are integrated early and often as opposed to each person just working on building a complex component that later will take forever to integrate with other components)
 
-
-## Unexpected Challenges
+<h2 align="center">Unexpected Challenges</h2>
 
 * Splitting up the work (actual coding) among team members
     * Why was it a challenge: there were multiple ways of splitting up the work such as by component or by service (front-end, back-end, db, api) and we were unsure which method was most commonly used in real life situations and how efficient each method would be
@@ -136,9 +147,7 @@ Technical challenges and research that you anticipated:
         * Actual solution: basically the previous bullet but someone had bundled all the functionality into a single npm module which we installed and implemented
 
 
-
-
-## Planned Features
+<h2 align="center">Planned Features</h2>
 
 What additional features do you plan to add, how do you plan to implement those features?
 
@@ -158,9 +167,7 @@ What additional features do you plan to add, how do you plan to implement those 
     * Stress testing to ensure scalability
 
 
-
-
-## Key Takeaways  
+<h2 align="center">Key Takeaways</h2>
 
 Key lessons from working with an external stakeholder
 * The client was not technologically well-versed, so we had to translate what she was requesting into technical action items that could then be easily broken down further in terms of ticketing and planning so that it could be implemented through code
