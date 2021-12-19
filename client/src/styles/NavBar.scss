@@ -1,0 +1,18 @@
+@import "mixins";
+
+.navbar {
+  width: 70vw;
+  height: 5vh;
+  padding: 5px;
+  // border: 1px solid black;
+}
+
+.dashboard-nav-bar {
+  @include flex(row, space-evenly, center);
+  height: 5vh;
+}
+
+.home-nav-bar {
+  @extend .dashboard-nav-bar;
+  @include flex(row, center, center);
+}

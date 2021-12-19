@@ -1,0 +1,47 @@
+@import "mixins";
+
+#logo {
+  width: 197px;
+  height: 197px;
+}
+
+.home-header {
+  height: 15vh;
+  width: 100vw;
+  // border: 1px solid black;
+}
+
+.header-row {
+  @include flex(row);
+}
+
+.header-layout {
+  @include flex(column, center, center);
+  width: 100vw;
+  height: 15vh;
+}
+
+.header-title {
+  @include flex(row, center, center);
+  font-family: "Bakbak One", cursive;
+  font-size: 40pt;
+  color: #fff9e9;
+}
+
+.header-buttons-styles {
+  margin: 5px;
+}
+
+.header-buttons-container {
+  @include flex(column, flex-start);
+  @extend .header-buttons-styles;
+  width: 12vw;
+}
+
+.blue {
+  background-color: #5eadab;
+}
+
+.yellow {
+  background: #fdca39;
+}

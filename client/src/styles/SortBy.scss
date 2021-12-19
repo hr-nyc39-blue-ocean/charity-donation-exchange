@@ -1,0 +1,48 @@
+@import "mixins";
+
+.form-styles {
+  @include flex(row, center, center);
+  gap: 10px;
+  width: 40vw;
+  color: #fff9ea;
+
+  .sort-by-title {
+    font-weight: bold;
+  }
+
+  #submit {
+    border: none;
+    border-radius: 20px;
+    font-family: "Poppins", sans-serif;
+    transition: box-shadow 0.3s;
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+    cursor: pointer;
+    background-color: #fdca39;
+    color: #fff9ea;
+
+    &:hover {
+      color: #fff9ea;
+      transform: scale(1.1);
+    }
+  }
+
+  .zip-input-container {
+    @include flex(row, center, center);
+    gap: 10px;
+  }
+
+  .zip-input {
+    font-family: "Poppins", sans-serif;
+    font-size: 12pt;
+    height: 14pt;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+    background-color: #fff9ea;
+  }
+
+  .sort-by-buttons {
+    @include flex(row);
+    gap: 20px;
+  }
+}

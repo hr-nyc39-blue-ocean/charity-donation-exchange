@@ -1,0 +1,14 @@
+@import "mixins";
+@import url("https://fonts.googleapis.com/css2?family=Bakbak+One&family=Poppins:wght@300;400&display=swap");
+
+* {
+  margin: 0;
+}
+
+.global {
+  width: 100vw;
+  height: 100vh;
+  @include flex(column, space-evenly, center);
+  font-family: "Poppins", sans-serif;
+  font-size: 12pt;
+}

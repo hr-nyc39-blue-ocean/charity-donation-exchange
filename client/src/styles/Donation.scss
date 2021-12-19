@@ -1,0 +1,62 @@
+@import "mixins";
+
+.donation-container {
+  padding: 20px;
+  // border: 1px solid black;
+  margin: 10px;
+  background-color: #fff9ea;
+  border-radius: 10px;
+
+  .donation-card-layout {
+    @include flex(row, space-between);
+  }
+
+  .donation-card-buttons {
+    @include flex(column, center, center);
+    width: 15vw;
+  }
+
+  .donation-button-styles {
+    margin: 5px;
+    border: 1px solid #d3d3d3;
+    color: #000000;
+    box-shadow: none;
+    &:hover {
+      color: #000000;
+    }
+  }
+
+  .dontation-card-title {
+    font-weight: bold;
+  }
+
+  .donation-img-container {
+    @include flex(row, flex-start, center);
+    width: 13vw;
+  }
+
+  .donation-card-details {
+    width: 20vw;
+    @include flex(column, space-between, space-between);
+  }
+
+  .donation-img-styles {
+    @include flex(row, center, center);
+    width: 150px;
+    height: 150px;
+  }
+
+  .donation-details-container {
+    @include flex(column);
+    width: 25vw;
+  }
+
+  .donation-claimed-details-container {
+    @include flex(column, center);
+    width: 15vw;
+  }
+
+  .donation-distance-container {
+    @include flex(column, center, center);
+  }
+}

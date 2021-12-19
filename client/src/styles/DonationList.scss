@@ -1,0 +1,20 @@
+.donation-list-container {
+  width: 70vw;
+  height: 65vh;
+  // border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+.donation-list-blue {
+  background-color: #91d6d3;
+}
+
+.donation-list-yellow {
+  background-color: #f7dc94;
+}
+
+.donation-inner-list-container {
+  overflow-y: auto;
+  width: 70vw;
+  height: 65vh;
+}
